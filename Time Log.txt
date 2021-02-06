@@ -1,4 +1,6 @@
 Each team member should track the start/end/amount of time they spend on which tasks.
 
 
-Member      Tasks                   Start               End                Total Time
+Member              Tasks                   Start               End                Total Time
+Shaina,Piper        Setup Backend           2/5 2:00p           2/5 3:30p          1hr 30 min
+Shaina,Piper        Research node.js api    2/6 2:00p           2/6 3:00p          1hr
