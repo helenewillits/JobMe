@@ -1,0 +1,4 @@
+Each team member should track the start/end/amount of time they spend on which tasks.
+
+
+Member      Tasks                   Start               End                Total Time

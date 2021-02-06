@@ -1,4 +1,5 @@
-// NOT OUR REAL CODE - PLACEHOLDER TO CREATE NODE
+import React, { Component } from 'react'
+import axios from 'axios';
 
 //Load HTTP module
 const http = require("http");
