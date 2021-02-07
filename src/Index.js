@@ -7,6 +7,69 @@ async function run() {
   try {
     await client.connect();
     const database = client.db('ApplicationDatabase');
+
+    database.createCollection("Application", {
+       validator: {
+          $jsonSchema: {
+             jsonType: "object",
+             required: ["userId", "appId", "favorited", "companyName", "position", "result"],
+             properties: {
+                userId: {
+                    // WHEN USER DATABASE CREATED, THIS SHOULD BE "USER_USERID"
+                    jsonType: "int",
+                    description: "must be an integer and is required"
+                },
+                appId: {
+                    jsonType: "int",
+                    description: "must be an integer and is required"
+                },
+                favorited: {
+                    jsonType: "bool",
+                    description: "True if user adds application to favorites, False otherwise"
+                },
+                deadline: {
+                    jsonType: "string",
+                    description: "must be a string if the field exists"
+                },
+                companyName: {
+                    jsonType: "string",
+                    description: "must be a string and is required"
+                },
+                position: {
+                    jsonType: "string",
+                    description: "must be a string and is required"
+                },
+                jobId: {
+                    jsonType: "string",
+                    description: "must be a string if the field exists"
+               },
+                jobPostingLink: {
+                    // MAKE HYPERLINK
+                    jsonType: "string",
+                    description: "must be a string if the field exists"
+                },
+                applicationPortalLink: {
+                    // MAKE HYPERLINK
+                    jsonType: "string",
+                    description: "must be a string if the field exists"
+                },
+                applicationStatus: {
+                    enum: [ "To Do", "In Progress", "Completed" ],
+                    description: "can only be one of enum values and is required"
+                },
+                result: {
+                    enum: [ "N/A", "Accepted", "Declined", "Interviewing", "Waiting", "Discontinued" ],
+                    description: "can only be one of enum values and is required"
+                },
+                notes: {
+                    jsonType: "string",
+                    description: "must be a string if the field exists"
+                },
+             }
+          }
+       }
+    })
+
     const collection = database.collection('Application');
     // Add Entry
     database.collection("Application").insertOne(
