@@ -1,0 +1,55 @@
+body {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  }
+
+h4 {
+    color: black;
+    padding: 10 10 10 10;
+}
+
+.area {
+  padding-left: 10px;
+  padding-right: 10px;
+
+  border-style: solid;
+  border-width: 3px;
+  border-color: #E3F6F5;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.thirdcolumn {
+  float: left;
+  width: 33%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.application_item {
+  height: 200px;
+  width: 500px;
+
+  padding-left: 30px;
+  padding-right: 30px;
+
+  border-style: solid;
+  border-width: 3px;
+  border-color: #E3F6F5;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
