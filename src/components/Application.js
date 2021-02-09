@@ -7,6 +7,21 @@ import NavigationBar from './Navbar.js';
 
 // defines the space that contains the three columns of applications
 class ApplicationLog extends React.Component{
+
+    constructor(props) {
+        super(props);
+        this.state = { apiResponse: "" };
+    }
+    
+    callAPI() {
+        fetch("http://localhost:5000/testAPI")
+            .then(res => res.text())
+            .then(res => this.setState({ apiResponse: res }));
+    }
+    
+    componentWillMount() {
+        this.callAPI();
+    }
     // backend : figure out how to initalize this
     state = { applications: [] };
 
@@ -24,6 +39,7 @@ class ApplicationLog extends React.Component{
         return (
             <div>
                 <NavigationBar />
+                <p className="App-intro">{this.state.apiResponse}</p>
                 <Header />
                 <div className={styles.row}>
                     <div className={styles.thirdcolumn} >
