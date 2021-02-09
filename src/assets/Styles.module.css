@@ -1,0 +1,180 @@
+body {
+    background-color: white;
+    color: black;
+    padding: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+    font-family: roboto;
+}
+
+:root {
+  --bg:  white;
+  --text-color: #000000;
+  --nav-size: 60px;
+  --border: 1px solid #white;
+  --border-radius: 20px;
+  --speed: 500ms; 
+}
+
+h4 {
+    color: black;
+    padding: 10 10 10 10;
+}
+
+.area {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  border-style: solid;
+  border-width: 3px;
+  border-color: #a2ddfb;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  overflow: hidden;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.thirdcolumn {
+  float: left;
+  width: 33%;
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  overflow-wrap: anywhere;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.application_item {
+  padding-left: 10px;
+  padding-right: 10px;
+  position: relative;
+  display: inline-flexbox;
+  flex-wrap: wrap;
+
+  border-style: solid;
+  border-width: 3px;
+  border-color: #a2ddfb;
+  border-radius: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 30px;
+  overflow-wrap: anywhere;
+}
+
+/* change default bullet list*/
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* change links to text color */
+a {
+  color: var(--text-color);
+  text-decoration: none;;
+}
+
+/* Top Navigation Bar */
+
+/* <nav> */
+.navbar {
+  height: var(--nav-size);
+  background-color: var(--bg);
+  padding: 0 1rem;
+  border-bottom: var(--border);
+}
+
+/* <ul> */
+.navbar_nav {
+  max-width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* <li> */
+.nav_item {
+  width: calc(var(--nav-size) * 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Icon Button */
+.icon_button {
+  --button-size: calc(var(--nav-size) * 0.5);
+  width: var(--button-size * 2);
+  height: var(--button-size * 2);
+  background-color: #a2ddfb;
+  border-radius: 50%;
+  padding: 5px;
+  margin: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: filter 300ms;
+  
+}
+
+.icon_button:hover {
+  background-color: #70cff8;
+}
+
+.icon_button svg { 
+  fill: var(--text-color);
+  width: 30px;
+  height: 30px;
+}
+
+/* Dropdown Menu */
+
+.dropdown {
+  margin: 22px;
+  position: absolute;
+  top: 58px;
+  width: 300px;
+  transform: translateX(-45%);
+  background-color: #70cff8;
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: 1rem;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.menu {
+  width: 100%;
+}
+
+.menu_item {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border-radius: var(--border-radius);
+  transition: background var(--speed);
+  padding: 0.5rem;
+}
+
+.menu_item:hover {
+  background-color: #a2ddfb;
+}
+
+.icon_right {
+  margin-left: auto;
+}
+
+.column_title{
+  text-align: left;
+  font-size: 32px;
+  overflow: hidden;
+}
