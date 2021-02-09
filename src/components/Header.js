@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-// import NavigationBar from '';
-
 class Header extends React.Component {
 
     // hard coded data to get started
@@ -13,7 +11,6 @@ class Header extends React.Component {
     // dashboard header
     dashboard_header = (
       <div>
-        {/* <NavigationBar /> */}
         <h2>Hi there, {this.username}.</h2>
         <h1>Let's make some moves.</h1>
       </div>
@@ -22,7 +19,6 @@ class Header extends React.Component {
     //application log header
     application_log_header = (
         <div>
-          {/* <NavigationBar /> */}
           <h1>My Applications</h1>
           <h2>{this.acknowledge_apps}</h2>
         </div>
@@ -37,7 +33,6 @@ class Header extends React.Component {
     // new application header
     application_new_header = (
         <div>
-          {/* <NavigationBar /> */}
           <h1>Add a New Application</h1>
           <h2>You're on a roll.</h2>
         </div>

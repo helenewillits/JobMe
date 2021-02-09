@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 import styles from '../assets/Styles.module.css' ;
 import Header from './Header.js';
+import NavigationBar from './Navbar.js';
 
 // defines the space that contains the three columns of applications
 class ApplicationLog extends React.Component{
@@ -22,16 +23,17 @@ class ApplicationLog extends React.Component{
     render() {
         return (
             <div>
+                <NavigationBar />
                 <Header />
-                <div className={styles.row} >
+                <div className={styles.row}>
                     <div className={styles.thirdcolumn} >
-                        <ApplicationStatusColumn status='To Do' applications={this.state.applications}/>
+                        <ApplicationStatusColumn_ToDo status='To Do' applications={this.state.applications}/>
                     </div>
                     <div className={styles.thirdcolumn} >
-                        <ApplicationStatusColumn applications={this.state.applications}/>
+                        <ApplicationStatusColumn_InProgress applications={this.state.applications}/>
                     </div>
                     <div className={styles.thirdcolumn} >
-                        <ApplicationStatusColumn applications={this.state.applications}/>
+                        <ApplicationStatusColumn_Completed applications={this.state.applications}/>
                     </div>
                 </div>
             </div>
@@ -40,25 +42,90 @@ class ApplicationLog extends React.Component{
 }
 
 // defines one row of applications, organized by type
-class ApplicationStatusColumn extends React.Component {
+class ApplicationStatusColumn_ToDo extends React.Component {
     state = { applications : [] };
 
     render() {
         return (
             <div className={styles.area}>
-                <h3>this.staus</h3>
-                <ApplicationList applications={this.state.applications}/>
+                <h3>{this.status}</h3>
+                <h3 className={styles.column_title}>To Do</h3>
+                <ApplicationList_ToDo applications={this.state.applications}/>
             </div>
         );
     }
 }
 
-class ApplicationList extends React.Component {
+class ApplicationStatusColumn_InProgress extends React.Component {
+    state = { applications : [] };
+
+    render() {
+        return (
+            <div className={styles.area}>
+                <h3>{this.status}</h3>
+                <h3 className={styles.column_title}>In Progress</h3>
+                <ApplicationList_InProgress applications={this.state.applications}/>
+            </div>
+        );
+    }
+}
+
+class ApplicationStatusColumn_Completed extends React.Component {
+    state = { applications : [] };
+
+    render() {
+        return (
+            <div className={styles.area}>
+                <h3>{this.status}</h3>
+                <h3 className={styles.column_title}>Completed</h3>
+                <ApplicationList_Completed applications={this.state.applications}/>
+            </div>
+        );
+    }
+}
+class ApplicationList_ToDo extends React.Component {
+
+    // TODO: Determine amount of applications to show based on how many stored in backend. Each    application column needs to represent different types of applications (e.g. To Do, In Progress, and Completed)
+    state = {items : [<ApplicationLog_Item />, <ApplicationLog_Item />, <ApplicationLog_Item />, <ApplicationLog_Item />]}
+
     render() {
         return (
             <div>
-                
-                <span>&#x3C;ApplicationList /&#x3E;</span>
+                <React.Fragment>
+                    {this.state.items}
+                </React.Fragment>
+            </div>
+        )
+    }
+}
+
+class ApplicationList_InProgress extends React.Component {
+
+    // TODO: Determine amount of applications to show based on how many stored in backend. Each    application column needs to represent different types of applications (e.g. To Do, In Progress, and Completed)
+    state = {items : [<ApplicationLog_Item />, <ApplicationLog_Item />, <ApplicationLog_Item />, <ApplicationLog_Item />]}
+
+    render() {
+        return (
+            <div>
+                <React.Fragment>
+                    {this.state.items}
+                </React.Fragment>
+            </div>
+        )
+    }
+}
+
+class ApplicationList_Completed extends React.Component {
+
+    // TODO: Determine amount of applications to show based on how many stored in backend. Each    application column needs to represent different types of applications (e.g. To Do, In Progress, and Completed)
+    state = {items : [<ApplicationLog_Item />, <ApplicationLog_Item />, <ApplicationLog_Item />, <ApplicationLog_Item />]}
+
+    render() {
+        return (
+            <div>
+                <React.Fragment>
+                    {this.state.items}
+                </React.Fragment>
             </div>
         )
     }
