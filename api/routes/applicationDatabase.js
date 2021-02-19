@@ -54,8 +54,8 @@ router.post("/add", function (req, res) {
    });
 });
 
-router.delete("/delete", function (req, res) {
-   console.log("add new application");
+router.delete("/", function (req, res) {
+   console.log("route delete");
    const { MongoClient } = require("mongodb");
    const uri =
       "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/ApplicationDatabase?retryWrites=true&w=majority";
@@ -68,7 +68,7 @@ router.delete("/delete", function (req, res) {
       console.log("connected");
       const db = client.db("ApplicationDatabase");
       const collection = db.collection("Application");
-
+      console.log(req);
       deleteFromLog(collection, req);
       res.send("Application Deleted");
 

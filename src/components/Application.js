@@ -148,8 +148,17 @@ class ApplicationList extends React.Component {
 
 // defines one application item
 class ApplicationLogItem extends React.Component {
-   handleClick = () => {
-      console.log("clicked!");
+   handleClick = (application) => {
+      console.log(application);
+      axios
+         .delete("http://localhost:5000/applicationDatabase/delete", application)
+         .then((res) => {
+            console.log(res.data);
+         })
+         .catch(function (error) {
+            //Not handling the error. Just logging into the console.
+            console.log(error);
+         });
    };
 
    render() {
@@ -168,6 +177,7 @@ class ApplicationLogItem extends React.Component {
                   {application.jobPostingLink}{" "}
                </a>
                <h4> {application.deadline} </h4>
+               <button type="submit" onClick={this.handleClick(application)}>-</button>
             </div>
          );
       } else {

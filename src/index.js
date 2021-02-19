@@ -10,7 +10,7 @@ import App from "./App.js";
 //ReactDOM.render(<ApplicationNew />, document.getElementById("root"));
 ReactDOM.render(
    <BrowserRouter>
-      <App />{" "}
+      <ApplicationLog />{" "}
    </BrowserRouter>,
    document.getElementById("root")
 );

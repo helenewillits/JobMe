@@ -50,7 +50,7 @@ export function remove(url, request) {
 //    index.getAllApplications(index.collection, 123456);
 // }
 
-function getAllApplications() {
-   console.log("attempting to connect to backend");
-   return get("applicationDatabase/", { status: "Completed" });
-}
+// function getAllApplications() {
+//    console.log("attempting to connect to backend");
+//    return get("applicationDatabase/", { status: "Completed" });
+// }
