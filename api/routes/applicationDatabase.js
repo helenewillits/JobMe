@@ -27,13 +27,14 @@ router.get("/", function (req, res) {
       // );
 
       queryAllApps(collection, res);
+      console.log("All Applications Received");
 
       client.close();
    });
 });
 
-router.post("/add", function (req, res) {
-   console.log("add new application");
+router.post("/", function (req, res) {
+   console.log("post route");
    const { MongoClient } = require("mongodb");
    const uri =
       "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/ApplicationDatabase?retryWrites=true&w=majority";
@@ -48,14 +49,14 @@ router.post("/add", function (req, res) {
       const collection = db.collection("Application");
 
       addToAppLog(collection, req);
-      res.send("New Application Added");
+      res.send("New Application Posted");
 
       client.close();
    });
 });
 
 router.delete("/", function (req, res) {
-   console.log("route delete");
+   console.log("delete route");
    const { MongoClient } = require("mongodb");
    const uri =
       "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/ApplicationDatabase?retryWrites=true&w=majority";
@@ -68,8 +69,7 @@ router.delete("/", function (req, res) {
       console.log("connected");
       const db = client.db("ApplicationDatabase");
       const collection = db.collection("Application");
-      console.log(req.data);
-      console.log("After data");
+      
       deleteFromLog(collection, req);
       res.send("Application Deleted");
 
@@ -156,20 +156,20 @@ function createAppDatabase(database) {
    });
 }
 
-function addToAppLog(collection, newApp) {
+function addToAppLog(collection, req) {
    collection.insertOne({
-      userId: newApp.userId,
-      appId: newApp.appId,
-      favorited: newApp.favorited,
-      deadline: newApp.deadline,
-      companyName: newApp.companyName,
-      position: newApp.position,
-      jobId: newApp.jobId,
-      jobPostingLink: newApp.jobPostingLink,
-      applicationPortalLink: newApp.applicationPortalLink,
-      applicationStatus: newApp.applicationStatus,
-      result: newApp.result,
-      notes: newApp.notes
+      userId: req.body.userId,
+      appId: req.body.appId,
+      favorited: req.body.favorited,
+      deadline: req.body.deadline,
+      companyName: req.body.companyName,
+      position: req.body.position,
+      jobId: req.body.jobId,
+      jobPostingLink: req.body.jobPostingLink,
+      applicationPortalLink: req.body.applicationPortalLink,
+      applicationStatus: req.body.applicationStatus,
+      result: req.body.result,
+      notes: req.body.notes
    });
 }
 
