@@ -5,45 +5,45 @@ import ApplicationLog from "./components/Application.js";
 import SingleApplication from "./components/SingleApplication.js";
 
 class App extends React.Component {
-   constructor(props) {
-      super(props);
+  constructor(props) {
+    super(props);
 
-      this.state = {
-         modalOpen: false,
-         appModalOpen: false
-      };
+    this.state = {
+      modalOpen: false,
+      appModalOpen: false
+    };
 
-      this.handleApplicationPopup = this.handleApplicationPopup.bind(this);
-   }
+    this.handleApplicationPopup = this.handleApplicationPopup.bind(this);
+  }
 
-   handleApplicationPopup() {
-      const newState = {};
-      newState.appModalOpen = true;
-      newState.modalOpen = true;
-      this.setState(newState);
-      console.log("pop up");
-   }
+  handleApplicationPopup() {
+    const newState = {};
+    newState.appModalOpen = true;
+    newState.modalOpen = true;
+    this.setState(newState);
+    console.log("pop up");
+  }
 
-   render() {
-      return (
-         <Switch>
-            <div>
-               <Route exact path="/application">
-                  <div classname="appPopup">
-                     <SingleApplication
-                        display={this.state.appModalOpen}
-                        modalOpen={this.state.appModalOpen}
-                     />
-                     <ApplicationLog
-                        handlePopup={this.handleApplicationPopup}
-                        modalOpen={this.state.modalOpen}
-                     />
-                  </div>
-               </Route>
+  render() {
+    return (
+      <Switch>
+        <div>
+          <Route exact path="/application">
+            <div classname="appPopup">
+              <SingleApplication
+                display={this.state.appModalOpen}
+                //  modalOpen={this.state.appModalOpen}
+              />
+              <ApplicationLog
+                handlePopup={this.handleApplicationPopup}
+                modalOpen={this.state.modalOpen}
+              />
             </div>
-         </Switch>
-      );
-   }
+          </Route>
+        </div>
+      </Switch>
+    );
+  }
 }
 
 export default App;

@@ -7,20 +7,24 @@ import axios from "axios";
 
 // defines the space that contains the three columns of applications
 class SingleApplication extends React.Component {
-  //  viewApplication = (application) => {
-  //     if (application.jobPostingLink != "")
-
-  //  }
+  //   viewJobId = (application) => {
+  //     if (application.jobId != "") return <h3>{application.jobId}</h3>;
+  //   };
 
   render() {
-    const { application } = this.props;
+    //  const { application } = this.props;
+    console.log("here");
+
+    if (!this.props.display) {
+      return null;
+    }
 
     return (
-      <div>
-        <NavigationBar />
+      <div className={styles.popup}>
+        <h1>hi!</h1>
         {/* <h1>{application.companyName}</h1>
         <h2>{application.position}</h2>
-        <h3>{application.jobId}</h3>
+        this.viewJobId(application)
         <h3>{application.deadline}</h3>
         <h3>{application.jobPostingLink}</h3>
         <h3>{application.applicationPortalLink}</h3>

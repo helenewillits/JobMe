@@ -4,6 +4,7 @@ import Header from "./Header.js";
 import NavigationBar from "./Navbar.js";
 
 import axios from "axios";
+import SingleApplication from "./SingleApplication";
 
 // defines the space that contains the three columns of applications
 class ApplicationLog extends React.Component {
@@ -64,14 +65,14 @@ class ApplicationLog extends React.Component {
         <ApplicationStatusColumn
           status={this.state.status[i]}
           applications={this.get_Applications(i)}
+          handlePopup={this.props.handlePopup}
+          modalOpen={this.props.modalOpen}
         />
       </div>
     );
   };
 
   render() {
-    // const { applications, page, status } = this.state;
-
     return (
       <div>
         <NavigationBar />
@@ -122,7 +123,11 @@ class ApplicationStatusColumn extends React.Component {
     return (
       <div className={styles.area}>
         <h3 className={styles.column_title}>{status}</h3>
-        <ApplicationList applications={applications} />
+        <ApplicationList
+          applications={applications}
+          handlePopup={this.props.handlePopup}
+          modalOpen={this.props.modalOpen}
+        />
       </div>
     );
   }
@@ -138,7 +143,11 @@ class ApplicationList extends React.Component {
       <div>
         <ul>
           {applications.map((item) => (
-            <ApplicationLogItem application={item} />
+            <ApplicationLogItem
+              application={item}
+              handlePopup={this.props.handlePopup}
+              modalOpen={this.props.modalOpen}
+            />
           ))}
         </ul>
       </div>
@@ -148,6 +157,8 @@ class ApplicationList extends React.Component {
 
 // defines one application item
 class ApplicationLogItem extends React.Component {
+  state = { application: null };
+
   handleDelete = (application) => {
     console.log("Delete");
     console.log(application);
@@ -168,19 +179,15 @@ class ApplicationLogItem extends React.Component {
       });
   };
 
-  handlePopup = () => {
-    console.log("pop up requested!");
-  };
-
   render() {
     const { application } = this.props;
+    this.state.application = application;
 
     // check for undefined applications : this is the default when first rendering Application
     // in development mode, but is re-rendered when it gets to the componentWillMount() function
     if (application != undefined) {
       return (
-        // <div className={styles.item} onClick={this.props.handlePopup}>
-        <div className={styles.item} onClick={this.handlePopup}>
+        <div className={styles.item} onClick={this.props.handlePopup}>
           <h4> {application._id} </h4>
           <h4> {application.companyName} </h4>
           <h4> {application.position} </h4>
@@ -193,7 +200,7 @@ class ApplicationLogItem extends React.Component {
             type="submit"
             onClick={this.handleDelete.bind(this, application)}
           >
-            -
+            Delete
           </button>
         </div>
       );
