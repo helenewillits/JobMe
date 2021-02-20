@@ -148,10 +148,16 @@ class ApplicationList extends React.Component {
 
 // defines one application item
 class ApplicationLogItem extends React.Component {
-   handleClick = (application) => {
-      console.log(application);
+   handleDelete = (application) => {
+      console.log("Delete");
+      // console.log(application);
       axios
-         .delete("http://localhost:5000/applicationDatabase/delete", application)
+         .delete("http://localhost:5000/applicationDatabase/delete", {
+            data: {
+               userId: application.userId,
+               appId: application.appId
+            }
+         })
          .then((res) => {
             console.log(res.data);
          })
@@ -161,6 +167,10 @@ class ApplicationLogItem extends React.Component {
          });
    };
 
+   handlePopup = () => {
+      console.log("pop up requested!");
+   }
+
    render() {
       const { application } = this.props;
 
@@ -168,16 +178,17 @@ class ApplicationLogItem extends React.Component {
       // in development mode, but is re-rendered when it gets to the componentWillMount() function
       if (application != undefined) {
          return (
-            <div className={styles.item} onClick={this.handleClick}>
-               <h4> {application.applicationStatus} </h4>
+            // <div className={styles.item} onClick={this.props.handlePopup}>
+            <div className={styles.item} onClick={this.handlePopup}>
+               <h4> {application.appId} </h4>
                <h4> {application.companyName} </h4>
                <h4> {application.position} </h4>
-               <a href={application.jobPostingLink}>
+               {/* <a href={application.jobPostingLink}>
                   {" "}
                   {application.jobPostingLink}{" "}
-               </a>
+               </a> */}
                <h4> {application.deadline} </h4>
-               <button type="submit" onClick={this.handleClick(application)}>-</button>
+               <button type="submit" onClick={this.handleDelete.bind(this, application)}>-</button>
             </div>
          );
       } else {

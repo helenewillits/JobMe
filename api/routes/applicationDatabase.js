@@ -68,7 +68,8 @@ router.delete("/", function (req, res) {
       console.log("connected");
       const db = client.db("ApplicationDatabase");
       const collection = db.collection("Application");
-      console.log(req);
+      console.log(req.data);
+      console.log("After data");
       deleteFromLog(collection, req);
       res.send("Application Deleted");
 
@@ -173,7 +174,7 @@ function addToAppLog(collection, newApp) {
 }
 
 function deleteFromLog(collection, req) {
-   const query = { userId: req.userId, appId: req.appId };
+   const query = { userId: req.body.userId, appId: req.body.appId };
    collection.remove(query);
 }
 

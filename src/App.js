@@ -21,6 +21,7 @@ class App extends React.Component {
       newState.appModalOpen = true;
       newState.modalOpen = true;
       this.setState(newState);
+      console.log("pop up");
    }
 
    render() {
@@ -29,13 +30,13 @@ class App extends React.Component {
             <div>
                <Route exact path="/application">
                   <div classname="appPopup">
-                     {/* <SingleApplication
+                     <SingleApplication
                         display={this.state.appModalOpen}
                         modalOpen={this.state.appModalOpen}
-                     /> */}
+                     />
                      <ApplicationLog
-                        // handlePopup={this.handleApplicationPopup}
-                        // modalOpen={this.state.modalOpen}
+                        handlePopup={this.handleApplicationPopup}
+                        modalOpen={this.state.modalOpen}
                      />
                   </div>
                </Route>

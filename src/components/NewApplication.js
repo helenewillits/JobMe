@@ -3,7 +3,7 @@ import React from "react";
 import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
 import NavigationBar from "./Navbar.js";
-// import Calendar from "./Calendar.js";
+import Calendar from "./Calendar.js";
 import Button from "@material-ui/core/Button";
 
 // defines the space that contains the page for adding new job applications
@@ -63,9 +63,9 @@ class ApplicationNewPage extends React.Component {
             <div class={styles.JobId_C61RwL}>Job ID</div>
             <div class={styles.JobPostingLink_C61RwL}>Job Posting Link</div>
             <div class={styles.JobDashboardLink_C61RwL}>Job Dashboard Link</div>
-            {/* <div>
+            <div>
                <Calendar className={styles.calendar} />
-            </div> */}
+            </div>
             <div>
                <Button
                   variant="contained"
