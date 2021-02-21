@@ -10,6 +10,8 @@ import TextField from "material-ui/TextField";
 import RaisedButton from "material-ui/RaisedButton";
 import FormUserDetails from "./FormUserDetails";
 
+import axios from "axios";
+
 // defines the space that contains the page for adding new job applications
 class ApplicationNew extends React.Component {
   constructor(props) {
@@ -39,19 +41,46 @@ class ApplicationNew extends React.Component {
 // defines one row of applications, organized by type
 class ApplicationNewPage extends React.Component {
   state = {
-    step: 1,
-    company: "Company",
-    jobTitle: "Job Title",
-    jobID: "Job ID",
-    deadline: "Deadline",
-    link: "Job Posting Link",
-    resume: "Resume",
-    coverLetter: "Cover Letter"
+    application: {
+      userID: "",
+      appID: "",
+      favorited: "",
+      companyName: "",
+      position: "",
+      jobId: "",
+      deadline: "",
+      jobPostingLink: "",
+      applicationPortalLink: "",
+      result: "",
+      notes: ""
+    }
   };
 
+  postNewApplication() {
+    axios
+      .post(
+        "http://localhost:5000/applicationDatabase/add",
+        this.state.application
+      )
+      .then((res) => {
+        // const data = res.data;
+        this.setState({ applicationsToDo: res.data });
+        console.log("post");
+      })
+      .catch(function (error) {
+        //Not handling the error. Just logging into the console.
+        console.log(error);
+      });
+  }
+
   // Handle fields change
-  handleChange = (input) => (e) => {
-    this.setState({ [input]: e.target.value });
+  handleChange = (e) => {
+    //  const { input, value } = e.target;
+    this.state.application[e] = "amazon";
+
+    console.log("handle change");
+    console.log(e);
+    console.log(this.state.application[e]);
   };
 
   render() {
@@ -77,11 +106,7 @@ class ApplicationNewPage extends React.Component {
 
     return (
       <div>
-        <FormUserDetails
-          nextStep={this.nextStep}
-          handleChange={this.handleChange}
-          values={values}
-        />
+        <FormUserDetails handleChange={this.handleChange} values={values} />
       </div>
     );
   }

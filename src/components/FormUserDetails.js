@@ -7,7 +7,24 @@ import Calendar from "./Calendar.js";
 import Grid from "@material-ui/core/Grid";
 
 export class FormUserDetails extends React.Component {
+  state = {
+    application: {
+      userID: "",
+      appID: "",
+      favorited: "",
+      companyName: "",
+      position: "",
+      jobId: "",
+      deadline: "",
+      jobPostingLink: "",
+      applicationPortalLink: "",
+      result: "",
+      notes: ""
+    }
+  };
+
   render() {
+    // Application state
     const { values, handleChange, classes } = this.props;
 
     return (
@@ -16,7 +33,7 @@ export class FormUserDetails extends React.Component {
           <div>
             <TextField
               floatingLabelText="Company"
-              onchange={handleChange("company")}
+              onchange={handleChange("companyName")}
               defaultValue={values.company}
             />
             <br />
@@ -46,13 +63,21 @@ export class FormUserDetails extends React.Component {
             <Fab variant="extended" aria-label="Delete" className={classes.fab}>
               Cancel
             </Fab>{" "}
-            <Fab variant="extended" aria-label="Delete" className={classes.fab}>
+            <Fab
+              variant="extended"
+              aria-label="Delete"
+              className={classes.fab}
+              onClick={this.onClick}
+            >
               Submit
             </Fab>
           </div>
         </React.Fragment>
       </MuiThemeProvider>
     );
+  }
+  onClick() {
+    console.log(this.state.values.company);
   }
 }
 
