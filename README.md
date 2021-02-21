@@ -26,7 +26,7 @@ npm install @material-ui/pickers
 
 if that doesn't work, use:
 
-npm i--save date-fns@next @date-io/data-fns@1.x
+npm i --save date-fns@next @date-io/data-fns@1.x
 
 
 # Contributors:
