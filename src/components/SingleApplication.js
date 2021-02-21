@@ -1,7 +1,5 @@
 import React from "react";
 import styles from "../assets/Styles.module.css";
-import Header from "./Header.js";
-import NavigationBar from "./Navbar.js";
 
 import axios from "axios";
 

@@ -43,7 +43,6 @@ class App extends React.Component {
               />
               <ApplicationLog
                 handlePopup={this.handleApplicationPopup}
-                //  sendApplication={this.getApplication}
                 modalOpen={this.state.modalOpen}
               />
             </div>
