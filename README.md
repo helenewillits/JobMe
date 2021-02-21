@@ -20,7 +20,7 @@ npm install jade
 npm install @material-ui/core
 
 
-npm install i @date-io/date-fns
+npm install @date-io/date-fns
 
 npm install @material-ui/pickers
 
