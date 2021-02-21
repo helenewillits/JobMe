@@ -12,7 +12,7 @@ class SingleApplication extends React.Component {
   //   };
 
   render() {
-    //  const { application } = this.props;
+    const { application } = this.props;
     console.log("here");
 
     if (!this.props.display) {

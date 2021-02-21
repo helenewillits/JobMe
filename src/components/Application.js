@@ -83,35 +83,6 @@ class ApplicationLog extends React.Component {
         {this.column(2)}
       </div>
     );
-
-    // return (
-    //    <div>
-    //       <NavigationBar />
-    //       <p className="App-intro">{this.state.apiResponse}</p>
-    //       <Header page={page} />
-    //       <div className={styles.row}>
-    //          {/* <div className={styles.thirdcolumn}>
-    //             <ApplicationStatusColumn
-    //                status={status[0]}
-    //                applications={applications}
-    //             />
-    //          </div> */}
-    //          this.column(0);
-    //          <div className={styles.thirdcolumn}>
-    //             <ApplicationStatusColumn
-    //                status={status[1]}
-    //                applications={applications}
-    //             />
-    //          </div>
-    //          <div className={styles.thirdcolumn}>
-    //             <ApplicationStatusColumn
-    //                status={status[2]}
-    //                applications={applications}
-    //             />
-    //          </div>
-    //       </div>
-    //    </div>
-    // );
   }
 }
 
