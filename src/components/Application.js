@@ -150,6 +150,10 @@ class ApplicationLogItem extends React.Component {
       });
   };
 
+  handlePopup = () => {
+    this.props.handlePopup(this.state.application);
+  };
+
   render() {
     const { application } = this.props;
     this.state.application = application;
@@ -158,7 +162,7 @@ class ApplicationLogItem extends React.Component {
     // in development mode, but is re-rendered when it gets to the componentWillMount() function
     if (application != undefined) {
       return (
-        <div className={styles.item} onClick={this.props.handlePopup}>
+        <div className={styles.item} onClick={this.handlePopup}>
           <h4> {application._id} </h4>
           <h4> {application.companyName} </h4>
           <h4> {application.position} </h4>

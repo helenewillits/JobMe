@@ -10,19 +10,25 @@ class App extends React.Component {
 
     this.state = {
       modalOpen: false,
-      appModalOpen: false
+      appModalOpen: false,
+      application: {}
     };
 
     this.handleApplicationPopup = this.handleApplicationPopup.bind(this);
   }
 
-  handleApplicationPopup() {
+  handleApplicationPopup(application) {
     const newState = {};
     newState.appModalOpen = true;
     newState.modalOpen = true;
+    newState.application = application;
     this.setState(newState);
     console.log("pop up");
   }
+
+  //   getApplication = (application) => {
+  //     this.setState({ application: application });
+  //   };
 
   render() {
     return (
@@ -33,9 +39,11 @@ class App extends React.Component {
               <SingleApplication
                 display={this.state.appModalOpen}
                 //  modalOpen={this.state.appModalOpen}
+                application={this.state.application}
               />
               <ApplicationLog
                 handlePopup={this.handleApplicationPopup}
+                //  sendApplication={this.getApplication}
                 modalOpen={this.state.modalOpen}
               />
             </div>
