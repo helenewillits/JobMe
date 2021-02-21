@@ -170,6 +170,7 @@ class ApplicationLogItem extends React.Component {
                   {" "}
                   {application.jobPostingLink}{" "}
                </a> */}
+          <h4>{application.result}</h4>
           <h4> {application.deadline} </h4>
           <button
             type="submit"

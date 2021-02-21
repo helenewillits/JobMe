@@ -87,11 +87,12 @@ function createAppDatabase(database) {
         jsonType: "object",
         required: [
           "userId",
-          "appId",
           "favorited",
           "companyName",
           "position",
-          "result"
+          "applicationStatus",
+          "result",
+          "deadline"
         ],
         properties: {
           userId: {

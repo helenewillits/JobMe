@@ -7,12 +7,38 @@ import axios from "axios";
 
 // defines the space that contains the three columns of applications
 class SingleApplication extends React.Component {
-  viewJobId = (application) => {
-    if (application.jobId != "") return <h3>{application.jobId}</h3>;
+  state = { application: {} };
+
+  viewJobId = () => {
+    if (this.state.application.jobId != "")
+      return <h3>{this.state.application.jobId}</h3>;
+  };
+  viewJobPostingLink = () => {
+    if (this.state.application.jobId != "")
+      return (
+        <a href={this.state.application.jobPostingLink}>
+          {" "}
+          {this.state.application.jobPostingLink}{" "}
+        </a>
+      );
+  };
+  viewApplicationPortalLink = () => {
+    if (this.state.application.jobId != "")
+      return (
+        <a href={this.state.application.applicationPortalLink}>
+          {" "}
+          {this.state.application.applicationPortalLink}{" "}
+        </a>
+      );
+  };
+  viewNotes = () => {
+    if (this.state.application.jobId != "")
+      return <h3>{this.state.application.notes}</h3>;
   };
 
   render() {
     const { application } = this.props;
+    this.state.application = application;
     console.log("here");
 
     if (!this.props.display) {
@@ -23,12 +49,12 @@ class SingleApplication extends React.Component {
       <div className={styles.popup}>
         <h1>{application.companyName}</h1>
         <h2>{application.position}</h2>
-        {/* this.viewJobId(application) */}
+        {this.viewJobId()}
         <h3>{application.deadline}</h3>
-        <h3>{application.jobPostingLink}</h3>
-        <h3>{application.applicationPortalLink}</h3>
+        {this.viewJobPostingLink()}
+        {this.viewApplicationPortalLink()}
         <h3>{application.result}</h3>
-        <h3>{application.notes}</h3>
+        {this.viewNotes()}
       </div>
     );
   }
