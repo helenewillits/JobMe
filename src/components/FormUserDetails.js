@@ -34,12 +34,14 @@ export class FormUserDetails extends React.Component {
             <TextField
               floatingLabelText="Company"
               onchange={handleChange("companyName")}
-              defaultValue={values.company}
+              fullWidth
+              variant="outlined"
             />
             <br />
             <TextField
               floatingLabelText="Job Title"
               onchange={handleChange("jobTitle")}
+              fullWidth
             />
             <br />
             <br />
@@ -52,11 +54,13 @@ export class FormUserDetails extends React.Component {
             <TextField
               floatingLabelText="Job Posting Link"
               onchange={handleChange("link")}
+              fullWidth
             />
             <br />
             <TextField
               floatingLabelText="Notes"
               onchange={handleChange("notes")}
+              fullWidth
             />
             <br />
             <br />
