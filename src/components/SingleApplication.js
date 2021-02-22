@@ -7,6 +7,7 @@ import axios from "axios";
 
 // defines the space that contains the three columns of applications
 class SingleApplication extends React.Component {
+
    render() {
       // const { applications, page, status } = this.state;
 
