@@ -11,8 +11,11 @@ import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
+import Checkbox from 'material-ui/Checkbox'
 
 import axios from "axios";
+
+import {Redirect} from 'react-router-dom'
 
 // defines the space that contains the page for adding new job applications
 class ApplicationNew extends React.Component {
@@ -47,6 +50,7 @@ class ApplicationNewPage extends React.Component {
     super(props);
     this.state = {
       userId: "",
+      favorited: false,
       companyName: "",
       position: "",
       jobId: "",
@@ -62,6 +66,7 @@ class ApplicationNewPage extends React.Component {
     this.handleChangeResult = this.handleChangeResult.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeFavorite = this.handleChangeFavorite.bind(this);
   }
 
   callbackFunction = (childData) => {
@@ -74,12 +79,16 @@ class ApplicationNewPage extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleChangeStatus = (evemt, index, value) => {
+  handleChangeStatus = (event, index, value) => {
       this.setState({ applicationStatus: value });
   }
 
-  handleChangeResult = (evemt, index, value) => {
+  handleChangeResult = (event, index, value) => {
       this.setState({ result: value });
+  }
+
+  handleChangeFavorite = (event) => {
+      this.setState({ favorited: event.target.checked })
   }
 
   postNewApplication() {
@@ -125,9 +134,14 @@ class ApplicationNewPage extends React.Component {
           </div>
           <br />
           <div>
+              <Checkbox
+                name="favorited"
+                label='Favorite'
+                onClick={this.handleChangeFavorite}
+            />
             <Grid container justify="left">
               <Calendar parentCallback={this.callbackFunction} />
-              <p>{this.state.deadline.toString()}</p>
+              <h1>{this.state.deadline}</h1>
             </Grid>
             <TextField
               floatingLabelText="Job Posting Link"
