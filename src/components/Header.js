@@ -42,7 +42,7 @@ class Header extends React.Component {
    profile_header = (
        <div>
            <h1>My Profile</h1>
-           <h1>Look at this Awesome Applicant.</h1>
+           <h2>Straight Applicant Awesomeness.</h2>
        </div>
    );
 

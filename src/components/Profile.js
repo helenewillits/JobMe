@@ -8,7 +8,7 @@ import axios from "axios";
 class Profile extends React.Component {
    state = {
       userID: 0,
-      users: [],
+      user: null,
       page: "Profile"
    };
 
@@ -44,6 +44,15 @@ class Profile extends React.Component {
    constructor(props) {
       super(props);
       this.state.userID = 12345;
+      this.state.user = {
+          userID: 12345,
+          email: "abc@gmail.com",
+          link1: "https://link1.com",
+          link2: "https://link2.com",
+          link3: "https://link3.com",
+          workExperience: "SLO Hacks",
+          notes: "Update resume"
+      }
    }
 
    // NEED TO DISTINGUISH COLUMNS BASED ON STATUS --TO DO--
@@ -72,6 +81,33 @@ class Profile extends React.Component {
             <NavigationBar />
             <p className="App-intro">{this.state.apiResponse}</p>
             <Header page={this.state.page} />
+            <br />
+            <div className={styles.area}>
+                <h2>Email</h2>
+                <div className={styles.area}>
+                    <h4>{this.state.user.email}</h4>
+                </div>
+                <h2>Personal Link #1</h2>
+                <div className={styles.area}>
+                    <h4>{this.state.user.link1}</h4>
+                </div>
+                <h2>Personal Link #2</h2>
+                <div className={styles.area}>
+                    <h4>{this.state.user.link2}</h4>
+                </div>
+                <h2>Personal Link #3</h2>
+                <div className={styles.area}>
+                    <h4>{this.state.user.link3}</h4>
+                </div>
+                <h2>Work Experience</h2>
+                <div className={styles.area}>
+                    <h4>{this.state.user.workExperience}</h4>
+                </div>
+                <h2>Notes</h2>
+                <div className={styles.area}>
+                    <h4>{this.state.user.notes}</h4>
+                </div>
+            </div>
          </div>
       );
    }
