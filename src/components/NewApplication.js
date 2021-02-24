@@ -64,6 +64,11 @@ class ApplicationNewPage extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  callbackFunction = (childData) => {
+    console.log(childData);
+    this.setState({ deadline: childData });
+  };
+
   // Handle fields change
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -147,7 +152,7 @@ class ApplicationNewPage extends React.Component {
           <br />
           <div>
             <Grid container justify="left">
-              <Calendar />
+              <Calendar parentCallback={this.callbackFunction} />
             </Grid>
             <TextField
               floatingLabelText="Job Posting Link"

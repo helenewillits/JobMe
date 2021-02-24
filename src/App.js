@@ -35,9 +35,9 @@ class App extends React.Component {
     return (
       <Switch>
         <div>
-          <Route exact path="/application">
+          <Route exact path="/applications">
             <div classname="appPopup">
-              {/* <SingleApplication
+              <SingleApplication
                 display={this.state.appModalOpen}
                 //  modalOpen={this.state.appModalOpen}
                 application={this.state.application}
@@ -45,7 +45,11 @@ class App extends React.Component {
               <ApplicationLog
                 handlePopup={this.handleApplicationPopup}
                 modalOpen={this.state.modalOpen}
-              /> */}
+              />
+            </div>
+          </Route>
+          <Route exact path="/applications/add">
+            <div>
               <NewApplication />
             </div>
           </Route>

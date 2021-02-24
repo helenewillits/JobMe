@@ -78,6 +78,7 @@ class ApplicationLog extends React.Component {
         <NavigationBar />
         <p className="App-intro">{this.state.apiResponse}</p>
         <Header page={this.state.page} />
+        <AddButton />
         {this.column(0)}
         {this.column(1)}
         {this.column(2)}
@@ -187,6 +188,22 @@ class ApplicationLogItem extends React.Component {
         </div>
       );
     }
+  }
+}
+
+class AddButton extends React.Component {
+  handleAdd = () => {
+    window.location.href = "localhost:3000/applications/add";
+  };
+
+  render() {
+    return (
+      <div>
+        <button type="submit" onclick={this.handleAdd}>
+          +
+        </button>
+      </div>
+    );
   }
 }
 

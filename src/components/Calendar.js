@@ -9,11 +9,12 @@ import {
   KeyboardDatePicker
 } from "@material-ui/pickers";
 
-class Calendar extends React.Component {
+export default class Calendar extends React.Component {
   render() {
     return (
       <div>
-        <CalendarComponent />
+        {/* {this.CalendarComponent()} */}
+        <CalendarComponent parentCallback={this.props.parentCallback} />
       </div>
     );
   }
@@ -24,9 +25,15 @@ function CalendarComponent() {
   // const [selectedTime, setSelectedTime] = React.useState(new Date());
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    console.log(this.props.parentCallback);
+    this.props.parentCallback(date);
   };
   // const handleTimeChange = (time) => {
   //   setSelectedTime(time);
+  // };
+
+  // const sendData = (date) => {
+  //   this.props.parentCallback(date);
   // };
 
   return (
@@ -58,5 +65,3 @@ function CalendarComponent() {
     </div>
   );
 }
-
-export default Calendar;
