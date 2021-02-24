@@ -20,8 +20,8 @@ class Profile extends React.Component {
           link1: "https://link1.com",
           link2: "https://link2.com",
           link3: "https://link3.com",
-          workExperience: "SLO Hacks\nInternship\nCS Club",
-          notes: "Update resume"
+          workExperience: "SLO Hacks \nInternship \nCS Club",
+          notes: "- Update resume\n- Email recruiter\n- Update resume\n- Email recruiter\n- Update resume\n- Email recruiter\n- Update resume\n- Email recruiter\n- Update resume\n- Email recruiter"
       },
       page: "Profile"
    };
@@ -60,25 +60,6 @@ class Profile extends React.Component {
       this.state.userID = 12345;
    }
 
-   // NEED TO DISTINGUISH COLUMNS BASED ON STATUS --TO DO--
-
-//    get_Applications = (i) => {
-//       if (i == 0) return this.state.applicationsToDo;
-//       if (i == 1) return this.state.applicationsInProgress;
-//       if (i == 2) return this.state.applicationsCompleted;
-//    };
-
-//    column = (i) => {
-//       return (
-//          <div className={styles.thirdcolumn}>
-//             <ApplicationStatusColumn
-//                status={this.state.status[i]}
-//                applications={this.get_Applications(i)}
-//             />
-//          </div>
-//       );
-//    };
-
     createData(name, value) {
         console.log("USER: ", this.state.user);
         return { name, value };
@@ -102,13 +83,19 @@ class Profile extends React.Component {
             <br />
             <div className={styles.area}>
                 <Table aria-label="simple table">
+                    <colgroup>
+                        <col style={{width:'35%'}}/>
+                        <col style={{width:'65%'}}/>
+                    </colgroup>
                     <TableBody>
                         {this.rows.map((row) => (
                             <TableRow key={row.name}>
-                                <TableCell component="th" scope="row" size="medium" variant="head">
+                                <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top'}}>
                                     <h2>{row.name}</h2>
                                 </TableCell>
-                                <TableCell align="left">{row.value}</TableCell>
+                                <TableCell align="left" className={styles.tablecell}>
+                                    {row.value}
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

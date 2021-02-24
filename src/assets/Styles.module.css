@@ -91,33 +91,8 @@ input {
     box-sizing: border-box;
 }
 
-.profile_item_name {
-    float: left;
-    width: 25%;
-
-    padding-left: 15px;
-    padding-right: 15px;
-    margin-top: 20px;
-    margin-bottom: 50px;
-}
-
-.profile_item_value {
-    float: right;
-    width: 75%;
-    
-    padding-left: 15px;
-    padding-right: 15px;
-    padding-bottom: 20px;
-    padding-top: 15px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-
-    border-style: solid;
-    border-width: 2px;
-    border-color: #e3f6f5;
-    border-radius: 20px;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
-    overflow: hidden;
+.tablecell {
+    white-space: pre-wrap;
 }
 
 /* Create two equal columns that floats next to each other */
