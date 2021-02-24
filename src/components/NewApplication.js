@@ -127,6 +127,7 @@ class ApplicationNewPage extends React.Component {
           <div>
             <Grid container justify="left">
               <Calendar parentCallback={this.callbackFunction} />
+              <p>{this.state.deadline.toString()}</p>
             </Grid>
             <TextField
               floatingLabelText="Job Posting Link"
