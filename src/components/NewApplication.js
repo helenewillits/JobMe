@@ -1,18 +1,16 @@
 import React from "react";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
-import { Select } from "@material-ui/core";
 import Header from "./Header.js";
 import NavigationBar from "./Navbar.js";
 import Calendar from "./Calendar.js";
-import { Button } from "react-bootstrap";
+// import { Button } from "react-bootstrap";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import TextField from "material-ui/TextField";
-import RaisedButton from "material-ui/RaisedButton";
+// import RaisedButton from "material-ui/RaisedButton";
 import { withStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
-import { Dropdown } from "semantic-ui-react";
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
 
 import axios from "axios";
 
@@ -60,6 +58,8 @@ class ApplicationNewPage extends React.Component {
       notes: ""
     };
 
+    this.handleChangeStatus = this.handleChangeStatus.bind(this);
+    this.handleChangeResult = this.handleChangeResult.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -72,25 +72,15 @@ class ApplicationNewPage extends React.Component {
   // Handle fields change
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
-    // console.log("HANDLECHANGE STATE");
-    // console.log(this.state);
   };
 
-  // submitApplication(event) {
-  //   const applicationInfo = {
-  //     userId: this.state.userId,
-  //     companyName: this.state.companyName,
-  //     position: this.state.position,
-  //     jobId: this.state.jobId,
-  //     deadline: this.state.deadline,
-  //     jobPostingLink: this.state.jobPostingLink,
-  //     applicationPortalLink: this.state.applicationPortalLink,
-  //     applicationStatus: this.state.applicationStatus,
-  //     result: this.state.result,
-  //     notes: this.state.notes
-  //   };
-  //   event.preventDefault();
-  // }
+  handleChangeStatus = (evemt, index, value) => {
+      this.setState({ applicationStatus: value });
+  }
+
+  handleChangeResult = (evemt, index, value) => {
+      this.setState({ result: value });
+  }
 
   postNewApplication() {
     console.log("STATE FOR POST");
@@ -98,8 +88,6 @@ class ApplicationNewPage extends React.Component {
     axios
       .post("http://localhost:5000/applicationDatabase/add", this.state)
       .then((res) => {
-        // const data = res.data;
-        // this.setState({ applicationsToDo: res.data });
         console.log(res);
       })
       .catch(function (error) {
@@ -110,24 +98,10 @@ class ApplicationNewPage extends React.Component {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    // console.log("HANDLE SUBMIT");
-    // console.log(this.state);
     this.postNewApplication();
   };
 
   render() {
-    // const {
-    //   userId,
-    //   companyName,
-    //   position,
-    //   jobId,
-    //   deadline,
-    //   jobPostingLink,
-    //   applicationPortalLink,
-    //   applicationStatus,
-    //   result,
-    //   notes
-    // } = this.state.application;
 
     return (
       <div>
@@ -172,6 +146,28 @@ class ApplicationNewPage extends React.Component {
               name="applicationPortalLink"
               onChange={this.handleChange}
             />
+            <DropDownMenu 
+                value={this.state.applicationStatus} 
+                onChange={this.handleChangeStatus}
+            >
+                <MenuItem value={""} disabled primaryText="Select Application Status" />
+                <MenuItem value={"To Do"} primaryText="To Do" />
+                <MenuItem value={"In Progress"} primaryText="In Progress" />
+                <MenuItem value={"Completed"} primaryText="Completed" />
+            </DropDownMenu>
+            <br />
+            <DropDownMenu
+                value={this.state.result} 
+                onChange={this.handleChangeResult}
+            >
+                <MenuItem value={""} disabled primaryText="Select Result" />
+                <MenuItem value={"N/A"} primaryText="N/A" />
+                <MenuItem value={"Interviewing"} primaryText="Interviewing" />
+                <MenuItem value={"Waiting"} primaryText="Waiting" />
+                <MenuItem value={"Discontinued"} primaryText="Discontinued" />
+                <MenuItem value={"Accepted"} primaryText="Accepted" />
+                <MenuItem value={"Declined"} primaryText="Declined" />
+            </DropDownMenu>
             <br />
             <TextField
               floatingLabelText="Notes"
@@ -179,27 +175,6 @@ class ApplicationNewPage extends React.Component {
               name="notes"
               onChange={this.handleChange}
             />
-            <br />
-            <br />
-            {/* <InputLabel id="label">Application Status</InputLabel>
-            <Select labelId="label" id="select" value={this.applicationStatus}>
-              <MenuItem value={20}>To Do</MenuItem>
-              <MenuItem value={this.applicationStatus}>In Progress</MenuItem>
-              <MenuItem value={this.applicationStatus}>Completed</MenuItem>
-            </Select> */}
-            {/* <Dropdown
-              placeholder="Select Application Status"
-              name="applicationStatus"
-              onChange={this.handleChange}
-              selection
-              options={[
-                { text: "To Do", value: "To Do" },
-                { text: "In Progress", value: "In Progress" },
-                { text: "Completed", value: "Completed" }
-              ]}
-              value={this.value}
-            />
-            ) */}
             <br />
             <br />
             <Fab variant="extended" aria-label="Delete">
