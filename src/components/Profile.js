@@ -3,12 +3,26 @@ import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
 import NavigationBar from "./Navbar.js";
 
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+
 import axios from "axios";
+import { makeStyles } from "@material-ui/core";
 
 class Profile extends React.Component {
    state = {
       userID: 0,
-      user: null,
+      user: {
+          userID: 12345,
+          email: "abc@gmail.com",
+          link1: "https://link1.com",
+          link2: "https://link2.com",
+          link3: "https://link3.com",
+          workExperience: "SLO Hacks\nInternship\nCS Club",
+          notes: "Update resume"
+      },
       page: "Profile"
    };
 
@@ -44,15 +58,6 @@ class Profile extends React.Component {
    constructor(props) {
       super(props);
       this.state.userID = 12345;
-      this.state.user = {
-          userID: 12345,
-          email: "abc@gmail.com",
-          link1: "https://link1.com",
-          link2: "https://link2.com",
-          link3: "https://link3.com",
-          workExperience: "SLO Hacks",
-          notes: "Update resume"
-      }
    }
 
    // NEED TO DISTINGUISH COLUMNS BASED ON STATUS --TO DO--
@@ -74,8 +79,21 @@ class Profile extends React.Component {
 //       );
 //    };
 
+    createData(name, value) {
+        console.log("USER: ", this.state.user);
+        return { name, value };
+    }
+
+    rows = [
+        this.createData("Email", this.state.user.email),
+        this.createData("Personal Link #1", this.state.user.link1),
+        this.createData("Personal Link #2", this.state.user.link2),
+        this.createData("Personal Link #3", this.state.user.link3),
+        this.createData("Work Experience", this.state.user.workExperience),
+        this.createData("Notes", this.state.user.notes)
+    ]
+
    render() {
-       console.log(this.state.page);
       return (
          <div>
             <NavigationBar />
@@ -83,6 +101,20 @@ class Profile extends React.Component {
             <Header page={this.state.page} />
             <br />
             <div className={styles.area}>
+                <Table aria-label="simple table">
+                    <TableBody>
+                        {this.rows.map((row) => (
+                            <TableRow key={row.name}>
+                                <TableCell component="th" scope="row" size="medium" variant="head">
+                                    <h2>{row.name}</h2>
+                                </TableCell>
+                                <TableCell align="left">{row.value}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </div>
+            {/* <div className={styles.area}>
                 <h2>Email</h2>
                 <div className={styles.area}>
                     <h4>{this.state.user.email}</h4>
@@ -106,8 +138,7 @@ class Profile extends React.Component {
                 <h2>Notes</h2>
                 <div className={styles.area}>
                     <h4>{this.state.user.notes}</h4>
-                </div>
-            </div>
+                </div> */}
          </div>
       );
    }
