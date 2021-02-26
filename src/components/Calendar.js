@@ -4,60 +4,50 @@ import "date-fns";
 import Grid from "@material-ui/core/Grid";
 import DateFnsUtils from "@date-io/date-fns";
 import {
-   MuiPickersUtilsProvider,
-   KeyboardTimePicker,
-   KeyboardDatePicker
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker
 } from "@material-ui/pickers";
 
-class Calendar extends React.Component {
-   render() {
-      return (
-         <div>
-            <CalendarComponent />
-         </div>
-      );
-   }
-}
+export default class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedDate: new Date()
+    };
+  }
 
-function CalendarComponent() {
-   const [selectedDate, setSelectedDate] = React.useState(
-      new Date("2020-09-11T12:00:00")
-   );
-   const handleDateChange = (date) => {
-      setSelectedDate(date);
-   };
+  setSelectedDate = (date) => {
+    this.setState({ selectedDate: date });
+  };
 
-   return (
+  sendData = (date) => {
+    this.props.parentCallback(date);
+  };
+
+  handleDateChange = (date) => {
+    this.setSelectedDate(date);
+    this.sendData(date.toString());
+  };
+
+  render() {
+    return (
       <div>
-         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <Grid
-               container
-               direction="space-around"
-               className={styles.calendar}
-            >
-               <KeyboardDatePicker
-                  variant="static"
-                  format="MM/dd/yyy"
-                  margin="normal"
-                  id="date-picker"
-                  label="Date Picker"
-                  value={selectedDate}
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{ "aria-label": "change date" }}
-               />
-
-               <KeyboardTimePicker
-                  variant="static"
-                  margin="normal"
-                  id="time-picker"
-                  label="Time Picker"
-                  onChange={handleDateChange}
-                  KeyboardButtonProps={{ "aria-label": "change date" }}
-               />
-            </Grid>
-         </MuiPickersUtilsProvider>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container direction="space-around" className={styles.calendar}>
+            <KeyboardDatePicker
+              variant="inline"
+              format="MM-dd-yyyy"
+              margin="normal"
+              id="date-picker"
+              label="Application Deadline"
+              value={this.props.selectedDate}
+              onChange={this.handleDateChange}
+              KeyboardButtonProps={{ "aria-label": "change date" }}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
       </div>
-   );
+    );
+  }
 }
-
-export default Calendar;
