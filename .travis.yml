@@ -1,0 +1,24 @@
+language: node_js
+node_js:
+  - 14
+cache: npm
+
+before_install:
+  - npm i -g npm@6.14.10
+
+install:
+  - npm install
+  # - npm install mongodb
+  # - npm install cookie-parser
+  # - npm install morgan
+  # - npm install cors
+  # - npm install jade
+  # - npm install @material-ui/core
+  # - npm install i @date-io/date-fns
+  # - npm install @material-ui/pickers
+  # - npm i--save date-fns@next @date-io/data-fns@1.x
+
+script:
+  - npm test
+
+  

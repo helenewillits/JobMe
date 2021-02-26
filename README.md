@@ -1,6 +1,7 @@
-# JobMe
-A website for tracking job or internship applications
+# Getting Started with Create React App
 
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+=======
 # Installation
 
 If you are running JobMe for the very first time, you need to install these files:
@@ -31,10 +32,10 @@ npm i --save date-fns@next @date-io/data-fns@1.x
 
 # Contributors:
 
-Piper Feldman: Scrum Master
+### Deployment
 
-Shaina Bagri: Lead Developer
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-Helene Willits: Deliverables Assurance
+### `npm run build` fails to minify
 
-Maxwell Mohammadi: Quality Assurance
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
