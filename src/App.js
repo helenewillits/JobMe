@@ -20,8 +20,8 @@ class App extends React.Component {
 
   handleApplicationPopup(application) {
     const newState = {};
-    newState.appModalOpen = true;
-    newState.modalOpen = true;
+    newState.appModalOpen = !this.state.appModalOpen;
+    newState.modalOpen = !this.state.modalOpen;
     newState.application = application;
     this.setState(newState);
     console.log("pop up");
@@ -39,7 +39,8 @@ class App extends React.Component {
             <div classname="appPopup">
               <SingleApplication
                 display={this.state.appModalOpen}
-                //  modalOpen={this.state.appModalOpen}
+                handlePopup={this.handleApplicationPopup}
+                // modalOpen={this.state.appModalOpen}
                 application={this.state.application}
               />
               <ApplicationLog

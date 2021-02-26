@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { CSSTransition } from "react-transition-group";
 import ReactDOM from "react-dom";
 import styles from "../assets/Styles.module.css";
+import { Link } from "react-router-dom";
 
 import { ReactComponent as BellIcon } from "./../icons/bell.svg";
 import { ReactComponent as ArrowIcon } from "./../icons/arrow.svg";
@@ -12,15 +13,19 @@ import { ReactComponent as CogIcon } from "./../icons/cog.svg";
 import { ReactComponent as MessengerIcon } from "./../icons/messenger.svg";
 import { ReactComponent as PlusIcon } from "./../icons/plus.svg";
 import { ReactComponent as ProfileIcon } from "./../icons/profile.svg";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
+import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
+import FindInPageIcon from "@material-ui/icons/FindInPage";
 
-class NavigationBar extends React.Component {
+class AddButtonNavigationBar extends React.Component {
   render() {
     return (
       <div>
         <Navbar>
-          {/* <NavItem icon={<PlusIcon />}>
-            <AddApplication />
-          </NavItem> */}
+          <Link to={"/applications/add"}>
+            <NavItem icon={<PlusIcon />}></NavItem>
+          </Link>
 
           <NavItem icon={<CaretIcon />}>
             <DropdownMenu />
@@ -99,16 +104,19 @@ function DropdownMenu() {
         <DropdownItem leftIcon={<ProfileIcon />} rightIcon={<ChevronIcon />}>
           My Profile
         </DropdownItem>
-        <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
+        <DropdownItem leftIcon={<DashboardIcon />} rightIcon={<ChevronIcon />}>
           Dashboard
         </DropdownItem>
-        <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
+        <DropdownItem
+          leftIcon={<LibraryBooksIcon />}
+          rightIcon={<ChevronIcon />}
+        >
           Applications
         </DropdownItem>
-        <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
+        <DropdownItem leftIcon={<PeopleAltIcon />} rightIcon={<ChevronIcon />}>
           Interviews
         </DropdownItem>
-        <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
+        <DropdownItem leftIcon={<FindInPageIcon />} rightIcon={<ChevronIcon />}>
           Documents
         </DropdownItem>
         <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
@@ -119,4 +127,4 @@ function DropdownMenu() {
   );
 }
 
-export default NavigationBar;
+export default AddButtonNavigationBar;

@@ -9,13 +9,14 @@ import TextField from "material-ui/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
-import DropDownMenu from 'material-ui/DropDownMenu';
-import MenuItem from 'material-ui/MenuItem';
-import Checkbox from 'material-ui/Checkbox'
+import DropDownMenu from "material-ui/DropDownMenu";
+import MenuItem from "material-ui/MenuItem";
+import Checkbox from "material-ui/Checkbox";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 
-import {Redirect} from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 
 // defines the space that contains the page for adding new job applications
 class ApplicationNew extends React.Component {
@@ -80,16 +81,16 @@ class ApplicationNewPage extends React.Component {
   };
 
   handleChangeStatus = (event, index, value) => {
-      this.setState({ applicationStatus: value });
-  }
+    this.setState({ applicationStatus: value });
+  };
 
   handleChangeResult = (event, index, value) => {
-      this.setState({ result: value });
-  }
+    this.setState({ result: value });
+  };
 
   handleChangeFavorite = (event) => {
-      this.setState({ favorited: event.target.checked })
-  }
+    this.setState({ favorited: event.target.checked });
+  };
 
   postNewApplication() {
     console.log("STATE FOR POST");
@@ -106,12 +107,12 @@ class ApplicationNewPage extends React.Component {
   }
 
   handleSubmit = (event) => {
-    event.preventDefault();
+    console.log("dear god it did work now didn't it");
+    // event.preventDefault();
     this.postNewApplication();
   };
 
   render() {
-
     return (
       <div>
         <form>
@@ -134,10 +135,10 @@ class ApplicationNewPage extends React.Component {
           </div>
           <br />
           <div>
-              <Checkbox
-                name="favorited"
-                label='Favorite'
-                onClick={this.handleChangeFavorite}
+            <Checkbox
+              name="favorited"
+              label="Favorite"
+              onClick={this.handleChangeFavorite}
             />
             <Grid container justify="left">
               <Calendar parentCallback={this.callbackFunction} />
@@ -161,27 +162,31 @@ class ApplicationNewPage extends React.Component {
               name="applicationPortalLink"
               onChange={this.handleChange}
             />
-            <DropDownMenu 
-                value={this.state.applicationStatus} 
-                onChange={this.handleChangeStatus}
+            <DropDownMenu
+              value={this.state.applicationStatus}
+              onChange={this.handleChangeStatus}
             >
-                <MenuItem value={""} disabled primaryText="Select Application Status" />
-                <MenuItem value={"To Do"} primaryText="To Do" />
-                <MenuItem value={"In Progress"} primaryText="In Progress" />
-                <MenuItem value={"Completed"} primaryText="Completed" />
+              <MenuItem
+                value={""}
+                disabled
+                primaryText="Select Application Status"
+              />
+              <MenuItem value={"To Do"} primaryText="To Do" />
+              <MenuItem value={"In Progress"} primaryText="In Progress" />
+              <MenuItem value={"Completed"} primaryText="Completed" />
             </DropDownMenu>
             <br />
             <DropDownMenu
-                value={this.state.result} 
-                onChange={this.handleChangeResult}
+              value={this.state.result}
+              onChange={this.handleChangeResult}
             >
-                <MenuItem value={""} disabled primaryText="Select Result" />
-                <MenuItem value={"N/A"} primaryText="N/A" />
-                <MenuItem value={"Interviewing"} primaryText="Interviewing" />
-                <MenuItem value={"Waiting"} primaryText="Waiting" />
-                <MenuItem value={"Discontinued"} primaryText="Discontinued" />
-                <MenuItem value={"Accepted"} primaryText="Accepted" />
-                <MenuItem value={"Declined"} primaryText="Declined" />
+              <MenuItem value={""} disabled primaryText="Select Result" />
+              <MenuItem value={"N/A"} primaryText="N/A" />
+              <MenuItem value={"Interviewing"} primaryText="Interviewing" />
+              <MenuItem value={"Waiting"} primaryText="Waiting" />
+              <MenuItem value={"Discontinued"} primaryText="Discontinued" />
+              <MenuItem value={"Accepted"} primaryText="Accepted" />
+              <MenuItem value={"Declined"} primaryText="Declined" />
             </DropDownMenu>
             <br />
             <TextField
@@ -192,16 +197,16 @@ class ApplicationNewPage extends React.Component {
             />
             <br />
             <br />
-            <Fab variant="extended" aria-label="Delete">
-              Cancel
-            </Fab>{" "}
-            <Fab
-              variant="extended"
-              aria-label="Submit"
-              onClick={this.handleSubmit}
-            >
-              Submit
-            </Fab>
+            <Link to={"/applications"}>
+              <Fab variant="extended" aria-label="Delete">
+                Cancel
+              </Fab>
+            </Link>
+            <Link to={"/applications"} onClick={this.handleSubmit}>
+              <Fab variant="extended" aria-label="Delete">
+                Submit?
+              </Fab>
+            </Link>
           </div>
         </form>
       </div>

@@ -34,6 +34,10 @@ class SingleApplication extends React.Component {
       return <h3>{this.state.application.notes}</h3>;
   };
 
+  handleClose = () => {
+    this.props.handlePopup(this.state.application);
+  };
+
   render() {
     const { application } = this.props;
     this.state.application = application;
@@ -45,6 +49,9 @@ class SingleApplication extends React.Component {
 
     return (
       <div className={styles.popup}>
+        <button type="submit" onClick={this.handleClose}>
+          x
+        </button>
         <h1>{application.companyName}</h1>
         <h2>{application.position}</h2>
         {this.viewJobId()}

@@ -1,10 +1,12 @@
 import React from "react";
 import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
-import NavigationBar from "./Navbar.js";
-
+import AddButtonNavigationBar from "./AddButtonNavbar.js";
 import axios from "axios";
 import SingleApplication from "./SingleApplication";
+import { Link } from "react-router-dom";
+import ReactDOM from "react-dom";
+import { BrowserRouter } from "react-router-dom";
 
 // defines the space that contains the three columns of applications
 class ApplicationLog extends React.Component {
@@ -75,10 +77,9 @@ class ApplicationLog extends React.Component {
   render() {
     return (
       <div>
-        <NavigationBar />
+        <AddButtonNavigationBar />
         <p className="App-intro">{this.state.apiResponse}</p>
         <Header page={this.state.page} />
-        <AddButton />
         {this.column(0)}
         {this.column(1)}
         {this.column(2)}
@@ -149,6 +150,8 @@ class ApplicationLogItem extends React.Component {
         //Not handling the error. Just logging into the console.
         console.log(error);
       });
+
+    // this.refresh();
   };
 
   handlePopup = () => {
@@ -199,9 +202,11 @@ class AddButton extends React.Component {
   render() {
     return (
       <div>
-        <button type="submit" onclick={this.handleAdd}>
-          +
-        </button>
+        <Link to={"/applications/add"}>
+          <button type="submit" onclick={this.handleAdd}>
+            +
+          </button>
+        </Link>
       </div>
     );
   }
