@@ -31,6 +31,11 @@ class App extends React.Component {
     return (
       <Switch>
         <div>
+        <Route exact path="/">
+            <div>
+              <h1>this will be the sign up page</h1>
+            </div>
+          </Route>
           <Route exact path="/applications">
             <div classname="appPopup">
               <SingleApplication
