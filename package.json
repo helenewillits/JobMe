@@ -5,6 +5,7 @@
   "dependencies": {
     "@date-io/date-fns": "^2.10.8",
     "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.6.3",
@@ -12,6 +13,7 @@
     "cookie-parser": "^1.4.5",
     "cors": "^2.8.5",
     "jade": "^1.11.0",
+    "material-ui": "^0.20.2",
     "mongodb": "^3.6.4",
     "morgan": "^1.10.0",
     "prettier-eslint": "^12.0.0",

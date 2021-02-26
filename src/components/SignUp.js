@@ -77,6 +77,32 @@ const styles = (theme) => ({
 
 class SignUp2 extends React.Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+    submitUser(event) {
+        const userInfo = {
+            firstName: this.state.firstName,
+            lastName: this.state.lastName,
+            email: this.state.email,
+        };
+
+        api.createAccount(userInfo);
+        event.preventDefault();
+    }
 
     render() {
         const { classes } = this.props;
@@ -99,6 +125,7 @@ class SignUp2 extends React.Component {
                                 margin="normal"
                                 required
                                 style={{ width: '45%', marginRight: '5%' }}
+                                onChange={this.handleChange}
                                 id="first"
                                 label="First Name"
                                 name="firstName"
@@ -115,6 +142,7 @@ class SignUp2 extends React.Component {
                                 name="lastName"
                                 autoComplete="lastName"
                                 autoFocus
+                                onChange={this.handleChange}
                             />
                             <TextField
                                 variant="outlined"
@@ -126,6 +154,7 @@ class SignUp2 extends React.Component {
                                 name="email"
                                 autoComplete="email"
                                 autoFocus
+                                onChange={this.handleChange}
                             />
                             <TextField
                                 variant="outlined"
@@ -137,6 +166,7 @@ class SignUp2 extends React.Component {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                onChange={this.handleChange}
                             />
                             {/*<FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
@@ -148,6 +178,7 @@ class SignUp2 extends React.Component {
                                     fullWidth
                                     variant="contained"
                                     color="primary"
+                                    onClick={this.handleSubmit}
                                     className={classes.submit}
                                 >
                                     Register
