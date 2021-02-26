@@ -13,15 +13,8 @@ class Header extends React.Component {
   application_log_header = (
     <div>
       <h1>My Applications</h1>
-      <h2>{this.acknowledge_apps}</h2>
     </div>
   );
-  // acknowledge_apps = () => {
-  //     if(this.num_applications > 2)
-  //         return "Wow, look at them all!"
-  //     else
-  //         return 'Nevermind'
-  // };
 
   // new application header
   application_new_header = (
@@ -49,8 +42,6 @@ class Header extends React.Component {
     else {
       return this.dashboard_header;
     }
-
-    // return error;
   }
 }
 

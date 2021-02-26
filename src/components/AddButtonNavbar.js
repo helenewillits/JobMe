@@ -1,22 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
-import { CSSTransition } from "react-transition-group";
-import ReactDOM from "react-dom";
 import styles from "../assets/Styles.module.css";
 import { Link } from "react-router-dom";
 
-import { ReactComponent as BellIcon } from "./../icons/bell.svg";
-import { ReactComponent as ArrowIcon } from "./../icons/arrow.svg";
-import { ReactComponent as BoltIcon } from "./../icons/bolt.svg";
 import { ReactComponent as CaretIcon } from "./../icons/caret.svg";
 import { ReactComponent as ChevronIcon } from "./../icons/chevron.svg";
-import { ReactComponent as CogIcon } from "./../icons/cog.svg";
-import { ReactComponent as MessengerIcon } from "./../icons/messenger.svg";
 import { ReactComponent as PlusIcon } from "./../icons/plus.svg";
 import { ReactComponent as ProfileIcon } from "./../icons/profile.svg";
-import DashboardIcon from "@material-ui/icons/Dashboard";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
-import FindInPageIcon from "@material-ui/icons/FindInPage";
 
 class AddButtonNavigationBar extends React.Component {
   render() {
@@ -101,27 +92,14 @@ function DropdownMenu() {
   return (
     <div className={styles.dropdown}>
       <div className={styles.menu}>
-        <DropdownItem leftIcon={<ProfileIcon />} rightIcon={<ChevronIcon />}>
-          My Profile
-        </DropdownItem>
-        <DropdownItem leftIcon={<DashboardIcon />} rightIcon={<ChevronIcon />}>
-          Dashboard
-        </DropdownItem>
+        <DropdownItem leftIcon={<ProfileIcon />}>My Profile</DropdownItem>
         <DropdownItem
           leftIcon={<LibraryBooksIcon />}
           rightIcon={<ChevronIcon />}
         >
           Applications
         </DropdownItem>
-        <DropdownItem leftIcon={<PeopleAltIcon />} rightIcon={<ChevronIcon />}>
-          Interviews
-        </DropdownItem>
-        <DropdownItem leftIcon={<FindInPageIcon />} rightIcon={<ChevronIcon />}>
-          Documents
-        </DropdownItem>
-        <DropdownItem leftIcon={<CogIcon />} rightIcon={<ChevronIcon />}>
-          Settings
-        </DropdownItem>
+        <DropdownItem leftIcon={<PeopleAltIcon />}>Interviews</DropdownItem>
       </div>
     </div>
   );

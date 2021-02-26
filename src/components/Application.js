@@ -53,7 +53,7 @@ class ApplicationLog extends React.Component {
     this.state.userID = 12345;
   }
 
-  // NEED TO DISTINGUISH COLUMNS BASED ON STATUS --TO DO--
+  // DISTINGUISH COLUMNS BASED ON STATUS
 
   get_Applications = (i) => {
     if (i == 0) return this.state.applicationsToDo;

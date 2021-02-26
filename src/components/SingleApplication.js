@@ -1,8 +1,6 @@
 import React from "react";
 import styles from "../assets/Styles.module.css";
 
-import axios from "axios";
-
 // defines the space that contains the three columns of applications
 class SingleApplication extends React.Component {
   state = { application: {} };
@@ -66,16 +64,3 @@ class SingleApplication extends React.Component {
 }
 
 export default SingleApplication;
-
-// userId: 2,
-//       * favorited: 0,
-//
-//       * companyName: "Apple",
-//       * position: "Software Development Intern",
-//         jobId: 183489239238,
-//       * deadline: "05/04/2021",
-//         jobPostingLink: "careers.apple.com",
-//         applicationPortalLink: "careers.apple.com/interns",
-//       *  applicationStatus: "Completed",
-//       * result: "N/A",
-//         notes: ""

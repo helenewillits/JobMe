@@ -2,10 +2,8 @@ import React from "react";
 import Header from "./Header.js";
 import NavigationBar from "./Navbar.js";
 import Calendar from "./Calendar.js";
-// import { Button } from "react-bootstrap";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import TextField from "material-ui/TextField";
-// import RaisedButton from "material-ui/RaisedButton";
 import { withStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
@@ -15,8 +13,6 @@ import Checkbox from "material-ui/Checkbox";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
-
-import { Redirect } from "react-router-dom";
 
 // defines the space that contains the page for adding new job applications
 class ApplicationNew extends React.Component {
