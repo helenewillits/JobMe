@@ -100,3 +100,5 @@ function deleteFromDatabase(collection, req) {
     console.log(query);
     collection.deleteOne(query);
 }
+
+module.exports = router;
