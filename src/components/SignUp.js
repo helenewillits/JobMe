@@ -93,16 +93,24 @@ class SignUp2 extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    submitUser(event) {
-        const userInfo = {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName,
-            email: this.state.email,
-        };
-
-        api.createAccount(userInfo);
-        event.preventDefault();
+    handleSubmit = (event) => {
+        this.submitNewUser();
     }
+
+    submitNewUser(event) {
+        console.log("STATE FOR POST");
+        console.log(this.state);
+        axios
+            .post("http://localhost:5000/userDatabase/add", this.state)
+            .then((res) => {
+                console.log(res);
+            })
+            .catch(function (error) {
+                //Not handling the error. Just logging into the console.
+                console.log(error);
+            });
+    }
+
 
     render() {
         const { classes } = this.props;
@@ -126,7 +134,7 @@ class SignUp2 extends React.Component {
                                 required
                                 style={{ width: '45%', marginRight: '5%' }}
                                 onChange={this.handleChange}
-                                id="first"
+                                id="firstName"
                                 label="First Name"
                                 name="firstName"
                                 autoComplete="firstName"
@@ -137,7 +145,7 @@ class SignUp2 extends React.Component {
                                 margin="normal"
                                 required
                                 style={{ width: '45%', marginLeft: '5%' }}
-                                id="last"
+                                id="lastName"
                                 label="Last Name"
                                 name="lastName"
                                 autoComplete="lastName"
@@ -173,24 +181,28 @@ class SignUp2 extends React.Component {
                             label="Remember me"
                         />*/}
                             <div>
-                                <Button
-                                    type="submit"
-                                    fullWidth
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={this.handleSubmit}
-                                    className={classes.submit}
-                                >
-                                    Register
+                                <Link to={"/applications"} onClick={this.handleSubmit}>
+                                    <Button
+                                        type="submit"
+                                        fullWidth
+                                        variant="contained"
+                                        color="primary"
+                                        onClick={this.handleSubmit}
+                                        className={classes.submit}
+                                    >
+                                        Register
                         </Button>
-                                <Button
-                                    type="login"
-                                    fullWidth
-                                    variant="contained"
-                                    color="primary"
-                                    className={classes.login}>
-                                    Log In
+                                </Link>
+                                <Link to={"/login"}>
+                                    <Button
+                                        type="login"
+                                        fullWidth
+                                        variant="contained"
+                                        color="primary"
+                                        className={classes.login}>
+                                        Log In
                         </Button>
+                                </Link>
                             </div>
                             <Grid container>
                                 <Grid item xs>
