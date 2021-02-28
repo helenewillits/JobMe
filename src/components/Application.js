@@ -51,7 +51,7 @@ class ApplicationLog extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state.userEmail = "newemail@yahoo.com";
+    this.state.userEmail = this.props.dataFromParent;
   }
 
   getEmail() {

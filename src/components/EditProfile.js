@@ -22,7 +22,7 @@ class EditProfile extends React.Component {
       apiResponse: "",
       page: "EditProfile",
 
-      email: "",
+      email: this.props.dataFromParent,
       firstName: "",
       lastName: "",
       link1: "",
@@ -110,7 +110,7 @@ class EditProfile extends React.Component {
                                 <h2>{"Email"}</h2>
                             </TableCell>
                             <TableCell align="left" className={styles.tablecell}>
-                                {"janedoe@gmail.com"}
+                                {this.state.email}
                             </TableCell>
                         </TableRow>
                         <TableRow key={"Link #1"}>

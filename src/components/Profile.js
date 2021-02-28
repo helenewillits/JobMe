@@ -37,7 +37,7 @@ class Profile extends React.Component {
 
    constructor(props) {
       super(props);
-      this.state.email = "janedoe@gmail.com";
+      this.state.email = this.props.dataFromParent;
    }
 
   getEmail() {
