@@ -3,6 +3,7 @@ var Express = require("express");
 var router = Express.Router({ caseSensitive: true });
 var ObjectId = require("mongodb").ObjectID;
 const res = require("express/lib/response");
+var user = "";
 
 router.get("/", function (req, res) {
   console.log("get route");
@@ -58,6 +59,15 @@ router.post("/", function (req, res) {
   });
 });
 
+router.post("/post/getEmail", function (req, res) {
+    console.log("getEmail post route");
+    
+    console.log(req.body.userEmail);
+    user = req.body.userEmail;
+
+    res.send("Email Received");
+});
+
 router.delete("/", function (req, res) {
   console.log("delete route");
   const { MongoClient } = require("mongodb");
@@ -86,7 +96,7 @@ function createAppDatabase(database) {
       $jsonSchema: {
         jsonType: "object",
         required: [
-          "userId",
+          "userEmail",
           "favorited",
           "companyName",
           "position",
@@ -95,15 +105,11 @@ function createAppDatabase(database) {
           "deadline"
         ],
         properties: {
-          userId: {
+          userEmail: {
             // WHEN USER DATABASE CREATED, THIS SHOULD BE "USER_USERID"
-            jsonType: "int",
-            description: "must be an integer and is required"
+            jsonType: "string",
+            description: "must be a string and is required"
           },
-          //  appId: {
-          //    jsonType: "int",
-          //    description: "must be an integer and is required"
-          //  },
           favorited: {
             jsonType: "bool",
             description:
@@ -162,7 +168,7 @@ function createAppDatabase(database) {
 
 function addToAppLog(collection, req) {
   collection.insertOne({
-    userId: req.body.userId,
+    userEmail: req.body.userEmail,
     favorited: req.body.favorited,
     deadline: req.body.deadline,
     companyName: req.body.companyName,
@@ -179,7 +185,7 @@ function addToAppLog(collection, req) {
 function hardcodeAdd(collection) {
   collection.insertMany([
     {
-      userId: 1,
+      userEmail: "jeremydoe@gmail.com",
       favorited: 0,
       deadline: "05/04/2021",
       companyName: "Apple",
@@ -192,7 +198,7 @@ function hardcodeAdd(collection) {
       notes: ""
     },
     {
-      userId: 1,
+      userEmail: "jeremydoe@gmail.com",
       favorited: 0,
       deadline: "05/06/2021",
       companyName: "Amazon",
@@ -205,7 +211,7 @@ function hardcodeAdd(collection) {
       notes: ""
     },
     {
-      userId: 1,
+      userEmail: "jeremydoe@gmail.com",
       favorited: 0,
       deadline: "04/02/2021",
       companyName: "Ridgeline",
@@ -218,7 +224,7 @@ function hardcodeAdd(collection) {
       notes: ""
     },
     {
-      userId: 1,
+      userEmail: "jeremydoe@gmail.com",
       favorited: 0,
       deadline: "05/04/2021",
       companyName: "Apple",
@@ -231,7 +237,7 @@ function hardcodeAdd(collection) {
       notes: ""
     },
     {
-      userId: 1,
+      userEmail: "jeremydoe@gmail.com",
       favorited: 0,
       deadline: "05/04/2021",
       companyName: "Apple",
@@ -244,7 +250,7 @@ function hardcodeAdd(collection) {
       notes: ""
     },
     {
-      userId: 2,
+      userEmail: "newemail@yahoo.com",
       favorited: 0,
       deadline: "05/04/2021",
       companyName: "Apple",
@@ -257,7 +263,7 @@ function hardcodeAdd(collection) {
       notes: ""
     }
   ]);
-  console.log("Success?");
+  console.log("Success");
 }
 
 function deleteFromLog(collection, req) {
@@ -266,30 +272,10 @@ function deleteFromLog(collection, req) {
   collection.deleteOne(query);
 }
 
-// function queryAppId(collection, req) {
-//   const query = { userId: req.body.userId, _id: req.body._id };
-//   const apps = collection.find(query).forEach(function (item) {
-//     console.log(item);
-//   });
-//   console.log(apps);
-//   return apps;
-// }
-
-// function queryAppStatus(collection, req, res) {
-//   const query = { userId: req.userId, applicationStatus: req.status };
-//   const apps = collection
-//     .find(query)
-//     .toArray()
-//     .then((docs) => {
-//       console.log("DOCS:");
-//       console.log("all documents", docs);
-//       res.send(docs);
-//     });
-// }
-
 function queryAllApps(collection, res) {
+  const query = { userEmail: user };
   const apps = collection
-    .find()
+    .find(query)
     .toArray()
     .then((docs) => {
       console.log("DOCS:");

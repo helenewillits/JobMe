@@ -46,7 +46,7 @@ class ApplicationNewPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      userId: "",
+      userEmail: "jeremydoe@gmail.com",
       favorited: false,
       companyName: "",
       position: "",

@@ -28,10 +28,11 @@ app.use("/", indexRouter);
 app.use("/applicationDatabase", applicationDatabase);
 app.use("/applicationDatabase/delete", applicationDatabase);
 app.use("/applicationDatabase/add", applicationDatabase);
+app.use("/applicationDatabase/post/getEmail", applicationDatabase);
 app.use("/userDatabase", userDatabase);
-app.use("/userDatabase/post/getEmail", userDatabase);
 app.use("/userDatabase/add", userDatabase);
 app.use("/userDatabase/put", userDatabase);
+app.use("/userDatabase/post/getEmail", userDatabase);
 // app.use("/userDatabase/delete", userDatabase);
 
 // catch 404 and forward to error handler
