@@ -11,7 +11,7 @@ import { BrowserRouter } from "react-router-dom";
 // defines the space that contains the three columns of applications
 class ApplicationLog extends React.Component {
   state = {
-    userID: 0,
+    userEmail: "",
     applicationsToDo: [],
     applicationsInProgress: [],
     applicationsCompleted: [],
@@ -20,6 +20,7 @@ class ApplicationLog extends React.Component {
   };
 
   componentWillMount() {
+    this.getEmail();
     axios
       .get("http://localhost:5000/applicationDatabase")
       .then((res) => {
@@ -50,7 +51,19 @@ class ApplicationLog extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state.userID = 12345;
+    this.state.userEmail = this.props.dataFromParent;
+  }
+
+  getEmail() {
+      console.log("getEmail post route");
+      axios.post("http://localhost:5000/applicationDatabase/post/getEmail", this.state)
+      .then((res) => {
+          console.log(res);
+      })
+      .catch(function (error) {
+          //Not handling the error. Just logging into the console.
+          console.log(error);
+      })
   }
 
   // DISTINGUISH COLUMNS BASED ON STATUS

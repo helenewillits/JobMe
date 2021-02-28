@@ -3,38 +3,30 @@ var Express = require("express");
 var router = Express.Router({ caseSensitive: true });
 var ObjectId = require("mongodb").ObjectID;
 const res = require("express/lib/response");
+var userEmail = "";
 
-// router.get("/", function (req, res) {
-//     console.log("get route");
-//     const { MongoClient } = require("mongodb");
-//     const uri =
-//         "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-//     console.log("initialize the database");
-//     MongoClient.connect(uri, (err, client) => {
-//         if (err) {
-//             throw err;
-//             return;
-//         }
-//         console.log("connected");
-//         const db = client.db("UserDatabase");
+router.get("/", function (req, res) {
+    console.log("get route");
+    const { MongoClient } = require("mongodb");
+    const uri =
+        "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    console.log("initialize the database");
+    MongoClient.connect(uri, (err, client) => {
+        if (err) {
+            throw err;
+            return;
+        }
+        console.log("connected");
+        const db = client.db("UserDatabase");
+        const collection = db.collection("User");
+        console.log("REQ: ", req.query);
+        queryEmail(collection, res);
 
-//         const collection = db.collection("User");
+        console.log("All Users Received");
 
-//         // queryAppStatus(
-//         //    collection,
-//         //    {
-//         //       status: "To Do"
-//         //    },
-//         //    res
-//         // );
-
-//         // hardcodeAdd(collection);
-//         // queryAllApps(collection, res);
-//         console.log("All Users Received");
-
-//         client.close();
-//     });
-// });
+        client.close();
+    });
+});
 
 router.post("/", function (req, res) {
     console.log("post route");
@@ -49,9 +41,9 @@ router.post("/", function (req, res) {
         }
         console.log("connected");
         const db = client.db("UserDatabase");
-        //createUserDatabase(db);
+        // createUserDatabase(db);
         const collection = db.collection("User");
-        //hardcodeAdd(collection);
+        // hardcodeAdd(collection);
         addToUserDatabase(collection, req);
         res.send("New User Posted");
 
@@ -59,6 +51,36 @@ router.post("/", function (req, res) {
     });
 });
 
+router.post("/post/getEmail", function (req, res) {
+    console.log("getEmail post route");
+
+    console.log(req.body.email);
+    userEmail = req.body.email;
+
+    res.send("Email Received");
+});
+
+router.put("/", function (req, res) {
+    console.log("put route");
+    const { MongoClient } = require("mongodb");
+    const uri =
+        "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    console.log("initialize the database");
+    MongoClient.connect(uri, (err, client) => {
+        if (err) {
+            throw err;
+            return;
+        }
+        console.log("connected");
+        const db = client.db("UserDatabase");
+        const collection = db.collection("User");
+
+        updateUser(collection, req);
+        res.send("User Updated");
+
+        client.close();
+    });
+});
 
 // router.delete("/", function (req, res) {
 //     console.log("delete route");
@@ -91,7 +113,7 @@ function createUserDatabase(database) {
                     "firstName",
                     "lastName",
                     "email",
-                    "password",
+                    "password"
                 ],
                 properties: {
                     firstName: {
@@ -142,17 +164,26 @@ function addToUserDatabase(collection, req) {
         lastName: req.body.lastName,
         email: req.body.email,
         password: req.body.password,
-        notes: req.body.notes
+        link1: "",
+        link2: "",
+        link3: "",
+        workExperience: "",
+        notes: ""
     });
 }
 
 function hardcodeAdd(collection) {
+    console.log("Hardcode Add");
     collection.insertMany([
         {
             firstName: "John",
             lastName: "Doe",
             email: "johndoe@gmail.com",
             password: "pass1234",
+            link1: "",
+            link2: "",
+            link3: "",
+            workExperience: "",
             notes: ""
         },
         {
@@ -160,6 +191,10 @@ function hardcodeAdd(collection) {
             lastName: "Doe",
             email: "jamesdoe@gmail.com",
             password: "pass1234",
+            link1: "",
+            link2: "",
+            link3: "",
+            workExperience: "",
             notes: ""
         },
         {
@@ -167,6 +202,10 @@ function hardcodeAdd(collection) {
             lastName: "Doe",
             email: "janedoe@gmail.com",
             password: "pass1234",
+            link1: "",
+            link2: "",
+            link3: "",
+            workExperience: "",
             notes: ""
         },
         {
@@ -174,10 +213,40 @@ function hardcodeAdd(collection) {
             lastName: "Doe",
             email: "jeremydoe@gmail.com",
             password: "pass1234",
+            link1: "",
+            link2: "",
+            link3: "",
+            workExperience: "",
             notes: ""
-        },
+        }
     ]);
     console.log("Success?");
+}
+
+function queryEmail(collection, res) {
+    const query = { email: userEmail };
+    const user = collection
+        .find(query)
+        .toArray()
+        .then((docs) => {
+            console.log("DOCS:");
+            console.log(docs);
+            res.send(docs);
+            console.log("sent");
+        });
+}
+
+function updateUser(collection, req) {
+    const query = { email: userEmail };
+
+    if (req.body.firstName != "") collection.updateOne(query, { $set: { "firstName": req.body.firstName } });
+    if (req.body.lastName != "") collection.updateOne(query, { $set: { "lastName": req.body.lastName } });
+    if (req.body.link1 != "") collection.updateOne(query, { $set: { "link1": req.body.link1 } });
+    if (req.body.link2 != "") collection.updateOne(query, { $set: { "link2": req.body.link2 } });
+    if (req.body.link3 != "") collection.updateOne(query, { $set: { "link3": req.body.link3 } });
+    if (req.body.workExperience != "") collection.updateOne(query, { $set: { "workExperience": req.body.workExperience } });
+    if (req.body.notes != "") collection.updateOne(query, { $set: { "notes": req.body.notes } });
+
 }
 
 // function deleteFromDatabase(collection, req) {

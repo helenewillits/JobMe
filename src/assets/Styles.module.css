@@ -115,6 +115,10 @@ input {
     box-sizing: border-box;
 }
 
+.tablecell {
+    white-space: pre-wrap;
+}
+
 /* Create two equal columns that floats next to each other */
 .thirdcolumn {
     float: left;
