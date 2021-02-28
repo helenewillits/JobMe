@@ -8,7 +8,7 @@ router.get("/", function (req, res) {
   console.log("get route");
   const { MongoClient } = require("mongodb");
   const uri =
-    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/ApplicationDatabase?retryWrites=true&w=majority";
+    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
@@ -40,7 +40,7 @@ router.post("/", function (req, res) {
   console.log("post route");
   const { MongoClient } = require("mongodb");
   const uri =
-    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/ApplicationDatabase?retryWrites=true&w=majority";
+    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
@@ -62,7 +62,7 @@ router.delete("/", function (req, res) {
   console.log("delete route");
   const { MongoClient } = require("mongodb");
   const uri =
-    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/ApplicationDatabase?retryWrites=true&w=majority";
+    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
@@ -266,26 +266,26 @@ function deleteFromLog(collection, req) {
   collection.deleteOne(query);
 }
 
-function queryAppId(collection, req) {
-  const query = { userId: req.userId, _id: _id };
-  const apps = collection.find(query).forEach(function (item) {
-    console.log(item);
-  });
-  console.log(apps);
-  return apps;
-}
+// function queryAppId(collection, req) {
+//   const query = { userId: req.body.userId, _id: req.body._id };
+//   const apps = collection.find(query).forEach(function (item) {
+//     console.log(item);
+//   });
+//   console.log(apps);
+//   return apps;
+// }
 
-function queryAppStatus(collection, req, res) {
-  const query = { userId: req.userId, applicationStatus: req.status };
-  const apps = collection
-    .find(query)
-    .toArray()
-    .then((docs) => {
-      console.log("DOCS:");
-      console.log("all documents", docs);
-      res.send(docs);
-    });
-}
+// function queryAppStatus(collection, req, res) {
+//   const query = { userId: req.userId, applicationStatus: req.status };
+//   const apps = collection
+//     .find(query)
+//     .toArray()
+//     .then((docs) => {
+//       console.log("DOCS:");
+//       console.log("all documents", docs);
+//       res.send(docs);
+//     });
+// }
 
 function queryAllApps(collection, res) {
   const apps = collection

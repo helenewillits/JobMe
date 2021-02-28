@@ -67,24 +67,24 @@ class EditProfilePage extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-//   postNewApplication() {
-//     console.log("STATE FOR POST");
-//     console.log(this.state);
-//     axios
-//       .post("http://localhost:5000/applicationDatabase/add", this.state)
-//       .then((res) => {
-//         console.log(res);
-//       })
-//       .catch(function (error) {
-//         //Not handling the error. Just logging into the console.
-//         console.log(error);
-//       });
-//   }
+  updateProfile() {
+    console.log("STATE FOR PUT");
+    console.log(this.state);
+    axios
+      .put("http://localhost:5000/userDatabase/put", this.state)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch(function (error) {
+        //Not handling the error. Just logging into the console.
+        console.log(error);
+      });
+  }
 
   handleSubmit = (event) => {
     console.log("dear god it did work now didn't it");
     console.log(this.state);
-    // this.postNewApplication();
+    this.updateProfile();
   };
 
   render() {

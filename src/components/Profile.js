@@ -15,53 +15,28 @@ import { makeStyles } from "@material-ui/core";
 
 class Profile extends React.Component {
    state = {
-      userID: 12345,
-      user: {
-          userID: 12345,
-          firstName: "John",
-          lastName: "Doe",
-          email: "abc@gmail.com",
-          link1: "https://link1.com",
-          link2: "https://link2.com",
-          link3: "https://link3.com",
-          workExperience: "SLO Hacks \nInternship \nCS Club",
-          notes: "- Update resume\n- Email recruiter\n- Update resume\n- Email recruiter\n- Update resume\n- Email recruiter\n- Update resume\n- Email recruiter\n- Update resume\n- Email recruiter"
-      },
-      page: "Profile"
+       email: "",
+       user: {},
+       page: "Profile"
    };
 
-//    componentWillMount() {
-//       axios
-//          .get("http://localhost:5000/userDatabase")
-//          .then((res) => {
-//             // const data = res.data;
-//             this.setState({ users: res.data });
-//             console.log(res);
-//             console.log(res.data[0]["companyName"]);
-//             const toDo = res.data.filter(
-//                (item) => item.applicationStatus == "To Do"
-//             );
-//             const inProgress = res.data.filter(
-//                (item) => item.applicationStatus == "In Progress"
-//             );
-//             const completed = res.data.filter(
-//                (item) => item.applicationStatus == "Completed"
-//             );
-//             this.setState({
-//                applicationsToDo: toDo,
-//                applicationsInProgress: inProgress,
-//                applicationsCompleted: completed
-//             });
-//          })
-//          .catch(function (error) {
-//             //Not handling the error. Just logging into the console.
-//             console.log(error);
-//          });
-//    }
+   componentWillMount() {
+      console.log("In ComponentWillMount");
+      axios
+         .get("http://localhost:5000/userDatabase")
+         .then((res) => {
+            console.log(res.data[0]);
+            this.setState({ user: res.data[0] });
+         })
+         .catch(function (error) {
+            //Not handling the error. Just logging into the console.
+            console.log(error);
+         });
+   }
 
    constructor(props) {
       super(props);
-      this.state.userID = 12345;
+      this.state.email = "newemail@yahoo.com";
    }
 
    render() {

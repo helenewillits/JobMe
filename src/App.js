@@ -4,8 +4,9 @@ import { Switch, Route } from "react-router-dom";
 import ApplicationLog from "./components/Application.js";
 import SingleApplication from "./components/SingleApplication.js";
 import NewApplication from "./components/NewApplication.js";
-import Profile from "./components/Profile.js"
-import EditProfile from "./components/EditProfile.js"
+import Profile from "./components/Profile.js";
+import EditProfile from "./components/EditProfile.js";
+import SignUp from "./components/SignUp.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -61,6 +62,11 @@ class App extends React.Component {
               <div>
                   <EditProfile/>
               </div>
+          </Route>
+          <Route exact path="/signup">
+            <div>
+              <SignUp />
+            </div>
           </Route>
         </div>
       </Switch>
