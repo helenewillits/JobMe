@@ -16,7 +16,7 @@ class App extends React.Component {
       modalOpen: false,
       appModalOpen: false,
       application: {},
-      userEmail: "newemail@yahoo.com"
+      userEmail: "jeremydoe@gmail.com"
     };
 
     this.handleApplicationPopup = this.handleApplicationPopup.bind(this);
@@ -57,14 +57,14 @@ class App extends React.Component {
             </div>
           </Route>
           <Route exact path="/profile">
-              <div>
-                  <Profile dataFromParent={this.state.userEmail}/>
-              </div>
+            <div>
+                <Profile dataFromParent={this.state.userEmail}/>
+            </div>
           </Route>
           <Route exact path="/profile/edit">
-              <div>
-                  <EditProfile dataFromParent={this.state.userEmail}/>
-              </div>
+            <div>
+                <EditProfile dataFromParent={this.state.userEmail}/>
+            </div>
           </Route>
           <Route exact path="/signup">
             <div>
