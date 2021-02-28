@@ -32,6 +32,21 @@ class Header extends React.Component {
     </div>
   );
 
+   // profile page header
+   profile_header = (
+       <div>
+           <h1>My Profile</h1>
+       </div>
+   );
+
+   profile_edit_header = (
+       <div>
+           <h1>Edit My Profile</h1>
+           <h2>Straight Applicant Awesomeness.</h2>
+           <h3>Fields left blank won't be changed from the original.</h3>
+       </div>
+   )
+
   render() {
     const { page } = this.props;
 
@@ -39,6 +54,8 @@ class Header extends React.Component {
     if (page === "ApplicationLog") return this.application_log_header;
     if (page === "ApplicationNew") return this.application_new_header;
     if (page === "InterviewLog") return this.interview_log_header;
+    if (page === "Profile") return this.profile_header;
+    if (page === "EditProfile") return this.profile_edit_header;
     else {
       return this.dashboard_header;
     }

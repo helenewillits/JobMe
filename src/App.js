@@ -4,7 +4,9 @@ import { Switch, Route } from "react-router-dom";
 import ApplicationLog from "./components/Application.js";
 import SingleApplication from "./components/SingleApplication.js";
 import NewApplication from "./components/NewApplication.js";
-import SignUp from "./components/SignUp.js"
+import Profile from "./components/Profile.js";
+import EditProfile from "./components/EditProfile.js";
+import SignUp from "./components/SignUp.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -13,7 +15,8 @@ class App extends React.Component {
     this.state = {
       modalOpen: false,
       appModalOpen: false,
-      application: {}
+      application: {},
+      userEmail: "jeremydoe@gmail.com"
     };
 
     this.handleApplicationPopup = this.handleApplicationPopup.bind(this);
@@ -24,6 +27,7 @@ class App extends React.Component {
     newState.appModalOpen = !this.state.appModalOpen;
     newState.modalOpen = !this.state.modalOpen;
     newState.application = application;
+    newState.userEmail = this.state.userEmail;
     this.setState(newState);
     console.log("pop up");
   }
@@ -43,12 +47,23 @@ class App extends React.Component {
               <ApplicationLog
                 handlePopup={this.handleApplicationPopup}
                 modalOpen={this.state.modalOpen}
+                dataFromParent={this.state.userEmail}
               />
             </div>
           </Route>
           <Route exact path="/applications/add">
             <div>
-              <NewApplication />
+              <NewApplication dataFromParent={this.state.userEmail}/>
+            </div>
+          </Route>
+          <Route exact path="/profile">
+            <div>
+                <Profile dataFromParent={this.state.userEmail}/>
+            </div>
+          </Route>
+          <Route exact path="/profile/edit">
+            <div>
+                <EditProfile dataFromParent={this.state.userEmail}/>
             </div>
           </Route>
           <Route exact path="/signup">
