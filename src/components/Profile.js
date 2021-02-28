@@ -22,6 +22,7 @@ class Profile extends React.Component {
 
    componentWillMount() {
       console.log("In ComponentWillMount");
+      this.getEmail();
       axios
          .get("http://localhost:5000/userDatabase")
          .then((res) => {
@@ -36,8 +37,20 @@ class Profile extends React.Component {
 
    constructor(props) {
       super(props);
-      this.state.email = "newemail@yahoo.com";
+      this.state.email = "janedoe@gmail.com";
    }
+
+  getEmail() {
+      console.log("getEmail post route");
+      axios.post("http://localhost:5000/userDatabase/post/getEmail", this.state)
+      .then((res) => {
+          console.log(res);
+      })
+      .catch(function (error) {
+          //Not handling the error. Just logging into the console.
+          console.log(error);
+      })
+  }
 
    render() {
       return (

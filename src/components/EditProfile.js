@@ -18,39 +18,13 @@ import axios from "axios";
 class EditProfile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: "" };
-    this.state.page = "EditProfile";
-  }
+    this.state = { 
+      apiResponse: "",
+      page: "EditProfile",
 
-  render() {
-    const { page, status } = this.state;
-
-    return (
-      <div>
-        <MuiThemeProvider>
-          <NavigationBar />
-          <p className="App-new">{this.state.apiResponse}</p>
-          <Header page={page} />
-          <br />
-          <div>
-            <EditProfilePage status={status} />
-          </div>
-        </MuiThemeProvider>
-      </div>
-    );
-  }
-}
-
-class EditProfilePage extends React.Component {
-  state = {};
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      userID: "",
+      email: "",
       firstName: "",
       lastName: "",
-      email: "",
       link1: "",
       link2: "",
       link3: "",
@@ -88,8 +62,15 @@ class EditProfilePage extends React.Component {
   };
 
   render() {
-      return (
-         <div>
+
+    return (
+      <div>
+        <MuiThemeProvider>
+          <NavigationBar />
+          <p className="App-new">{this.state.apiResponse}</p>
+          <Header page={this.state.page} />
+          <br />
+          <div>
             <div className={styles.area}>
                 <Table aria-label="simple table">
                     <colgroup>
@@ -129,13 +110,7 @@ class EditProfilePage extends React.Component {
                                 <h2>{"Email"}</h2>
                             </TableCell>
                             <TableCell align="left" className={styles.tablecell}>
-                                <TextField
-                                  type="text"
-                                  floatingLabelText="Email"
-                                  name="email"
-                                  onChange={this.handleChange}
-                                  fullWidth
-                                />
+                                {"janedoe@gmail.com"}
                             </TableCell>
                         </TableRow>
                         <TableRow key={"Link #1"}>
@@ -223,9 +198,11 @@ class EditProfilePage extends React.Component {
                 Submit
               </Fab>
             </Link>
-         </div>
-      );
-   }
+          </div>
+        </MuiThemeProvider>
+      </div>
+    );
+  }
 }
 
 export default EditProfile;

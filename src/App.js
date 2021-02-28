@@ -15,7 +15,8 @@ class App extends React.Component {
     this.state = {
       modalOpen: false,
       appModalOpen: false,
-      application: {}
+      application: {},
+      userEmail: "jeremydoe@gmail.com"
     };
 
     this.handleApplicationPopup = this.handleApplicationPopup.bind(this);
@@ -26,6 +27,7 @@ class App extends React.Component {
     newState.appModalOpen = !this.state.appModalOpen;
     newState.modalOpen = !this.state.modalOpen;
     newState.application = application;
+    newState.userEmail = this.state.userEmail;
     this.setState(newState);
     console.log("pop up");
   }

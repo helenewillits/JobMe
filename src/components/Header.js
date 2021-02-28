@@ -43,6 +43,7 @@ class Header extends React.Component {
        <div>
            <h1>Edit My Profile</h1>
            <h2>Straight Applicant Awesomeness.</h2>
+           <h3>Fields left blank won't be changed from the original.</h3>
        </div>
    )
 

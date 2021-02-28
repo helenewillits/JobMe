@@ -3,6 +3,7 @@ var Express = require("express");
 var router = Express.Router({ caseSensitive: true });
 var ObjectId = require("mongodb").ObjectID;
 const res = require("express/lib/response");
+var userEmail = "";
 
 router.get("/", function (req, res) {
     console.log("get route");
@@ -48,6 +49,15 @@ router.post("/", function (req, res) {
 
         client.close();
     });
+});
+
+router.post("/post/getEmail", function (req, res) {
+    console.log("getEmail post route");
+    
+    console.log(req.body.email);
+    userEmail = req.body.email;
+
+    res.send("Email Received");
 });
 
 router.put("/", function(req, res) {
@@ -213,20 +223,8 @@ function hardcodeAdd(collection) {
     console.log("Success?");
 }
 
-function queryUserId(collection, req) {
-    const query = { _id: ObjectId(req.body._id).valueOf() };
-    const user = collection
-    .find(query)
-    .toArray()
-    .then((docs) => {
-      console.log("DOCS:");
-      console.log("all documents", docs);
-      res.send(docs);
-    });
-}
-
 function queryEmail(collection, res) {
-    const query = { email: "newemail@yahoo.com" };
+    const query = { email: userEmail };
     const user = collection
     .find(query)
     .toArray()
@@ -239,7 +237,7 @@ function queryEmail(collection, res) {
 }
 
 function updateUser(collection, req) {
-    const query = { email: "newemail@yahoo.com" };
+    const query = { email: userEmail };
 
     if (req.body.firstName!="") collection.updateOne(query, { $set: { "firstName" : req.body.firstName } });
     if (req.body.lastName!="") collection.updateOne(query, { $set: { "lastName" : req.body.lastName } });
@@ -248,7 +246,6 @@ function updateUser(collection, req) {
     if (req.body.link3!="") collection.updateOne(query, { $set: { "link3" : req.body.link3 } });
     if (req.body.workExperience!="") collection.updateOne(query, { $set: { "workExperience" : req.body.workExperience } });
     if (req.body.notes!="") collection.updateOne(query, { $set: { "notes" : req.body.notes } });
-    if (req.body.email!="") collection.updateOne(query, { $set: { "email" : req.body.email } });
 
 }
 
