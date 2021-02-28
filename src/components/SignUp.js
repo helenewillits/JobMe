@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Logo from '../icons/JobMe_Logo.png'
 import { withStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
 
 function Copyright() {
@@ -75,7 +76,10 @@ const styles = (theme) => ({
 
 
 
-class SignUp2 extends React.Component {
+class SignUp extends React.Component {
+
+    state = {
+    }
 
     constructor(props) {
         super(props);
@@ -87,6 +91,7 @@ class SignUp2 extends React.Component {
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleChange = (event) => {
@@ -94,7 +99,7 @@ class SignUp2 extends React.Component {
     }
 
     handleSubmit = (event) => {
-        this.submitNewUser();
+        this.submitNewUser(event);
     }
 
     submitNewUser(event) {
@@ -121,7 +126,7 @@ class SignUp2 extends React.Component {
                 <CssBaseline />
                 <div className={classes.paper}>
                     {/*<img src={Logo} className={"logo"}></img>*/}
-                    <Typography component="header1" variant="h3" align="center">Ready to sign up? It's free!</Typography>
+                    <Typography component="header" variant="h3" align="center">Ready to sign up? It's free!</Typography>
                     <Typography component="h1" variant="h5" align="center">
                         An easy job search awaits.
                 </Typography>
@@ -187,11 +192,10 @@ class SignUp2 extends React.Component {
                                         fullWidth
                                         variant="contained"
                                         color="primary"
-                                        onClick={this.handleSubmit}
                                         className={classes.submit}
                                     >
                                         Register
-                        </Button>
+                                    </Button>
                                 </Link>
                                 <Link to={"/login"}>
                                     <Button
@@ -201,19 +205,10 @@ class SignUp2 extends React.Component {
                                         color="primary"
                                         className={classes.login}>
                                         Log In
-                        </Button>
+                                    </Button>
                                 </Link>
                             </div>
-                            <Grid container>
-                                <Grid item xs>
-                                    <Link href="#" variant="body2" align="left">
-                                        Forgot password?
-                                </Link>
-                                </Grid>
-                                <Grid item>
 
-                                </Grid>
-                            </Grid>
                         </form>
                     </Box>
                 </div >
@@ -230,4 +225,4 @@ class SignUp2 extends React.Component {
 
 }
 
-export default withStyles(styles, { withTheme: true })(SignUp2);
+export default withStyles(styles, { withTheme: true })(SignUp);

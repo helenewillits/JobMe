@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import ApplicationLog from "./components/Application.js";
 import SingleApplication from "./components/SingleApplication.js";
 import NewApplication from "./components/NewApplication.js";
+import SignUp from "./components/SignUp.js"
 
 class App extends React.Component {
   constructor(props) {
@@ -48,6 +49,11 @@ class App extends React.Component {
           <Route exact path="/applications/add">
             <div>
               <NewApplication />
+            </div>
+          </Route>
+          <Route exact path="/signup">
+            <div>
+              <SignUp />
             </div>
           </Route>
         </div>

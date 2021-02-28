@@ -8,7 +8,7 @@ router.get("/", function (req, res) {
   console.log("get route");
   const { MongoClient } = require("mongodb");
   const uri =
-    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/ApplicationDatabase?retryWrites=true&w=majority";
+    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
@@ -40,7 +40,7 @@ router.post("/", function (req, res) {
   console.log("post route");
   const { MongoClient } = require("mongodb");
   const uri =
-    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/ApplicationDatabase?retryWrites=true&w=majority";
+    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
@@ -62,7 +62,7 @@ router.delete("/", function (req, res) {
   console.log("delete route");
   const { MongoClient } = require("mongodb");
   const uri =
-    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/ApplicationDatabase?retryWrites=true&w=majority";
+    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
