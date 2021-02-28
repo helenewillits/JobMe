@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Checkbox from '@material-ui/core/Checkbox';
-import Link from '@material-ui/core/Link';
+import { Link } from "react-router-dom";
 import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -12,6 +12,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Logo from '../icons/JobMe_Logo.png'
 import { withStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
 
 function Copyright() {
@@ -75,9 +76,74 @@ const styles = (theme) => ({
 });
 
 
+async function loginUser(credentials) {
+    return fetch('http://localhost:8080/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(credentials)
+    })
+        .then(data => data.json())
+}
+
 
 class LogIn extends React.Component {
 
+    state = {
+    }
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: ''
+        };
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+        //this.performValidation = this.performValidation.bind(this);
+    }
+
+    async performValidation() {
+        return this.email.length > 0 && this.password.length > 0;
+    }
+
+    handleClick(event) {
+        console.log("Made it");
+        var apiBaseUrl = "http://localhost:5000/";
+        var self = this;
+        var payload = {
+            "email": this.state.username,
+            "password": this.state.password
+        }
+        axios.post(apiBaseUrl + "userDatabase", payload)
+            .then(function (response) {
+                console.log(response);
+                if (response.data.code == 200) {
+                    console.log("Login successful");
+                    //var uploadScreen = [];
+                    //uploadScreen.push(<UploadScreen appContext={self.props.appContext} />)
+                    //self.props.appContext.setState({ loginPage: [], uploadScreen: uploadScreen })
+                }
+                else if (response.data.code == 204) {
+                    console.log("Email password do not match");
+                    alert("email password do not match")
+                }
+                else {
+                    console.log("Email does not exists");
+                    alert("Email does not exist");
+                }
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
+    }
 
     render() {
         const { classes } = this.props;
@@ -101,6 +167,7 @@ class LogIn extends React.Component {
                                 name="email"
                                 autoComplete="email"
                                 autoFocus
+                                onChange={this.handleChange}
                             />
                             <TextField
                                 variant="outlined"
@@ -112,6 +179,7 @@ class LogIn extends React.Component {
                                 type="password"
                                 id="password"
                                 autoComplete="current-password"
+                                onChange={this.handleChange}
                             />
                             {/*<FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
@@ -123,15 +191,14 @@ class LogIn extends React.Component {
                                     fullWidth
                                     variant="contained"
                                     color="primary"
+                                    onClick={this.handleClick}
+                                    //disabled={!this.performValidation()}
                                     className={classes.login}>
                                     Log In
                             </Button>
-                                <Link href="#" variant="body2" className={classes.smallWords}>
-                                    Forgot password?
-                                </Link>
-                                <Link href='#' variant='body2' className={classes.smallWords}>
+                                <Link to={"/signup"} variant='body2' className={classes.smallWords}>
                                     New here? Sign up!
-                                    </Link>
+                                </Link>
                             </div>
 
                         </form>
