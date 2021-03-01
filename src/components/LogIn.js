@@ -19,9 +19,9 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <Link color="inherit" href="https://JobMe.live/">
+            <p color="inherit" href="https://JobMe.live/">
                 JobMe
-      </Link>{' '}
+      </p>{' '}
             {new Date().getFullYear()}
             {'. We love our users!'}
         </Typography>
@@ -112,31 +112,27 @@ class LogIn extends React.Component {
     handleClick(event) {
         console.log("Made it");
         var apiBaseUrl = "http://localhost:5000/";
-        var self = this;
-        var payload = {
-            "email": this.state.username,
-            "password": this.state.password
-        }
-        axios.post(apiBaseUrl + "userDatabase", payload)
+        console.log("PAYLOAD: ", this.state);
+        axios.post(apiBaseUrl + "userDatabase/post/validateLogin", this.state)
             .then(function (response) {
-                console.log(response);
+                //console.log(response);
                 if (response.data.code == 200) {
-                    console.log("Login successful");
+                    //console.log("Login successful");
                     //var uploadScreen = [];
                     //uploadScreen.push(<UploadScreen appContext={self.props.appContext} />)
                     //self.props.appContext.setState({ loginPage: [], uploadScreen: uploadScreen })
                 }
                 else if (response.data.code == 204) {
-                    console.log("Email password do not match");
-                    alert("email password do not match")
+                    // console.log("Email password do not match");
+                    alert("Invalid login");
                 }
                 else {
-                    console.log("Email does not exists");
-                    alert("Email does not exist");
+                    // console.log("unknown error");
+                    // console.log(response.data);
                 }
             })
             .catch(function (error) {
-                console.log(error);
+                // console.log(error);
             });
     }
 

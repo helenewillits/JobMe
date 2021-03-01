@@ -7,7 +7,6 @@ import SignUp from "./components/SignUp.js"
 import Login from "./components/LogIn.js";
 import Profile from "./components/Profile.js";
 import EditProfile from "./components/EditProfile.js";
-import SignUp from "./components/SignUp.js";
 
 class App extends React.Component {
   constructor(props) {

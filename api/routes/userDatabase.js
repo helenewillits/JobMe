@@ -60,6 +60,28 @@ router.post("/post/getEmail", function (req, res) {
     res.send("Email Received");
 });
 
+router.post("/post/validateLogin", function (req, res) {
+    console.log("validateLogin post route");
+    console.log(req.body.email);
+    console.log(req.body.password);
+    const { MongoClient } = require("mongodb");
+    const uri =
+        "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    console.log("initialize the database");
+    MongoClient.connect(uri, (err, client) => {
+        if (err) {
+            throw err;
+            return;
+        }
+        console.log("connected");
+        const db = client.db("UserDatabase");
+        // createUserDatabase(db);
+        const collection = db.collection("User");
+        validateUser(collection, req, res);
+        client.close();
+    });
+});
+
 router.put("/", function (req, res) {
     console.log("put route");
     const { MongoClient } = require("mongodb");
@@ -221,6 +243,29 @@ function hardcodeAdd(collection) {
         }
     ]);
     console.log("Success?");
+}
+
+function validateUser(collection, req, res) {
+    const query = { email: req.body.email };
+    console.log("in validateUser");
+    const user = collection
+        .find(query)
+        .toArray()
+        .then((docs) => {
+            console.log(docs);
+        });
+    if (user[0]["email"] != req.body.email) {
+        console.log('email nonexistent');
+        res.send({ code: 204 });
+    }
+    else if (user[0]["password"] != req.body.password) {
+        console.log('password wrong');
+        res.send({ code: 204 });
+    }
+    else {
+        console.log('success!');
+        res.send({ code: 200 })
+    }
 }
 
 function queryEmail(collection, res) {
