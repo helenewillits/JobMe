@@ -13,27 +13,54 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      token: '',
+      token: "",
       modalOpen: false,
       appModalOpen: false,
       application: {},
-      userEmail: "jeremydoe@gmail.com"
     };
 
     this.handleApplicationPopup = this.handleApplicationPopup.bind(this);
   }
 
+  setToken(userToken){
+    sessionStorage.setItem('token', userToken);
+  }
+
+  callbackFunction = (childData) => {
+      this.setState({ token: childData });
+      console.log("APP.JS STATE ", this.state);
+
+      this.setToken(childData);
+  }
+
   handleApplicationPopup(application) {
     const newState = {};
+    newState.token = this.state.token;
     newState.appModalOpen = !this.state.appModalOpen;
     newState.modalOpen = !this.state.modalOpen;
     newState.application = application;
-    newState.userEmail = this.state.userEmail;
     this.setState(newState);
     console.log("pop up");
   }
 
+  getToken() {
+    const tokenString = sessionStorage.getItem('token');
+    console.log(tokenString);
+    return tokenString===this.state.token;
+  }
+
+  getEmail() {
+      return this.state.token;
+  }
+
   render() {
+    const token = this.getToken();
+    console.log("Token ", token);
+
+    if(!token) {
+      return <Login parentCallback = {this.callbackFunction}/>
+    }
+    
     return (
       <Switch>
         <div>
@@ -48,33 +75,28 @@ class App extends React.Component {
               <ApplicationLog
                 handlePopup={this.handleApplicationPopup}
                 modalOpen={this.state.modalOpen}
-                dataFromParent={this.state.userEmail}
+                dataFromParent={this.state.token}
               />
             </div>
           </Route>
           <Route exact path="/applications/add">
             <div>
-              <NewApplication dataFromParent={this.state.userEmail} />
+              <NewApplication dataFromParent={this.state.token} />
             </div>
           </Route>
           <Route exact path="/profile">
             <div>
-              <Profile dataFromParent={this.state.userEmail} />
+              <Profile dataFromParent={this.state.token} />
             </div>
           </Route>
           <Route exact path="/profile/edit">
             <div>
-              <EditProfile dataFromParent={this.state.userEmail} />
+              <EditProfile dataFromParent={this.state.token} />
             </div>
           </Route>
           <Route exact path="/signup">
             <div>
               <SignUp />
-            </div>
-          </Route>
-          <Route exact path="/login">
-            <div>
-              <Login />
             </div>
           </Route>
         </div>

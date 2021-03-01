@@ -62,8 +62,6 @@ router.post("/post/getEmail", function (req, res) {
 
 router.post("/post/validateLogin", function (req, res) {
     console.log("validateLogin post route");
-    console.log(req.body.email);
-    console.log(req.body.password);
     const { MongoClient } = require("mongodb");
     const uri =
         "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -77,6 +75,7 @@ router.post("/post/validateLogin", function (req, res) {
         const db = client.db("UserDatabase");
         // createUserDatabase(db);
         const collection = db.collection("User");
+        console.log(req.body);
         validateUser(collection, req, res);
         client.close();
     });
@@ -253,19 +252,19 @@ function validateUser(collection, req, res) {
         .toArray()
         .then((docs) => {
             console.log(docs);
+            if (docs.length === 0) {
+                console.log('email nonexistent');
+                res.send({ code: 204 });
+            }
+            else if (docs[0]["password"] != req.body.password) {
+                console.log('password wrong');
+                res.send({ code: 204 });
+            }
+            else {
+                console.log('success!');
+                res.send({ code: 200 })
+            }
         });
-    if (user[0]["email"] != req.body.email) {
-        console.log('email nonexistent');
-        res.send({ code: 204 });
-    }
-    else if (user[0]["password"] != req.body.password) {
-        console.log('password wrong');
-        res.send({ code: 204 });
-    }
-    else {
-        console.log('success!');
-        res.send({ code: 200 })
-    }
 }
 
 function queryEmail(collection, res) {

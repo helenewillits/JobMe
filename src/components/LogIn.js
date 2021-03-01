@@ -76,8 +76,9 @@ const styles = (theme) => ({
 });
 
 
-async function loginUser(credentials) {
-    return fetch('http://localhost:8080/login', {
+function loginUser(credentials) {
+    
+    return fetch('http://localhost:5000/userDatabase/post/validateLogin', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -105,6 +106,10 @@ class LogIn extends React.Component {
         //this.performValidation = this.performValidation.bind(this);
     }
 
+    // loginUser(credentials){
+    //     axios.post("'http://localhost:5000/userDatabase/post/validateLogin'")
+    // }
+
     async performValidation() {
         return this.email.length > 0 && this.password.length > 0;
     }
@@ -112,27 +117,27 @@ class LogIn extends React.Component {
     handleClick(event) {
         console.log("Made it");
         var apiBaseUrl = "http://localhost:5000/";
+        var selfState = this.state;
+        var selfProps = this.props;
         console.log("PAYLOAD: ", this.state);
         axios.post(apiBaseUrl + "userDatabase/post/validateLogin", this.state)
             .then(function (response) {
-                //console.log(response);
-                if (response.data.code == 200) {
-                    //console.log("Login successful");
-                    //var uploadScreen = [];
-                    //uploadScreen.push(<UploadScreen appContext={self.props.appContext} />)
-                    //self.props.appContext.setState({ loginPage: [], uploadScreen: uploadScreen })
+                if (response.data.code === 200) {
+                    console.log("Login successful");
+                    selfProps.parentCallback(selfState.email);
+                    // console.log("Login user ", this.loginUser(this.state.email));
+                    // this.sendData(loginUser(this.state.email));
                 }
-                else if (response.data.code == 204) {
-                    // console.log("Email password do not match");
+                else if (response.data.code === 204) {
+                    console.log("Invalid login");
                     alert("Invalid login");
                 }
                 else {
-                    // console.log("unknown error");
-                    // console.log(response.data);
+                    console.log("unknown error");
                 }
             })
             .catch(function (error) {
-                // console.log(error);
+                console.log(error);
             });
     }
 
@@ -182,16 +187,17 @@ class LogIn extends React.Component {
                             label="Remember me"
                         />*/}
                             <div>
-                                <Button
-                                    type="login"
-                                    fullWidth
-                                    variant="contained"
-                                    color="primary"
-                                    onClick={this.handleClick}
-                                    //disabled={!this.performValidation()}
-                                    className={classes.login}>
-                                    Log In
-                            </Button>
+                                <Link to={"/profile"} onClick={this.handleClick}>
+                                    <Button
+                                        type="login"
+                                        fullWidth
+                                        variant="contained"
+                                        color="primary"
+                                        //disabled={!this.performValidation()}
+                                        className={classes.login}>
+                                        Log In
+                                    </Button>
+                                </Link>
                                 <Link to={"/signup"} variant='body2' className={classes.smallWords}>
                                     New here? Sign up!
                                 </Link>
