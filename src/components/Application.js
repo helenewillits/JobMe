@@ -55,15 +55,19 @@ class ApplicationLog extends React.Component {
   }
 
   getEmail() {
-      console.log("getEmail post route");
-      axios.post("http://localhost:5000/applicationDatabase/post/getEmail", this.state)
+    console.log("getEmail post route");
+    axios
+      .post(
+        "http://localhost:5000/applicationDatabase/post/getEmail",
+        this.state
+      )
       .then((res) => {
-          console.log(res);
+        console.log(res);
       })
       .catch(function (error) {
-          //Not handling the error. Just logging into the console.
-          console.log(error);
-      })
+        //Not handling the error. Just logging into the console.
+        console.log(error);
+      });
   }
 
   // DISTINGUISH COLUMNS BASED ON STATUS
@@ -180,15 +184,14 @@ class ApplicationLogItem extends React.Component {
     if (application != undefined) {
       return (
         <div className={styles.item} onClick={this.handlePopup}>
-          <h4> {application._id} </h4>
           <h4> {application.companyName} </h4>
           <h4> {application.position} </h4>
           {/* <a href={application.jobPostingLink}>
                   {" "}
                   {application.jobPostingLink}{" "}
                </a> */}
-          <h4>{application.result}</h4>
-          <h4> {application.deadline} </h4>
+          <h5>{application.result}</h5>
+          <h5> {application.deadline} </h5>
           <button
             type="submit"
             onClick={this.handleDelete.bind(this, application)}

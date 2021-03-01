@@ -47,9 +47,16 @@ class SingleApplication extends React.Component {
 
     return (
       <div className={styles.popup}>
-        <button type="submit" onClick={this.handleClose}>
-          x
-        </button>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <button
+            className={styles.close_button}
+            style={{ marginLeft: "auto" }}
+            type="submit"
+            onClick={this.handleClose}
+          >
+            x
+          </button>
+        </div>
         <h1>{application.companyName}</h1>
         <h2>{application.position}</h2>
         {this.viewJobId()}
