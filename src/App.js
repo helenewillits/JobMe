@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import ApplicationLog from "./components/Application.js";
 import SingleApplication from "./components/SingleApplication.js";
 import NewApplication from "./components/NewApplication.js";
+import InterviewLog from "./components/InterviewLog.js";
 import Profile from "./components/Profile.js";
 import EditProfile from "./components/EditProfile.js";
 import SignUp from "./components/SignUp.js";
@@ -36,6 +37,7 @@ class App extends React.Component {
     return (
       <Switch>
         <div>
+          {/* applications */}
           <Route exact path="/applications">
             <div classname="appPopup">
               <SingleApplication
@@ -53,17 +55,33 @@ class App extends React.Component {
           </Route>
           <Route exact path="/applications/add">
             <div>
-              <NewApplication dataFromParent={this.state.userEmail}/>
+              <NewApplication dataFromParent={this.state.userEmail} />
+            </div>
+          </Route>
+          {/* interviews */}
+          <Route exact path="/interviews">
+            <div classname="appPopup">
+              {/* <SingleInterview
+                display={this.state.appModalOpen}
+                handlePopup={this.handleApplicationPopup}
+                // modalOpen={this.state.appModalOpen}
+                application={this.state.application}
+              /> */}
+              <InterviewLog
+                handlePopup={this.handleApplicationPopup}
+                modalOpen={this.state.modalOpen}
+                dataFromParent={this.state.userEmail}
+              />
             </div>
           </Route>
           <Route exact path="/profile">
             <div>
-                <Profile dataFromParent={this.state.userEmail}/>
+              <Profile dataFromParent={this.state.userEmail} />
             </div>
           </Route>
           <Route exact path="/profile/edit">
             <div>
-                <EditProfile dataFromParent={this.state.userEmail}/>
+              <EditProfile dataFromParent={this.state.userEmail} />
             </div>
           </Route>
           <Route exact path="/signup">

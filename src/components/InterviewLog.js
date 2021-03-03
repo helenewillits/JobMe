@@ -3,40 +3,32 @@ import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
 import AddButtonNavigationBar from "./AddButtonNavbar.js";
 import axios from "axios";
-import SingleApplication from "./SingleApplication";
+// import SingleInterivew from "./SingleInterivew";
 import { Link } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
-// defines the space that contains the three columns of applications
-class ApplicationLog extends React.Component {
+// defines the space that contains the three columns ofInterview
+class InterviewLog extends React.Component {
   state = {
     userEmail: "",
-    applicationsToDo: [],
-    applicationsInProgress: [],
-    applicationsCompleted: [],
-    page: "ApplicationLog",
-    status: ["To Do", "In Progress", "Completed"]
+    InterviewPast: [],
+    InterviewUpcoming: [],
+    page: "InterivewLog",
+    status: ["Past", "Upcoming"]
   };
 
   componentWillMount() {
     this.getEmail();
     axios
-      .get("http://localhost:5000/applicationDatabase")
+      .get("http://localhost:5000/interviewDatabase")
       .then((res) => {
-        const toDo = res.data.filter(
-          (item) => item.applicationStatus == "To Do"
-        );
-        const inProgress = res.data.filter(
-          (item) => item.applicationStatus == "In Progress"
-        );
-        const completed = res.data.filter(
-          (item) => item.applicationStatus == "Completed"
-        );
+        // need to update comparisons
+        const past = res.data.filter((item) => item.interviewDate < "0");
+        const upcoming = res.data.filter((item) => item.interviewDate >= "0");
         this.setState({
-          applicationsToDo: toDo,
-          applicationsInProgress: inProgress,
-          applicationsCompleted: completed
+          InterviewPast: past,
+          InterviewUpcoming: upcoming
         });
       })
       .catch(function (error) {
@@ -53,10 +45,7 @@ class ApplicationLog extends React.Component {
   getEmail() {
     console.log("getEmail post route");
     axios
-      .post(
-        "http://localhost:5000/applicationDatabase/post/getEmail",
-        this.state
-      )
+      .post("http://localhost:5000/interviewDatabase/post/getEmail", this.state)
       .then((res) => {
         console.log(res);
       })
@@ -68,18 +57,17 @@ class ApplicationLog extends React.Component {
 
   // DISTINGUISH COLUMNS BASED ON STATUS
 
-  get_Applications = (i) => {
-    if (i == 0) return this.state.applicationsToDo;
-    if (i == 1) return this.state.applicationsInProgress;
-    if (i == 2) return this.state.applicationsCompleted;
+  getInterview = (i) => {
+    if (i == 0) return this.state.InterviewPast;
+    if (i == 1) return this.state.InterviewUpcoming;
   };
 
   column = (i) => {
     return (
       <div className={styles.thirdcolumn}>
-        <ApplicationStatusColumn
+        <InterviewStatusColumn
           status={this.state.status[i]}
-          applications={this.get_Applications(i)}
+          interviews={this.getInterview(i)}
           handlePopup={this.props.handlePopup}
           modalOpen={this.props.modalOpen}
         />
@@ -95,22 +83,21 @@ class ApplicationLog extends React.Component {
         <Header page={this.state.page} />
         {this.column(0)}
         {this.column(1)}
-        {this.column(2)}
       </div>
     );
   }
 }
 
-// defines one row of applications, organized by type
-class ApplicationStatusColumn extends React.Component {
+// defines one row ofInterview, organized by type
+class InterviewStatusColumn extends React.Component {
   render() {
-    const { applications, status } = this.props;
+    const { interviews, status } = this.props;
 
     return (
       <div className={styles.area}>
         <h3 className={styles.column_title}>{status}</h3>
-        <ApplicationList
-          applications={applications}
+        <InterviewList
+          interviews={interviews}
           handlePopup={this.props.handlePopup}
           modalOpen={this.props.modalOpen}
         />
@@ -119,18 +106,18 @@ class ApplicationStatusColumn extends React.Component {
   }
 }
 
-// class ApplicationStatusColumnInProgress extends React.Component {
+// classInterviewtatusColumnInProgress extends React.Component {
 
-class ApplicationList extends React.Component {
+class InterviewList extends React.Component {
   render() {
-    const { applications } = this.props;
+    const { interviews } = this.props;
 
     return (
       <div>
         <ul>
-          {applications.map((item) => (
-            <ApplicationLogItem
-              application={item}
+          {interviews.map((item) => (
+            <InterviewLogItem
+              interview={item}
               handlePopup={this.props.handlePopup}
               modalOpen={this.props.modalOpen}
             />
@@ -141,19 +128,19 @@ class ApplicationList extends React.Component {
   }
 }
 
-// defines one application item
-class ApplicationLogItem extends React.Component {
-  state = { application: null };
+// defines one Interview item
+class InterviewLogItem extends React.Component {
+  state = { interview: null };
 
-  handleDelete = (application) => {
+  handleDelete = (interview) => {
     console.log("Delete");
-    console.log(application);
-    console.log(application._id);
+    console.log(interview);
+    console.log(interview._id);
     axios
-      .delete("http://localhost:5000/applicationDatabase/delete", {
+      .delete("http://localhost:5000/InterviewDatabase/delete", {
         data: {
-          userId: application.userId,
-          _id: application._id
+          userId: interview.userId,
+          _id: interview._id
         }
       })
       .then((res) => {
@@ -168,29 +155,29 @@ class ApplicationLogItem extends React.Component {
   };
 
   handlePopup = () => {
-    this.props.handlePopup(this.state.application);
+    this.props.handlePopup(this.state.interview);
   };
 
   render() {
-    const { application } = this.props;
-    this.state.application = application;
+    const { interview } = this.props;
+    this.state.interview = interview;
 
-    // check for undefined applications : this is the default when first rendering Application
+    // check for undefinedInterview : this is the default when first rendering Interview
     // in development mode, but is re-rendered when it gets to the componentWillMount() function
-    if (application != undefined) {
+    if (interview != undefined) {
       return (
         <div className={styles.item} onClick={this.handlePopup}>
-          <h4> {application.companyName} </h4>
-          <h4> {application.position} </h4>
-          {/* <a href={application.jobPostingLink}>
+          <h4> {interview.companyName} </h4>
+          <h4> {interview.position} </h4>
+          {/* <a href={Interivew.jobPostingLink}>
                   {" "}
-                  {application.jobPostingLink}{" "}
+                  {Interivew.jobPostingLink}{" "}
                </a> */}
-          <h5>{application.result}</h5>
-          <h5> {application.deadline} </h5>
+          <h5>{interview.result}</h5>
+          <h5> {interview.deadline} </h5>
           <button
             type="submit"
-            onClick={this.handleDelete.bind(this, application)}
+            onClick={this.handleDelete.bind(this, interview)}
           >
             Delete
           </button>
@@ -208,13 +195,13 @@ class ApplicationLogItem extends React.Component {
 
 class AddButton extends React.Component {
   handleAdd = () => {
-    window.location.href = "localhost:3000/applications/add";
+    window.location.href = "localhost:3000/interviews/add";
   };
 
   render() {
     return (
       <div>
-        <Link to={"/applications/add"}>
+        <Link to={"interviews/add"}>
           <button type="submit" onclick={this.handleAdd}>
             +
           </button>
@@ -224,4 +211,4 @@ class AddButton extends React.Component {
   }
 }
 
-export default ApplicationLog;
+export default InterviewLog;
