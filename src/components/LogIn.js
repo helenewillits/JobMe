@@ -75,20 +75,6 @@ const styles = (theme) => ({
     },
 });
 
-
-function loginUser(credentials) {
-
-    return fetch('http://localhost:5000/userDatabase/post/validateLogin', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(credentials)
-    })
-        .then(data => data.json())
-}
-
-
 class LogIn extends React.Component {
 
     state = {
@@ -106,12 +92,8 @@ class LogIn extends React.Component {
         //this.performValidation = this.performValidation.bind(this);
     }
 
-    // loginUser(credentials){
-    //     axios.post("'http://localhost:5000/userDatabase/post/validateLogin'")
-    // }
-
-    async performValidation() {
-        return this.email.length > 0 && this.password.length > 0;
+    performValidation() {
+        return this.state.email.length > 0 && this.state.password.length > 0;
     }
 
     handleClick(event) {
@@ -193,7 +175,7 @@ class LogIn extends React.Component {
                                         fullWidth
                                         variant="contained"
                                         color="primary"
-                                        //disabled={!this.performValidation()}
+                                        disabled={!this.performValidation()}
                                         className={classes.login}>
                                         Log In
                                     </Button>
@@ -209,9 +191,6 @@ class LogIn extends React.Component {
                 <Box mt={8}>
                     <Copyright />
                 </Box>
-                {/*<Box maxWidth="xs" padding="10%" align="center">
-                    <img src={Logo} className={classes.logo}></img>
-                    </Box>*/}
             </Container >
 
         );

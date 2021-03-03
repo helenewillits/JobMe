@@ -22,14 +22,6 @@ class App extends React.Component {
     this.handleApplicationPopup = this.handleApplicationPopup.bind(this);
   }
 
-  useEffect = () => {
-    const loggedInUser = localStorage.getItem("token");
-    if (loggedInUser) {
-      const foundUser = JSON.parse(loggedInUser);
-      this.setState({ token: foundUser });
-    };
-  }
-
   setToken(userToken) {
     localStorage.setItem('token', userToken);
   }
@@ -57,12 +49,13 @@ class App extends React.Component {
     return tokenString;
   }
 
-  getEmail() {
-    return this.state.token;
+  clearToken(){
+    alert("You are being logged out");
+    localStorage.removeItem("token");
+    this.setState({ token: '' })
   }
 
   render() {
-    // this.useEffect();
     const token = this.getToken();
     console.log("Token ", token);
 
@@ -95,7 +88,7 @@ class App extends React.Component {
           </Route>
           <Route exact path="/profile">
             <div>
-              <Profile dataFromParent={this.getToken()} />
+              <Profile dataFromParent={this.getToken()} clearToken={this.clearToken()} />
             </div>
           </Route>
           <Route exact path="/profile/edit">

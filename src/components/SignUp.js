@@ -186,7 +186,7 @@ class SignUp extends React.Component {
                             label="Remember me"
                         />*/}
                             <div>
-                                <Link to={"/applications"} onClick={this.handleSubmit}>
+                                <Link to={"/login"} onClick={this.handleSubmit}>
                                     <Button
                                         type="submit"
                                         fullWidth
@@ -194,7 +194,7 @@ class SignUp extends React.Component {
                                         color="primary"
                                         className={classes.submit}
                                     >
-                                        Register
+                                        Register and Return to Login
                                     </Button>
                                 </Link>
                                 <Link to={"/login"}>
