@@ -84,23 +84,23 @@ class App extends React.Component {
               <ApplicationLog
                 handlePopup={this.handleApplicationPopup}
                 modalOpen={this.state.modalOpen}
-                dataFromParent={this.state.token}
+                dataFromParent={this.getToken()}
               />
             </div>
           </Route>
           <Route exact path="/applications/add">
             <div>
-              <NewApplication dataFromParent={this.state.token} />
+              <NewApplication dataFromParent={this.getToken()} />
             </div>
           </Route>
           <Route exact path="/profile">
             <div>
-              <Profile dataFromParent={this.state.token} />
+              <Profile dataFromParent={this.getToken()} />
             </div>
           </Route>
           <Route exact path="/profile/edit">
             <div>
-              <EditProfile dataFromParent={this.state.token} />
+              <EditProfile dataFromParent={this.getToken()} />
             </div>
           </Route>
           <Route exact path="/signup">
