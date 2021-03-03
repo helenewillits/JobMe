@@ -19,9 +19,9 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <p color="inherit" href="https://JobMe.live/">
+            <div color="inherit" href="https://JobMe.live/">
                 JobMe
-      </p>{' '}
+      </div>{' '}
             {new Date().getFullYear()}
             {'. We love our users!'}
         </Typography>
@@ -77,7 +77,7 @@ const styles = (theme) => ({
 
 
 function loginUser(credentials) {
-    
+
     return fetch('http://localhost:5000/userDatabase/post/validateLogin', {
         method: 'POST',
         headers: {

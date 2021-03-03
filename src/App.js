@@ -22,15 +22,23 @@ class App extends React.Component {
     this.handleApplicationPopup = this.handleApplicationPopup.bind(this);
   }
 
-  setToken(userToken){
-    sessionStorage.setItem('token', userToken);
+  useEffect = () => {
+    const loggedInUser = localStorage.getItem("token");
+    if (loggedInUser) {
+      const foundUser = JSON.parse(loggedInUser);
+      this.setState({ token: foundUser });
+    };
+  }
+
+  setToken(userToken) {
+    localStorage.setItem('token', userToken);
   }
 
   callbackFunction = (childData) => {
-      this.setState({ token: childData });
-      console.log("APP.JS STATE ", this.state);
+    this.setState({ token: childData });
+    console.log("APP.JS STATE ", this.state);
 
-      this.setToken(childData);
+    this.setToken(childData);
   }
 
   handleApplicationPopup(application) {
@@ -44,23 +52,24 @@ class App extends React.Component {
   }
 
   getToken() {
-    const tokenString = sessionStorage.getItem('token');
+    const tokenString = localStorage.getItem("token");
     console.log(tokenString);
-    return tokenString===this.state.token;
+    return tokenString;
   }
 
   getEmail() {
-      return this.state.token;
+    return this.state.token;
   }
 
   render() {
+    // this.useEffect();
     const token = this.getToken();
     console.log("Token ", token);
 
-    if(!token) {
-      return <Login parentCallback = {this.callbackFunction}/>
+    if (!token) {
+      return <Login parentCallback={this.callbackFunction} />
     }
-    
+
     return (
       <Switch>
         <div>
