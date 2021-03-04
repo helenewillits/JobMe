@@ -169,7 +169,7 @@ class LogIn extends React.Component {
                             label="Remember me"
                         />*/}
                             <div>
-                                <Link to={"/profile"} onClick={this.handleClick}>
+                                <Link onClick={this.handleClick}>
                                     <Button
                                         type="login"
                                         fullWidth

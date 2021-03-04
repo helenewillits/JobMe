@@ -8,6 +8,7 @@ import Login from "./components/LogIn.js";
 import Logout from "./components/Logout.js"
 import Profile from "./components/Profile.js";
 import EditProfile from "./components/EditProfile.js";
+import { Redirect } from 'react-router';
 
 class App extends React.Component {
   constructor(props) {
@@ -54,8 +55,41 @@ class App extends React.Component {
     const token = this.getToken();
     console.log("Token ", token);
 
+    // if (!token) {
+    //   return <Login parentCallback={this.callbackFunction} />
+    // }
     if (!token) {
-      return <Login parentCallback={this.callbackFunction} />
+    return (
+    <Switch>
+        <div>
+            <Route exact path="/login">
+                <div>
+                    <Login parentCallback={this.callbackFunction}/>
+                </div>
+            </Route>
+            <Route exact path="/signup">
+                <div>
+                    <SignUp />
+                </div>
+            </Route>
+            <Route exact path="/profile">
+                <Redirect to={"/login"}/>
+            </Route>
+            <Route exact path="/profile/edit">
+                <Redirect to={"/login"}/>
+            </Route>
+            <Route exact path="/applications">
+                <Redirect to={"/login"}/>
+            </Route>
+            <Route exact path="/applications/add">
+                <Redirect to={"/login"}/>
+            </Route>
+            <Route exact path="/logout">
+                <Redirect to={"/login"}/>
+            </Route>
+        </div>
+    </Switch>
+    );
     }
 
     return (
@@ -91,15 +125,16 @@ class App extends React.Component {
               <EditProfile dataFromParent={this.getToken()} />
             </div>
           </Route>
-          <Route exact path="/signup">
-            <div>
-              <SignUp />
-            </div>
-          </Route>
           <Route exact path="/logout">
             <div>
               <Logout />
             </div>
+          </Route>
+          <Route exact path="/login">
+            <Redirect to={"/profile"} />
+          </Route>
+          <Route exact path="/signup">
+            <Redirect to={"/profile"} />
           </Route>
         </div>
       </Switch>
