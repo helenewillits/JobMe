@@ -59,9 +59,11 @@ class Profile extends React.Component {
             <p className="App-intro">{this.state.apiResponse}</p>
             <Header page={this.state.page} />
             <br />
-            <Fab variant="extended" aria-label="Delete" onClick={this.props.clearToken}>
-                Logout
-            </Fab>
+            <Link to={"/logout"}>
+                <Fab variant="extended" aria-label="Delete">
+                    Logout
+                </Fab>
+            </Link>
             <Link to={"/profile/edit"}>
               <Fab variant="extended" aria-label="Delete">
                 Edit

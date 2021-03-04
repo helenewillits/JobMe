@@ -5,6 +5,7 @@ import SingleApplication from "./components/SingleApplication.js";
 import NewApplication from "./components/NewApplication.js";
 import SignUp from "./components/SignUp.js"
 import Login from "./components/LogIn.js";
+import Logout from "./components/Logout.js"
 import Profile from "./components/Profile.js";
 import EditProfile from "./components/EditProfile.js";
 
@@ -49,12 +50,6 @@ class App extends React.Component {
     return tokenString;
   }
 
-  clearToken(){
-    alert("You are being logged out");
-    localStorage.removeItem("token");
-    this.setState({ token: '' })
-  }
-
   render() {
     const token = this.getToken();
     console.log("Token ", token);
@@ -88,7 +83,7 @@ class App extends React.Component {
           </Route>
           <Route exact path="/profile">
             <div>
-              <Profile dataFromParent={this.getToken()} clearToken={this.clearToken()} />
+              <Profile dataFromParent={this.getToken()} />
             </div>
           </Route>
           <Route exact path="/profile/edit">
@@ -99,6 +94,11 @@ class App extends React.Component {
           <Route exact path="/signup">
             <div>
               <SignUp />
+            </div>
+          </Route>
+          <Route exact path="/logout">
+            <div>
+              <Logout />
             </div>
           </Route>
         </div>

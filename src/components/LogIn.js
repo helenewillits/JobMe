@@ -19,9 +19,9 @@ function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
-            <div color="inherit" href="https://JobMe.live/">
+            <Link color="inherit" href="https://JobMe.live/">
                 JobMe
-      </div>{' '}
+      </Link>{' '}
             {new Date().getFullYear()}
             {'. We love our users!'}
         </Typography>
@@ -130,14 +130,14 @@ class LogIn extends React.Component {
 
     render() {
         const { classes } = this.props;
-        return (
 
+        return (
             <Container component="main" maxWidth="xs" align='center'>
 
                 <CssBaseline />
                 <div className={classes.paper}>
                     <Typography component="header1" variant="h4" align="center">Welcome back!</Typography>
-                    <img src={Logo} className={classes.logo}></img>
+                    <img src={Logo} alt={"JobMe-Logo"} className={classes.logo}></img>
                     <Box border={1} width={'150%'} padding={'15%'}>
                         <form className={classes.form} noValidate>
                             <TextField

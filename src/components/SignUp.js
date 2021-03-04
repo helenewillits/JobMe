@@ -194,7 +194,7 @@ class SignUp extends React.Component {
                                         color="primary"
                                         className={classes.submit}
                                     >
-                                        Register and Return to Login
+                                        Register
                                     </Button>
                                 </Link>
                                 <Link to={"/login"}>
