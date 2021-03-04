@@ -72,6 +72,9 @@ class App extends React.Component {
                     <SignUp />
                 </div>
             </Route>
+            <Route exact path="/">
+                <Redirect to={"/login"}/>
+            </Route>
             <Route exact path="/profile">
                 <Redirect to={"/login"}/>
             </Route>
@@ -136,6 +139,9 @@ class App extends React.Component {
           <Route exact path="/signup">
             <Redirect to={"/profile"} />
           </Route>
+          <Route exact path="/">
+                <Redirect to={"/profile"}/>
+            </Route>
         </div>
       </Switch>
     );
