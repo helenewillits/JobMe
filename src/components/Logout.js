@@ -70,6 +70,7 @@ class Logout extends React.Component{
     clearToken(){
         alert("You are being logged out");
         localStorage.removeItem("token");
+        window.location.reload();
     }
 
     render(){

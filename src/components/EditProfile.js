@@ -12,6 +12,7 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 import Grid from "@material-ui/core/Grid";
+//import uuid from 'react-uuid';
 
 import axios from "axios";
 
@@ -62,6 +63,13 @@ class EditProfile extends React.Component {
   };
 
   render() {
+    /*const profileTarget = {
+      pathname: "/profile",
+      key: uuid(), // we could use Math.random, but that's not guaranteed unique.
+      state: {
+        applied: true
+      }
+    };*/
 
     return (
       <div>

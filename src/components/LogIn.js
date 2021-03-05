@@ -117,6 +117,7 @@ class LogIn extends React.Component {
                 else {
                     console.log("unknown error");
                 }
+                window.location.reload();
             })
             .catch(function (error) {
                 console.log(error);
