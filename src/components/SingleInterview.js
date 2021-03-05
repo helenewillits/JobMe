@@ -16,10 +16,11 @@ class SingleInterview extends React.Component {
   viewInterviewLink = () => {
     if (this.state.interview.interviewLink != "")
       return (
-        <a href={this.state.interview.interviewLink}>
-          {" "}
-          {this.state.interview.interviewLink}{" "}
-        </a>
+        <div style={{ textDecoration: "underline" }}>
+          <a href={this.state.interview.interviewLink}>
+            Link to Join Interview
+          </a>
+        </div>
       );
   };
   viewPosition = () => {
@@ -29,10 +30,9 @@ class SingleInterview extends React.Component {
   viewJobPostingLink = () => {
     if (this.state.interview.jobPostingLink != "")
       return (
-        <a href={this.state.interview.jobPostingLink}>
-          {" "}
-          {this.state.interview.jobPostingLink}{" "}
-        </a>
+        <div style={{ textDecoration: "underline" }}>
+          <a href={this.state.interview.jobPostingLink}>View Job Posting</a>
+        </div>
       );
   };
   viewNotes = () => {

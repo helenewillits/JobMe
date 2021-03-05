@@ -173,18 +173,22 @@ class InterviewLogItem extends React.Component {
     if (interview != undefined) {
       return (
         <div>
-          <button
-            className={styles.close_button}
-            style={{ marginLeft: "auto" }}
-            type="submit"
-            onClick={this.handleDelete.bind(this, interview)}
-          >
-            x
-          </button>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <button
+              className={styles.close_button}
+              style={{ marginLeft: "auto" }}
+              type="submit"
+              onClick={this.handleDelete.bind(this, interview)}
+            >
+              x
+            </button>
+          </div>
           <div className={styles.item} onClick={this.handlePopup}>
             <h4> {interview.companyName} </h4>
             <h4> {interview.position} </h4>
-            <a href={interview.jobPostingLink}> {interview.jobPostingLink} </a>
+            <div style={{ textDecoration: "underline" }}>
+              <a href={interview.jobPostingLink}>View Job Posting</a>
+            </div>
             <h5>{interview.date}</h5>
             <h5> {interview.time} </h5>
           </div>

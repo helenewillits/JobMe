@@ -179,21 +179,26 @@ class ApplicationLogItem extends React.Component {
     // in development mode, but is re-rendered when it gets to the componentWillMount() function
     if (application != undefined) {
       return (
-        <div className={styles.item} onClick={this.handlePopup}>
-          <h4> {application.companyName} </h4>
-          <h4> {application.position} </h4>
-          <a href={application.jobPostingLink}>
-            {" "}
-            {application.jobPostingLink}{" "}
-          </a>
-          <h5>{application.result}</h5>
-          <h5> {application.deadline} </h5>
-          <button
-            type="submit"
-            onClick={this.handleDelete.bind(this, application)}
-          >
-            Delete
-          </button>
+        <div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <button
+              className={styles.close_button}
+              style={{ marginLeft: "auto" }}
+              type="submit"
+              onClick={this.handleDelete.bind(this, application)}
+            >
+              x
+            </button>
+          </div>
+          <div className={styles.item} onClick={this.handlePopup}>
+            <h4> {application.companyName} </h4>
+            <h4> {application.position} </h4>
+            <div style={{ textDecoration: "underline" }}>
+              <a href={application.jobPostingLink}>View Job Posting</a>
+            </div>
+            <h5>{application.result}</h5>
+            <h5> {application.deadline} </h5>
+          </div>
         </div>
       );
     } else {

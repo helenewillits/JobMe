@@ -10,25 +10,25 @@ class SingleApplication extends React.Component {
       return <h3>{this.state.application.jobId}</h3>;
   };
   viewJobPostingLink = () => {
-    if (this.state.application.jobId != "")
+    if (this.state.application.jobPostingLink != "")
       return (
-        <a href={this.state.application.jobPostingLink}>
-          {" "}
-          {this.state.application.jobPostingLink}{" "}
-        </a>
+        <div style={{ textDecoration: "underline" }}>
+          <a href={this.state.application.jobPostingLink}>View Job Posting</a>
+        </div>
       );
   };
   viewApplicationPortalLink = () => {
-    if (this.state.application.jobId != "")
+    if (this.state.application.applicationPortalLink != "")
       return (
-        <a href={this.state.application.applicationPortalLink}>
-          {" "}
-          {this.state.application.applicationPortalLink}{" "}
-        </a>
+        <div style={{ textDecoration: "underline" }}>
+          <a href={this.state.application.applicationPortalLink}>
+            View Application Portal
+          </a>
+        </div>
       );
   };
   viewNotes = () => {
-    if (this.state.application.jobId != "")
+    if (this.state.application.notes != "")
       return <h3>{this.state.application.notes}</h3>;
   };
 
