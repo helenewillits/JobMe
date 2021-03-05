@@ -90,7 +90,7 @@ class ApplicationLog extends React.Component {
   render() {
     return (
       <div>
-        <AddButtonNavigationBar />
+        <AddButtonNavigationBar link={"/applications/add"} />
         <p className="App-intro">{this.state.apiResponse}</p>
         <Header page={this.state.page} />
         {this.column(0)}
@@ -182,10 +182,10 @@ class ApplicationLogItem extends React.Component {
         <div className={styles.item} onClick={this.handlePopup}>
           <h4> {application.companyName} </h4>
           <h4> {application.position} </h4>
-          {/* <a href={application.jobPostingLink}>
-                  {" "}
-                  {application.jobPostingLink}{" "}
-               </a> */}
+          <a href={application.jobPostingLink}>
+            {" "}
+            {application.jobPostingLink}{" "}
+          </a>
           <h5>{application.result}</h5>
           <h5> {application.deadline} </h5>
           <button

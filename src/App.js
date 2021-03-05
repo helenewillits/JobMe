@@ -5,6 +5,8 @@ import ApplicationLog from "./components/Application.js";
 import SingleApplication from "./components/SingleApplication.js";
 import NewApplication from "./components/NewApplication.js";
 import InterviewLog from "./components/InterviewLog.js";
+import SingleInterview from "./components/SingleInterview.js";
+import NewInterview from "./components/NewInterview.js";
 import Profile from "./components/Profile.js";
 import EditProfile from "./components/EditProfile.js";
 import SignUp from "./components/SignUp.js";
@@ -17,17 +19,34 @@ class App extends React.Component {
       modalOpen: false,
       appModalOpen: false,
       application: {},
+      intModalOpen: false,
+      interview: {},
       userEmail: "jeremydoe@gmail.com"
     };
 
     this.handleApplicationPopup = this.handleApplicationPopup.bind(this);
+    this.handleInterviewPopup = this.handleInterviewPopup.bind(this);
   }
 
   handleApplicationPopup(application) {
     const newState = {};
+    newState.modalOpen = this.state.intModalOpen || !this.state.modalOpen;
     newState.appModalOpen = !this.state.appModalOpen;
-    newState.modalOpen = !this.state.modalOpen;
     newState.application = application;
+    newState.intModalOpen = this.state.intModalOpen;
+    newState.interview = this.state.interview;
+    newState.userEmail = this.state.userEmail;
+    this.setState(newState);
+    console.log("pop up");
+  }
+
+  handleInterviewPopup(interview) {
+    const newState = {};
+    newState.modalOpen = !this.state.intModalOpen || this.state.modalOpen;
+    newState.appModalOpen = this.state.appModalOpen;
+    newState.application = this.state.application;
+    newState.intModalOpen = !this.state.intModalOpen;
+    newState.interview = interview;
     newState.userEmail = this.state.userEmail;
     this.setState(newState);
     console.log("pop up");
@@ -61,17 +80,22 @@ class App extends React.Component {
           {/* interviews */}
           <Route exact path="/interviews">
             <div classname="appPopup">
-              {/* <SingleInterview
-                display={this.state.appModalOpen}
-                handlePopup={this.handleApplicationPopup}
+              <SingleInterview
+                display={this.state.intModalOpen}
+                handlePopup={this.handleInterviewPopup}
                 // modalOpen={this.state.appModalOpen}
-                application={this.state.application}
-              /> */}
+                interview={this.state.interview}
+              />
               <InterviewLog
-                handlePopup={this.handleApplicationPopup}
+                handlePopup={this.handleInterviewPopup}
                 modalOpen={this.state.modalOpen}
                 dataFromParent={this.state.userEmail}
               />
+            </div>
+          </Route>
+          <Route exact path="/interviews/add">
+            <div>
+              <NewInterview dataFromParent={this.state.userEmail} />
             </div>
           </Route>
           <Route exact path="/profile">

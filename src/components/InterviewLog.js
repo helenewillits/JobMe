@@ -3,10 +3,10 @@ import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
 import AddButtonNavigationBar from "./AddButtonNavbar.js";
 import axios from "axios";
-// import SingleInterivew from "./SingleInterivew";
 import { Link } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import moment from "moment";
 
 // defines the space that contains the three columns ofInterview
 class InterviewLog extends React.Component {
@@ -14,7 +14,7 @@ class InterviewLog extends React.Component {
     userEmail: "",
     InterviewPast: [],
     InterviewUpcoming: [],
-    page: "InterivewLog",
+    page: "InterviewLog",
     status: ["Past", "Upcoming"]
   };
 
@@ -24,8 +24,13 @@ class InterviewLog extends React.Component {
       .get("http://localhost:5000/interviewDatabase")
       .then((res) => {
         // need to update comparisons
-        const past = res.data.filter((item) => item.interviewDate < "0");
-        const upcoming = res.data.filter((item) => item.interviewDate >= "0");
+        const currDate = moment().format("YYYY-MM-DD");
+        console.log(currDate);
+
+        const past = res.data.filter((item) => item.interviewDate < currDate);
+        const upcoming = res.data.filter(
+          (item) => item.interviewDate >= currDate
+        );
         this.setState({
           InterviewPast: past,
           InterviewUpcoming: upcoming
@@ -64,7 +69,7 @@ class InterviewLog extends React.Component {
 
   column = (i) => {
     return (
-      <div className={styles.thirdcolumn}>
+      <div className={styles.halfcolumn}>
         <InterviewStatusColumn
           status={this.state.status[i]}
           interviews={this.getInterview(i)}
@@ -78,7 +83,7 @@ class InterviewLog extends React.Component {
   render() {
     return (
       <div>
-        <AddButtonNavigationBar />
+        <AddButtonNavigationBar link={"/interviews/add"} />
         <p className="App-intro">{this.state.apiResponse}</p>
         <Header page={this.state.page} />
         {this.column(0)}
@@ -120,6 +125,7 @@ class InterviewList extends React.Component {
               interview={item}
               handlePopup={this.props.handlePopup}
               modalOpen={this.props.modalOpen}
+              e
             />
           ))}
         </ul>
@@ -166,21 +172,22 @@ class InterviewLogItem extends React.Component {
     // in development mode, but is re-rendered when it gets to the componentWillMount() function
     if (interview != undefined) {
       return (
-        <div className={styles.item} onClick={this.handlePopup}>
-          <h4> {interview.companyName} </h4>
-          <h4> {interview.position} </h4>
-          {/* <a href={Interivew.jobPostingLink}>
-                  {" "}
-                  {Interivew.jobPostingLink}{" "}
-               </a> */}
-          <h5>{interview.result}</h5>
-          <h5> {interview.deadline} </h5>
+        <div>
           <button
+            className={styles.close_button}
+            style={{ marginLeft: "auto" }}
             type="submit"
             onClick={this.handleDelete.bind(this, interview)}
           >
-            Delete
+            x
           </button>
+          <div className={styles.item} onClick={this.handlePopup}>
+            <h4> {interview.companyName} </h4>
+            <h4> {interview.position} </h4>
+            <a href={interview.jobPostingLink}> {interview.jobPostingLink} </a>
+            <h5>{interview.date}</h5>
+            <h5> {interview.time} </h5>
+          </div>
         </div>
       );
     } else {
