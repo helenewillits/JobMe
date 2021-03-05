@@ -17,7 +17,8 @@ class Profile extends React.Component {
    state = {
        email: "",
        user: {},
-       page: "Profile"
+       page: "Profile",
+       refresh: false
    };
 
    componentWillMount() {
@@ -53,17 +54,14 @@ class Profile extends React.Component {
   }
 
    render() {
+   
+       
       return (
          <div>
             <NavigationBar />
             <p className="App-intro">{this.state.apiResponse}</p>
             <Header page={this.state.page} />
             <br />
-            <Link to={"/logout"}>
-                <Fab variant="extended" aria-label="Delete">
-                    Logout
-                </Fab>
-            </Link>
             <Link to={"/profile/edit"}>
               <Fab variant="extended" aria-label="Delete">
                 Edit

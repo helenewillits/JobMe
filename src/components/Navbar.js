@@ -94,6 +94,9 @@ function DropdownMenu() {
           Applications
         </DropdownItem>
         <DropdownItem link={"/interviews"} leftIcon={<PeopleAltIcon />}>Interviews</DropdownItem>
+        <DropdownItem link={"/logout"} leftIcon={<LibraryBooksIcon />}>
+          Logout
+        </DropdownItem>
       </div>
     </div>
   );
