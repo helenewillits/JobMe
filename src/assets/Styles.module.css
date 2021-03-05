@@ -30,6 +30,8 @@ h4 {
 a {
     padding: 0px 0px 0px 0px;
     margin: 10px 5px 10px 5px;
+    color: blue;
+    text-decoration: underline;
 }
 
 button {
@@ -45,7 +47,7 @@ button {
     color: #5e5e5e;
     background-color: #bae8e8;
     padding: 4px 8px 4px 8px;
-    margin: 10px 10px 10px 10px;
+    margin: 10px 10px 0px 10px;
     border-radius: 3px;
     border-color: white;
     border-radius: 50%;
@@ -167,7 +169,7 @@ input {
     flex-wrap: wrap;
 
     padding: 10px 20px 10px 20px;
-    margin: 30px 10px 30px 10px;
+    margin: 5px 5px 15px 5px;
 
     border-style:solid;
     border-width: 0.2px;

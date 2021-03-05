@@ -27,7 +27,7 @@ export default class Calendar extends React.Component {
 
   handleDateChange = (date) => {
     this.setSelectedDate(date);
-    this.sendData(date.toString());
+    this.sendData(date);
   };
 
   render() {
@@ -40,7 +40,7 @@ export default class Calendar extends React.Component {
               format="MM-dd-yyyy"
               margin="normal"
               id="date-picker"
-              label="Application Deadline"
+              label={this.props.label}
               value={this.props.selectedDate}
               onChange={this.handleDateChange}
               KeyboardButtonProps={{ "aria-label": "change date" }}

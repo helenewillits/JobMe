@@ -5,9 +5,8 @@ var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var cors = require("cors");
 var indexRouter = require("./routes/index");
-// var usersRouter = require("./routes/users");
-// var testAPIRouter = require("./routes/testAPI");
 var applicationDatabase = require("./routes/applicationDatabase");
+var interviewDatabase = require("./routes/interviewDatabase");
 var userDatabase = require("./routes/userDatabase");
 var app = express();
 
@@ -23,12 +22,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
-// app.use("/users", usersRouter);
-// app.use("/testAPI", testAPIRouter);
+// applications
 app.use("/applicationDatabase", applicationDatabase);
 app.use("/applicationDatabase/delete", applicationDatabase);
 app.use("/applicationDatabase/add", applicationDatabase);
 app.use("/applicationDatabase/post/getEmail", applicationDatabase);
+// interviews
+app.use("/interviewDatabase", interviewDatabase);
+app.use("/interviewDatabase/delete", interviewDatabase);
+app.use("/interviewDatabase/add", interviewDatabase);
+app.use("/interviewDatabase/post/getEmail", interviewDatabase);
+// other
 app.use("/userDatabase", userDatabase);
 app.use("/userDatabase/add", userDatabase);
 app.use("/userDatabase/put", userDatabase);
@@ -37,18 +41,18 @@ app.use("/userDatabase/post/getEmail", userDatabase);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-   next(createError(404));
+  next(createError(404));
 });
 
 // error handler
 app.use(function (err, req, res, next) {
-   // set locals, only providing error in development
-   res.locals.message = err.message;
-   res.locals.error = req.app.get("env") === "development" ? err : {};
+  // set locals, only providing error in development
+  res.locals.message = err.message;
+  res.locals.error = req.app.get("env") === "development" ? err : {};
 
-   // render the error page
-   res.status(err.status || 500);
-   res.render("error");
+  // render the error page
+  res.status(err.status || 500);
+  res.render("error");
 });
 
 module.exports = app;
