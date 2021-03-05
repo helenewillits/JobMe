@@ -14,7 +14,7 @@ class AddButtonNavigationBar extends React.Component {
     return (
       <div>
         <Navbar>
-          <Link to={"/applications/add"}>
+          <Link to={this.props.link}>
             <NavItem icon={<PlusIcon />}></NavItem>
           </Link>
 
@@ -93,10 +93,9 @@ function DropdownMenu() {
     <div className={styles.dropdown}>
       <div className={styles.menu}>
         <DropdownItem link={"/profile"} leftIcon={<ProfileIcon />}>My Profile</DropdownItem>
-        <DropdownItem 
+        <DropdownItem
           link={"/applications"}
           leftIcon={<LibraryBooksIcon />}
-          rightIcon={<ChevronIcon />}
         >
           Applications
         </DropdownItem>

@@ -6,6 +6,9 @@ import NewApplication from "./components/NewApplication.js";
 import SignUp from "./components/SignUp.js"
 import Login from "./components/LogIn.js";
 import Logout from "./components/Logout.js"
+import InterviewLog from "./components/InterviewLog.js";
+import SingleInterview from "./components/SingleInterview.js";
+import NewInterview from "./components/NewInterview.js";
 import Profile from "./components/Profile.js";
 import EditProfile from "./components/EditProfile.js";
 import { Redirect } from 'react-router';
@@ -19,9 +22,12 @@ class App extends React.Component {
       modalOpen: false,
       appModalOpen: false,
       application: {},
+      intModalOpen: false,
+      interview: {}
     };
 
     this.handleApplicationPopup = this.handleApplicationPopup.bind(this);
+    this.handleInterviewPopup = this.handleInterviewPopup.bind(this);
   }
 
   setToken(userToken) {
@@ -38,9 +44,24 @@ class App extends React.Component {
   handleApplicationPopup(application) {
     const newState = {};
     newState.token = this.state.token;
+    newState.modalOpen = this.state.intModalOpen || !this.state.modalOpen;
     newState.appModalOpen = !this.state.appModalOpen;
-    newState.modalOpen = !this.state.modalOpen;
     newState.application = application;
+    newState.intModalOpen = this.state.intModalOpen;
+    newState.interview = this.state.interview;
+    newState.userEmail = this.state.userEmail;
+    this.setState(newState);
+    console.log("pop up");
+  }
+
+  handleInterviewPopup(interview) {
+    const newState = {};
+    newState.modalOpen = !this.state.intModalOpen || this.state.modalOpen;
+    newState.appModalOpen = this.state.appModalOpen;
+    newState.application = this.state.application;
+    newState.intModalOpen = !this.state.intModalOpen;
+    newState.interview = interview;
+    newState.userEmail = this.state.userEmail;
     this.setState(newState);
     console.log("pop up");
   }
@@ -59,45 +80,46 @@ class App extends React.Component {
     //   return <Login parentCallback={this.callbackFunction} />
     // }
     if (!token) {
-    return (
-    <Switch>
-        <div>
+      return (
+        <Switch>
+          <div>
             <Route exact path="/login">
-                <div>
-                    <Login parentCallback={this.callbackFunction}/>
-                </div>
+              <div>
+                <Login parentCallback={this.callbackFunction} />
+              </div>
             </Route>
             <Route exact path="/signup">
-                <div>
-                    <SignUp />
-                </div>
+              <div>
+                <SignUp />
+              </div>
             </Route>
             <Route exact path="/">
-                <Redirect to={"/login"}/>
+              <Redirect to={"/login"} />
             </Route>
             <Route exact path="/profile">
-                <Redirect to={"/login"}/>
+              <Redirect to={"/login"} />
             </Route>
             <Route exact path="/profile/edit">
-                <Redirect to={"/login"}/>
+              <Redirect to={"/login"} />
             </Route>
             <Route exact path="/applications">
-                <Redirect to={"/login"}/>
+              <Redirect to={"/login"} />
             </Route>
             <Route exact path="/applications/add">
-                <Redirect to={"/login"}/>
+              <Redirect to={"/login"} />
             </Route>
             <Route exact path="/logout">
-                <Redirect to={"/login"}/>
+              <Redirect to={"/login"} />
             </Route>
-        </div>
-    </Switch>
-    );
+          </div>
+        </Switch>
+      );
     }
 
     return (
       <Switch>
         <div>
+          {/* applications */}
           <Route exact path="/applications">
             <div classname="appPopup">
               <SingleApplication
@@ -116,6 +138,27 @@ class App extends React.Component {
           <Route exact path="/applications/add">
             <div>
               <NewApplication dataFromParent={this.getToken()} />
+            </div>
+          </Route>
+          {/* interviews */}
+          <Route exact path="/interviews">
+            <div classname="appPopup">
+              <SingleInterview
+                display={this.state.intModalOpen}
+                handlePopup={this.handleInterviewPopup}
+                // modalOpen={this.state.appModalOpen}
+                interview={this.state.interview}
+              />
+              <InterviewLog
+                handlePopup={this.handleInterviewPopup}
+                modalOpen={this.state.modalOpen}
+                dataFromParent={this.getToken()}
+              />
+            </div>
+          </Route>
+          <Route exact path="/interviews/add">
+            <div>
+              <NewInterview dataFromParent={this.state.userEmail} />
             </div>
           </Route>
           <Route exact path="/profile">
@@ -140,8 +183,8 @@ class App extends React.Component {
             <Redirect to={"/profile"} />
           </Route>
           <Route exact path="/">
-                <Redirect to={"/profile"}/>
-            </Route>
+            <Redirect to={"/profile"} />
+          </Route>
         </div>
       </Switch>
     );

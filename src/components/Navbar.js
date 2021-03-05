@@ -73,7 +73,7 @@ function DropdownMenu() {
   function DropdownItem(props) {
     return (
       <a
-        href= {props.link}
+        href={props.link}
         className={styles.menu_item}
         onClick={() => props.goToMenu && setActiveMenu(props.goToMenu)}
       >
@@ -87,7 +87,8 @@ function DropdownMenu() {
   return (
     <div className={styles.dropdown}>
       <div className={styles.menu}>
-        <DropdownItem link={"/profile"} leftIcon={<LibraryBooksIcon />}>
+        {/* <DropdownItem link={"/profile"} leftIcon={<ProfileIcon />}>My Profile</DropdownItem> */}
+        <DropdownItem link={"/profile"} leftIcon={<ProfileIcon />}>
           My Profile
         </DropdownItem>
         <DropdownItem link={"/applications"} leftIcon={<LibraryBooksIcon />}>

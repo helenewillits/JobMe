@@ -87,19 +87,19 @@ class SignUp extends React.Component {
             firstName: '',
             lastName: '',
             email: '',
-            password: ''
+            password: '',
         };
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
+    performValidation() {
+        return this.state.firstName.length > 0 && this.state.lastName.length > 0 && this.state.email.length > 0 && this.state.password.length > 0;
     }
 
-    handleSubmit = (event) => {
-        this.submitNewUser(event);
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     submitNewUser(event) {
@@ -112,6 +112,34 @@ class SignUp extends React.Component {
             })
             .catch(function (error) {
                 //Not handling the error. Just logging into the console.
+                console.log(error);
+            });
+    }
+
+    handleSubmit(event) {
+        console.log("Made it");
+        var apiBaseUrl = "http://localhost:5000/";
+        var selfState = this.state;
+        var selfProps = this.props;
+        console.log("PAYLOAD: ", this.state);
+        axios.post(apiBaseUrl + "userDatabase/post/validateSignup", this.state)
+            .then(function (response) {
+                if (response.data.code === 200) {
+                    console.log("Signup successful");
+                    this.submitNewUser(event);
+                    // console.log("Login user ", this.loginUser(this.state.email));
+                    // this.sendData(loginUser(this.state.email));
+                }
+                else if (response.data.code === 204) {
+                    console.log("Invalid email");
+                    alert("User already has this email. Re-signup with another email.");
+                }
+                else {
+                    console.log("unknown error");
+                }
+                window.location.reload();
+            })
+            .catch(function (error) {
                 console.log(error);
             });
     }
@@ -192,6 +220,7 @@ class SignUp extends React.Component {
                                         fullWidth
                                         variant="contained"
                                         color="primary"
+                                        disabled={!this.performValidation()}
                                         className={classes.submit}
                                     >
                                         Register

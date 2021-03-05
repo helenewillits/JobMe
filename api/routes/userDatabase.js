@@ -76,7 +76,28 @@ router.post("/post/validateLogin", function (req, res) {
         // createUserDatabase(db);
         const collection = db.collection("User");
         console.log(req.body);
-        validateUser(collection, req, res);
+        validateUserLogin(collection, req, res);
+        client.close();
+    });
+});
+
+router.post("/post/validateSignup", function (req, res) {
+    console.log("validateSignup post route");
+    const { MongoClient } = require("mongodb");
+    const uri =
+        "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+    console.log("initialize the database");
+    MongoClient.connect(uri, (err, client) => {
+        if (err) {
+            throw err;
+            return;
+        }
+        console.log("connected");
+        const db = client.db("UserDatabase");
+        // createUserDatabase(db);
+        const collection = db.collection("User");
+        console.log(req.body);
+        validateUserSignup(collection, req, res);
         client.close();
     });
 });
@@ -244,7 +265,7 @@ function hardcodeAdd(collection) {
     console.log("Success?");
 }
 
-function validateUser(collection, req, res) {
+function validateUserLogin(collection, req, res) {
     const query = { email: req.body.email };
     console.log("in validateUser");
     const user = collection
@@ -258,6 +279,25 @@ function validateUser(collection, req, res) {
             }
             else if (docs[0]["password"] != req.body.password) {
                 console.log('password wrong');
+                res.send({ code: 204 });
+            }
+            else {
+                console.log('success!');
+                res.send({ code: 200 })
+            }
+        });
+}
+
+function validateUserSignup(collection, req, res) {
+    const query = { email: req.body.email };
+    console.log("in validateUser");
+    const user = collection
+        .find(query)
+        .toArray()
+        .then((docs) => {
+            console.log(docs);
+            if (docs.length > 0) {
+                console.log('email exists');
                 res.send({ code: 204 });
             }
             else {

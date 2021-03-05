@@ -24,10 +24,6 @@ class ApplicationLog extends React.Component {
     axios
       .get("http://localhost:5000/applicationDatabase")
       .then((res) => {
-        // const data = res.data;
-        this.setState({ applicationsToDo: res.data });
-        console.log(res);
-        console.log(res.data[0]["companyName"]);
         const toDo = res.data.filter(
           (item) => item.applicationStatus == "To Do"
         );
@@ -55,15 +51,19 @@ class ApplicationLog extends React.Component {
   }
 
   getEmail() {
-      console.log("getEmail post route");
-      axios.post("http://localhost:5000/applicationDatabase/post/getEmail", this.state)
+    console.log("getEmail post route");
+    axios
+      .post(
+        "http://localhost:5000/applicationDatabase/post/getEmail",
+        this.state
+      )
       .then((res) => {
-          console.log(res);
+        console.log(res);
       })
       .catch(function (error) {
-          //Not handling the error. Just logging into the console.
-          console.log(error);
-      })
+        //Not handling the error. Just logging into the console.
+        console.log(error);
+      });
   }
 
   // DISTINGUISH COLUMNS BASED ON STATUS
@@ -90,7 +90,7 @@ class ApplicationLog extends React.Component {
   render() {
     return (
       <div>
-        <AddButtonNavigationBar />
+        <AddButtonNavigationBar link={"/applications/add"} />
         <p className="App-intro">{this.state.apiResponse}</p>
         <Header page={this.state.page} />
         {this.column(0)}
@@ -179,22 +179,26 @@ class ApplicationLogItem extends React.Component {
     // in development mode, but is re-rendered when it gets to the componentWillMount() function
     if (application != undefined) {
       return (
-        <div className={styles.item} onClick={this.handlePopup}>
-          <h4> {application._id} </h4>
-          <h4> {application.companyName} </h4>
-          <h4> {application.position} </h4>
-          {/* <a href={application.jobPostingLink}>
-                  {" "}
-                  {application.jobPostingLink}{" "}
-               </a> */}
-          <h4>{application.result}</h4>
-          <h4> {application.deadline} </h4>
-          <button
-            type="submit"
-            onClick={this.handleDelete.bind(this, application)}
-          >
-            Delete
-          </button>
+        <div>
+          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+            <button
+              className={styles.close_button}
+              style={{ marginLeft: "auto" }}
+              type="submit"
+              onClick={this.handleDelete.bind(this, application)}
+            >
+              x
+            </button>
+          </div>
+          <div className={styles.item} onClick={this.handlePopup}>
+            <h4> {application.companyName} </h4>
+            <h4> {application.position} </h4>
+            <div style={{ textDecoration: "underline" }}>
+              <a href={application.jobPostingLink}>View Job Posting</a>
+            </div>
+            <h5>{application.result}</h5>
+            <h5> {application.deadline} </h5>
+          </div>
         </div>
       );
     } else {

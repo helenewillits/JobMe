@@ -10,25 +10,25 @@ class SingleApplication extends React.Component {
       return <h3>{this.state.application.jobId}</h3>;
   };
   viewJobPostingLink = () => {
-    if (this.state.application.jobId != "")
+    if (this.state.application.jobPostingLink != "")
       return (
-        <a href={this.state.application.jobPostingLink}>
-          {" "}
-          {this.state.application.jobPostingLink}{" "}
-        </a>
+        <div style={{ textDecoration: "underline" }}>
+          <a href={this.state.application.jobPostingLink}>View Job Posting</a>
+        </div>
       );
   };
   viewApplicationPortalLink = () => {
-    if (this.state.application.jobId != "")
+    if (this.state.application.applicationPortalLink != "")
       return (
-        <a href={this.state.application.applicationPortalLink}>
-          {" "}
-          {this.state.application.applicationPortalLink}{" "}
-        </a>
+        <div style={{ textDecoration: "underline" }}>
+          <a href={this.state.application.applicationPortalLink}>
+            View Application Portal
+          </a>
+        </div>
       );
   };
   viewNotes = () => {
-    if (this.state.application.jobId != "")
+    if (this.state.application.notes != "")
       return <h3>{this.state.application.notes}</h3>;
   };
 
@@ -47,9 +47,16 @@ class SingleApplication extends React.Component {
 
     return (
       <div className={styles.popup}>
-        <button type="submit" onClick={this.handleClose}>
-          x
-        </button>
+        <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <button
+            className={styles.close_button}
+            style={{ marginLeft: "auto" }}
+            type="submit"
+            onClick={this.handleClose}
+          >
+            x
+          </button>
+        </div>
         <h1>{application.companyName}</h1>
         <h2>{application.position}</h2>
         {this.viewJobId()}
