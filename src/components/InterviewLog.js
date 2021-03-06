@@ -151,6 +151,7 @@ class InterviewLogItem extends React.Component {
       })
       .then((res) => {
         console.log(res.data);
+        alert("Deleting item. Please refresh the page.");
       })
       .catch(function (error) {
         //Not handling the error. Just logging into the console.
@@ -186,11 +187,11 @@ class InterviewLogItem extends React.Component {
           <div className={styles.item} onClick={this.handlePopup}>
             <h4> {interview.companyName} </h4>
             <h4> {interview.position} </h4>
-            <div style={{ textDecoration: "underline" }}>
+            {/* <div style={{ textDecoration: "underline" }}>
               <a href={interview.jobPostingLink}>View Job Posting</a>
-            </div>
-            <h5>{interview.date}</h5>
-            <h5> {interview.time} </h5>
+            </div> */}
+            <h5>{interview.interviewDate}</h5>
+            <h5> {interview.interviewTime} </h5>
           </div>
         </div>
       );

@@ -158,6 +158,7 @@ class ApplicationLogItem extends React.Component {
       })
       .then((res) => {
         console.log(res.data);
+        alert("Deleting item. Please refresh the page.");
       })
       .catch(function (error) {
         //Not handling the error. Just logging into the console.

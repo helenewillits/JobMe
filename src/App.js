@@ -158,7 +158,7 @@ class App extends React.Component {
           </Route>
           <Route exact path="/interviews/add">
             <div>
-              <NewInterview dataFromParent={this.state.userEmail} />
+              <NewInterview dataFromParent={this.getToken()} />
             </div>
           </Route>
           <Route exact path="/profile">
