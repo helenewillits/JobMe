@@ -40,7 +40,7 @@ function NavItem(props) {
 
   return (
     <li className={styles.nav_item}>
-      <a href="#" className={styles.icon_button} onClick={() => setOpen(!open)}>
+      <a className={styles.icon_button} onClick={() => setOpen(!open)}>
         {props.icon}
       </a>
 
@@ -92,15 +92,15 @@ function DropdownMenu() {
   return (
     <div className={styles.dropdown}>
       <div className={styles.menu}>
-        <DropdownItem link={"/profile"} leftIcon={<ProfileIcon />}>
-          My Profile
-        </DropdownItem>
-        <DropdownItem link={"/applications"} leftIcon={<LibraryBooksIcon />}>
+        <DropdownItem link={"/profile"} leftIcon={<ProfileIcon />}>My Profile</DropdownItem>
+        <DropdownItem
+          link={"/applications"}
+          leftIcon={<LibraryBooksIcon />}
+        >
           Applications
         </DropdownItem>
-        <DropdownItem link={"/interviews"} leftIcon={<PeopleAltIcon />}>
-          Interviews
-        </DropdownItem>
+        <DropdownItem link={"/interviews"} leftIcon={<PeopleAltIcon />}>Interviews</DropdownItem>
+        <DropdownItem link={"/logout"} leftIcon={<PeopleAltIcon />}>Logout</DropdownItem>
       </div>
     </div>
   );

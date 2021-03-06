@@ -68,6 +68,10 @@ class InterviewNew extends React.Component {
     this.postNewInterview();
   };
 
+  performValidation() {
+    return this.state.companyName.length > 0 && this.state.interviewTime.length > 0 && this.state.interviewDate > 0;
+  }
+
   render() {
     return (
       <div>
@@ -80,20 +84,20 @@ class InterviewNew extends React.Component {
               <div>
                 <TextField
                   type="text"
-                  floatingLabelText="Company"
+                  floatingLabelText="*Company"
                   name="companyName"
                   onChange={this.handleChange}
                   fullWidth
                 />
                 <br />
                 <TextField
-                  floatingLabelText="Interviewer Name(s)"
+                  floatingLabelText="Interviewer Name(s) (Optional)"
                   fullWidth
                   name="interviewerNames"
                   onChange={this.handleChange}
                 />
                 <TextField
-                  floatingLabelText="Recruter Name(s)"
+                  floatingLabelText="Recruiter Name(s) (Optional)"
                   fullWidth
                   name="recruiterNames"
                   onChange={this.handleChange}
@@ -101,37 +105,37 @@ class InterviewNew extends React.Component {
                 <Grid container>
                   <Calendar
                     parentCallback={this.callbackFunction}
-                    label={"Interview Date"}
+                    label={"*Interview Date"}
                   />
                   <h3>{this.state.interviewDate.toString()}</h3>
                 </Grid>
                 <TextField
-                  floatingLabelText="Interview Time"
+                  floatingLabelText="*Interview Time"
                   fullWidth
                   name="interviewTime"
                   onChange={this.handleChange}
                 />
                 <TextField
-                  floatingLabelText="Interview Link"
+                  floatingLabelText="Interview Link (Optional)"
                   fullWidth
                   name="interviewLink"
                   onChange={this.handleChange}
                 />
                 <TextField
-                  floatingLabelText="Job Posting Link"
+                  floatingLabelText="Job Posting Link (Optional)"
                   fullWidth
                   name="jobPostingLink"
                   onChange={this.handleChange}
                 />
                 <TextField
-                  floatingLabelText="Interview Portal Link"
+                  floatingLabelText="Interview Portal Link (Optional)"
                   fullWidth
                   name="interviewPortalLink"
                   onChange={this.handleChange}
                 />
                 <br />
                 <TextField
-                  floatingLabelText="Notes"
+                  floatingLabelText="Notes (Optional)"
                   fullWidth
                   name="notes"
                   onChange={this.handleChange}
@@ -144,7 +148,7 @@ class InterviewNew extends React.Component {
                   </Fab>
                 </Link>
                 <Link to={"/interviews"} onClick={this.handleSubmit}>
-                  <Fab variant="extended" aria-label="Delete">
+                  <Fab variant="extended" aria-label="Delete" disabled={!this.performValidation()}>
                     Submit
                   </Fab>
                 </Link>

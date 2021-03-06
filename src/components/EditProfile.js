@@ -2,7 +2,6 @@ import React, { Profiler } from "react";
 import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
 import NavigationBar from "./Navbar.js"
-
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import TextField from "material-ui/TextField";
 import { Link } from "react-router-dom";
@@ -18,7 +17,7 @@ import axios from "axios";
 class EditProfile extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { 
+    this.state = {
       apiResponse: "",
       page: "EditProfile",
 
@@ -62,7 +61,6 @@ class EditProfile extends React.Component {
   };
 
   render() {
-
     return (
       <div>
         <MuiThemeProvider>
@@ -72,121 +70,121 @@ class EditProfile extends React.Component {
           <br />
           <div>
             <div className={styles.area}>
-                <Table aria-label="simple table">
-                    <colgroup>
-                        <col style={{width:'35%'}}/>
-                        <col style={{width:'65%'}}/>
-                    </colgroup>
-                    <TableBody>
-                        <TableRow key={"LastName, FirstName"}>
-                            <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
-                                <h2>{"LastName, FirstName"}</h2>
-                            </TableCell>
-                            <TableCell align="left" className={styles.tablecell}>
-                                <Grid container spacing={2}>
-                                    <Grid item>
-                                        <TextField
-                                          type="text"
-                                          floatingLabelText="LastName"
-                                          name="lastName"
-                                          onChange={this.handleChange}
-                                          fullWidth
-                                        />
-                                    </Grid>
-                                    <Grid item>
-                                        <TextField
-                                          type="text"
-                                          floatingLabelText="FirstName"
-                                          name="firstName"
-                                          onChange={this.handleChange}
-                                          fullWidth
-                                        />
-                                    </Grid>
-                                </Grid>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow key={"Email"}>
-                            <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
-                                <h2>{"Email"}</h2>
-                            </TableCell>
-                            <TableCell align="left" className={styles.tablecell}>
-                                {this.state.email}
-                            </TableCell>
-                        </TableRow>
-                        <TableRow key={"Link #1"}>
-                            <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
-                                <h2>{"Link #1"}</h2>
-                            </TableCell>
-                            <TableCell align="left" className={styles.tablecell}>
-                                <TextField
-                                  type="text"
-                                  floatingLabelText="Link #1"
-                                  name="link1"
-                                  onChange={this.handleChange}
-                                  fullWidth
-                                />
-                            </TableCell>
-                        </TableRow>
-                        <TableRow key={"Link #2"}>
-                            <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
-                                <h2>{"Link #2"}</h2>
-                            </TableCell>
-                            <TableCell align="left" className={styles.tablecell}>
-                                <TextField
-                                  type="text"
-                                  floatingLabelText="Link #2"
-                                  name="link2"
-                                  onChange={this.handleChange}
-                                  fullWidth
-                                />
-                            </TableCell>
-                        </TableRow>
-                        <TableRow key={"Link #3"}>
-                            <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
-                                <h2>{"Link #3"}</h2>
-                            </TableCell>
-                            <TableCell align="left" className={styles.tablecell}>
-                                <TextField
-                                  type="text"
-                                  floatingLabelText="Link #3"
-                                  name="link3"
-                                  onChange={this.handleChange}
-                                  fullWidth
-                                />
-                            </TableCell>
-                        </TableRow>
-                        <TableRow key={"Work Experience"}>
-                            <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
-                                <h2>{"Work Experience"}</h2>
-                            </TableCell>
-                            <TableCell align="left" className={styles.tablecell}>
-                                <TextField
-                                  multiLine={true}
-                                  type="text"
-                                  floatingLabelText="Work Experience"
-                                  name="workExperience"
-                                  onChange={this.handleChange}
-                                  fullWidth
-                                />
-                            </TableCell>
-                        </TableRow>
-                        <TableRow key={"Notes"}>
-                            <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
-                                <h2>{"Notes"}</h2>
-                            </TableCell>
-                            <TableCell align="left" className={styles.tablecell}>
-                                <TextField
-                                  multiLine={true}
-                                  type="text"
-                                  floatingLabelText="Notes"
-                                  name="notes"
-                                  onChange={this.handleChange}
-                                  fullWidth
-                                />
-                            </TableCell>
-                        </TableRow>
-                    </TableBody>
-                </Table>
+              <Table aria-label="simple table">
+                <colgroup>
+                  <col style={{ width: '35%' }} />
+                  <col style={{ width: '65%' }} />
+                </colgroup>
+                <TableBody>
+                  <TableRow key={"LastName, FirstName"}>
+                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                      <h2>{"LastName, FirstName"}</h2>
+                    </TableCell>
+                    <TableCell align="left" className={styles.tablecell}>
+                      <Grid container spacing={2}>
+                        <Grid item>
+                          <TextField
+                            type="text"
+                            floatingLabelText="LastName"
+                            name="lastName"
+                            onChange={this.handleChange}
+                            fullWidth
+                          />
+                        </Grid>
+                        <Grid item>
+                          <TextField
+                            type="text"
+                            floatingLabelText="FirstName"
+                            name="firstName"
+                            onChange={this.handleChange}
+                            fullWidth
+                          />
+                        </Grid>
+                      </Grid>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow key={"Email"}>
+                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                      <h2>{"Email"}</h2>
+                    </TableCell>
+                    <TableCell align="left" className={styles.tablecell}>
+                      {this.state.email}
+                    </TableCell>
+                  </TableRow>
+                  <TableRow key={"Link #1"}>
+                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                      <h2>{"Link #1"}</h2>
+                    </TableCell>
+                    <TableCell align="left" className={styles.tablecell}>
+                      <TextField
+                        type="text"
+                        floatingLabelText="Link #1"
+                        name="link1"
+                        onChange={this.handleChange}
+                        fullWidth
+                      />
+                    </TableCell>
+                  </TableRow>
+                  <TableRow key={"Link #2"}>
+                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                      <h2>{"Link #2"}</h2>
+                    </TableCell>
+                    <TableCell align="left" className={styles.tablecell}>
+                      <TextField
+                        type="text"
+                        floatingLabelText="Link #2"
+                        name="link2"
+                        onChange={this.handleChange}
+                        fullWidth
+                      />
+                    </TableCell>
+                  </TableRow>
+                  <TableRow key={"Link #3"}>
+                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                      <h2>{"Link #3"}</h2>
+                    </TableCell>
+                    <TableCell align="left" className={styles.tablecell}>
+                      <TextField
+                        type="text"
+                        floatingLabelText="Link #3"
+                        name="link3"
+                        onChange={this.handleChange}
+                        fullWidth
+                      />
+                    </TableCell>
+                  </TableRow>
+                  <TableRow key={"Work Experience"}>
+                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                      <h2>{"Work Experience"}</h2>
+                    </TableCell>
+                    <TableCell align="left" className={styles.tablecell}>
+                      <TextField
+                        multiLine={true}
+                        type="text"
+                        floatingLabelText="Work Experience"
+                        name="workExperience"
+                        onChange={this.handleChange}
+                        fullWidth
+                      />
+                    </TableCell>
+                  </TableRow>
+                  <TableRow key={"Notes"}>
+                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                      <h2>{"Notes"}</h2>
+                    </TableCell>
+                    <TableCell align="left" className={styles.tablecell}>
+                      <TextField
+                        multiLine={true}
+                        type="text"
+                        floatingLabelText="Notes"
+                        name="notes"
+                        onChange={this.handleChange}
+                        fullWidth
+                      />
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
             </div>
             <Link to={"/profile"}>
               <Fab variant="extended" aria-label="Delete">

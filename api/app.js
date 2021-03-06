@@ -37,22 +37,24 @@ app.use("/userDatabase", userDatabase);
 app.use("/userDatabase/add", userDatabase);
 app.use("/userDatabase/put", userDatabase);
 app.use("/userDatabase/post/getEmail", userDatabase);
+app.use("/userDatabase/post/validateLogin", userDatabase);
+app.use("/userDatabase/post/validateSignup", userDatabase);
 // app.use("/userDatabase/delete", userDatabase);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  next(createError(404));
+   next(createError(404));
 });
 
 // error handler
 app.use(function (err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get("env") === "development" ? err : {};
+   // set locals, only providing error in development
+   res.locals.message = err.message;
+   res.locals.error = req.app.get("env") === "development" ? err : {};
 
-  // render the error page
-  res.status(err.status || 500);
-  res.render("error");
+   // render the error page
+   res.status(err.status || 500);
+   res.render("error");
 });
 
 module.exports = app;

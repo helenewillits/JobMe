@@ -81,6 +81,10 @@ class ApplicationNew extends React.Component {
     this.postNewApplication();
   };
 
+  performValidation() {
+    return this.state.companyName.length > 0 && this.state.position.length > 0 && this.state.applicationStatus.length > 0 && this.state.result.length > 0 && this.state.deadline.length > 0;
+  }
+
   render() {
     return (
       <div>
@@ -93,14 +97,14 @@ class ApplicationNew extends React.Component {
               <div>
                 <TextField
                   type="text"
-                  floatingLabelText="Company"
+                  floatingLabelText="*Company"
                   name="companyName"
                   onChange={this.handleChange}
                   fullWidth
                 />
                 <br />
                 <TextField
-                  floatingLabelText="Position"
+                  floatingLabelText="*Position"
                   name="position"
                   fullWidth
                   onChange={this.handleChange}
@@ -117,24 +121,24 @@ class ApplicationNew extends React.Component {
                 <Grid container>
                   <Calendar
                     parentCallback={this.callbackFunction}
-                    label={"Application Deadline"}
+                    label={"*Application Deadline"}
                   />
                   <h3>{this.state.deadline}</h3>
                 </Grid>
                 <TextField
-                  floatingLabelText="Job Posting Link"
+                  floatingLabelText="Job Posting Link (Optional)"
                   fullWidth
                   name="jobPostingLink"
                   onChange={this.handleChange}
                 />
                 <TextField
-                  floatingLabelText="Job ID"
+                  floatingLabelText="Job ID (Optional)"
                   fullWidth
                   name="jobId"
                   onChange={this.handleChange}
                 />
                 <TextField
-                  floatingLabelText="Application Portal Link"
+                  floatingLabelText="Application Portal Link (Optional)"
                   fullWidth
                   name="applicationPortalLink"
                   onChange={this.handleChange}
@@ -146,7 +150,7 @@ class ApplicationNew extends React.Component {
                   <MenuItem
                     value={""}
                     disabled
-                    primaryText="Select Application Status"
+                    primaryText="*Select Application Status"
                   />
                   <MenuItem value={"To Do"} primaryText="To Do" />
                   <MenuItem value={"In Progress"} primaryText="In Progress" />
@@ -157,7 +161,7 @@ class ApplicationNew extends React.Component {
                   value={this.state.result}
                   onChange={this.handleChangeResult}
                 >
-                  <MenuItem value={""} disabled primaryText="Select Result" />
+                  <MenuItem value={""} disabled primaryText="*Select Result" />
                   <MenuItem value={"N/A"} primaryText="N/A" />
                   <MenuItem value={"Interviewing"} primaryText="Interviewing" />
                   <MenuItem value={"Waiting"} primaryText="Waiting" />
@@ -167,7 +171,7 @@ class ApplicationNew extends React.Component {
                 </DropDownMenu>
                 <br />
                 <TextField
-                  floatingLabelText="Notes"
+                  floatingLabelText="Note (Optional)"
                   fullWidth
                   name="notes"
                   onChange={this.handleChange}
@@ -180,7 +184,7 @@ class ApplicationNew extends React.Component {
                   </Fab>
                 </Link>
                 <Link to={"/applications"} onClick={this.handleSubmit}>
-                  <Fab variant="extended" aria-label="Delete">
+                  <Fab variant="extended" aria-label="Delete" disabled={!this.performValidation()}>
                     Submit
                   </Fab>
                 </Link>
