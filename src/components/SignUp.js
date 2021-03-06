@@ -13,6 +13,7 @@ import Container from '@material-ui/core/Container';
 import Logo from '../icons/JobMe_Logo.png'
 import { withStyles } from "@material-ui/core/styles";
 import axios from "axios";
+import cssstyles from "../assets/Styles.module.css";
 
 
 function Copyright() {
@@ -158,7 +159,7 @@ class SignUp extends React.Component {
                     <Typography component="h1" variant="h5" align="center">
                         An easy job search awaits.
                 </Typography>
-                    <Box border={1} width={'150%'} padding={'15%'}>
+                    <Box className={cssstyles.signin}>
                         <Typography component="h2" variant="h6" align="left" width="150%">Sign up for an account here.</Typography>
                         <form className={classes.form} noValidate>
                             <TextField
@@ -241,12 +242,14 @@ class SignUp extends React.Component {
                         </form>
                     </Box>
                 </div >
-                <Box mt={8}>
+                <Box mt={2}>
                     <Copyright />
                 </Box>
-                <Box maxWidth="xs" padding="10%" align="center">
+                <Box maxWidth="xs" padding={'8%'} align="center">
                     <img src={Logo} className={classes.logo}></img>
                 </Box>
+
+
             </Container >
 
         );

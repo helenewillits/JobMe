@@ -13,7 +13,9 @@ import Container from '@material-ui/core/Container';
 import Logo from '../icons/JobMe_Logo.png'
 import { withStyles } from "@material-ui/core/styles";
 import axios from "axios";
+import cssstyles from "../assets/Styles.module.css";
 
+document.body.style = 'background: #f4fcfc;';
 
 function Copyright() {
     return (
@@ -48,7 +50,7 @@ const styles = (theme) => ({
         fontStyle: 'normal',
         margin: theme.spacing(3, 0, 2),
         "&:hover": {
-            backgroundColor: '#7FDBFF',
+            backgroundColor: 'rgb(0, 100, 128)',
             color: 'white',
         }
     },
@@ -61,7 +63,7 @@ const styles = (theme) => ({
         fontStyle: 'normal',
         margin: theme.spacing(3, 0, 2),
         "&:hover": {
-            backgroundColor: '#7FDBFF',
+            backgroundColor: 'rgb(0, 100, 128)',
             color: 'white',
         }
     },
@@ -139,7 +141,7 @@ class LogIn extends React.Component {
                 <div className={classes.paper}>
                     <Typography component="header1" variant="h4" align="center">Welcome back!</Typography>
                     <img src={Logo} alt={"JobMe-Logo"} className={classes.logo}></img>
-                    <Box border={1} width={'150%'} padding={'15%'}>
+                    <Box width={"125%"} padding={"15%"} className={cssstyles.signin}>
                         <form className={classes.form} noValidate>
                             <TextField
                                 variant="outlined"

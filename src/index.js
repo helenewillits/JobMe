@@ -8,7 +8,6 @@ import Application from "./components/Application.js";
 ReactDOM.render(
   <BrowserRouter>
     <App />{" "}
-
   </BrowserRouter>,
   document.getElementById("root")
 );
