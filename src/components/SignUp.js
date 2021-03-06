@@ -52,7 +52,7 @@ const styles = (theme) => ({
         fontStyle: 'normal',
         margin: theme.spacing(3, 0, 2),
         "&:hover": {
-            backgroundColor: '#7FDBFF',
+            backgroundColor: 'rgb(0, 100, 128)',
             color: 'white',
         }
     },
@@ -65,7 +65,7 @@ const styles = (theme) => ({
         fontStyle: 'normal',
         margin: theme.spacing(3, 0, 2),
         "&:hover": {
-            backgroundColor: '#7FDBFF',
+            backgroundColor: 'rgb(0, 100, 128)',
             color: 'white',
         }
     },

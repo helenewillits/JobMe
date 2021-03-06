@@ -7,8 +7,10 @@ import SingleApplication from "./SingleApplication";
 import { Link } from "react-router-dom";
 import ReactDOM from "react-dom";
 import { BrowserRouter } from "react-router-dom";
+import Box from '@material-ui/core/Box';
 
 // defines the space that contains the three columns of applications
+
 class ApplicationLog extends React.Component {
   state = {
     userEmail: "",
@@ -107,14 +109,14 @@ class ApplicationStatusColumn extends React.Component {
     const { applications, status } = this.props;
 
     return (
-      <div className={styles.area}>
+      <Box className={styles.area}>
         <h3 className={styles.column_title}>{status}</h3>
         <ApplicationList
           applications={applications}
           handlePopup={this.props.handlePopup}
           modalOpen={this.props.modalOpen}
         />
-      </div>
+      </Box>
     );
   }
 }
