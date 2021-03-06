@@ -187,9 +187,9 @@ class InterviewLogItem extends React.Component {
           <div className={styles.item} onClick={this.handlePopup}>
             <h4> {interview.companyName} </h4>
             <h4> {interview.position} </h4>
-            {/* <div style={{ textDecoration: "underline" }}>
+            <div style={{ textDecoration: "underline" }}>
               <a href={interview.jobPostingLink}>View Job Posting</a>
-            </div> */}
+            </div>
             <h5>{interview.interviewDate}</h5>
             <h5> {interview.interviewTime} </h5>
           </div>
