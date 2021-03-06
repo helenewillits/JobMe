@@ -29,7 +29,6 @@ if that doesn't work, use:
 
 npm i --save date-fns@next @date-io/data-fns@1.x
 
-
 # Contributors:
 
 ### Deployment
@@ -39,3 +38,18 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### Code Styling
+
+```
+{
+    "useTabs": false,
+    "printWidth": 80,
+    "tadWidth": 4,
+    "singleQuote": false,
+    "trailingComma": "none",
+    "jsxBracketSameLine": false,
+    "noSemi": true,
+    "rcVerbose": true,
+}
+```

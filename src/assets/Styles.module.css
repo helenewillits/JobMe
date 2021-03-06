@@ -1,10 +1,16 @@
+/*light1: #f4fcfc
+light2: #E3F6F5
+dark1: #BAE8E8
+JobMe Color:  
+*/
+
 body {
-    background-color: white;
+    background-color: #f4fcfc;
     color: #5e5e5e;
     padding: 20px;
     padding-left: 100px;
     padding-right: 100px;
-    font-family: roboto;
+    font-family: 'Roboto', sans-serif;
 }
 
 :root {
@@ -16,15 +22,22 @@ body {
     --speed: 500ms;
 }
 
+h1{
+    font-family: 'Open Sans', sans-serif;
+}
+
 h4 {
     color: #5e5e5e;
     padding: 0px 0px 0px 0px;
     margin: 10px 5px 10px 5px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 a {
     padding: 0px 0px 0px 0px;
     margin: 10px 5px 10px 5px;
+    color: blue;
+    text-decoration: underline;
 }
 
 button {
@@ -34,7 +47,16 @@ button {
     margin: 10px 10px 10px 10px;
     border-radius: 3px;
     border-color: white;
-    
+}
+
+.close_button{
+    color: #5e5e5e;
+    background-color: #bae8e8;
+    padding: 4px 8px 4px 8px;
+    margin: 10px 10px 0px 10px;
+    border-radius: 3px;
+    border-color: white;
+    border-radius: 50%;
 }
 
 .button_secondary {
@@ -57,16 +79,20 @@ input {
 }
 
 .area {
+    background-color:white;
+    border: 2;
+    border-color: #e3f6f5;
     padding-left: 15px;
     padding-right: 15px;
     margin-top: 10px;
     margin-bottom: 50px;
-
+    border-radius: 5px;
     border-style: solid;
-    border-width: 2px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.05), 0 4px 10px 0 rgba(0, 0, 0, 0.05);
+    /*border-width: 2px;
     border-color: #e3f6f5;
-    border-radius: 20px;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
+    
+    */
     overflow: hidden;
 }
 
@@ -78,7 +104,7 @@ input {
     margin: auto;
     width: 40%;
     /* vertical-align: middle; */
-    padding-left: 15px;
+    padding-left: 25px;
     padding-right: 15px;
     margin-top: 10px;
     margin-bottom: 50px;
@@ -115,6 +141,10 @@ input {
     box-sizing: border-box;
 }
 
+.tablecell {
+    white-space: pre-wrap;
+}
+
 /* Create two equal columns that floats next to each other */
 .thirdcolumn {
     float: left;
@@ -149,13 +179,13 @@ input {
     flex-wrap: wrap;
 
     padding: 10px 20px 10px 20px;
-    margin: 30px 10px 30px 10px;
+    margin: 5px 5px 15px 5px;
 
-    border-style: solid;
-    border-width: 1px;
+    border-style:solid;
+    border-width: 0.2px;
     border-color: #e3f6f5;
     border-radius: 20px;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 6px 0 rgba(0, 0, 0, 0.19);
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.19);
     overflow-wrap: anywhere;
 }
 
@@ -177,7 +207,7 @@ a {
 /* <nav> */
 .navbar {
     height: var(--nav-size);
-    background-color: var(--bg);
+    background-color: var(#E3F6F5);
     padding: 0 1rem;
     border-bottom: var(--border);
 }

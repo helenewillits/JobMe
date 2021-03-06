@@ -17,21 +17,12 @@ router.get("/", function (req, res) {
       return;
     }
     console.log("connected");
-    const db = client.db("ApplicationDatabase");
-    // createAppDatabase(db);
-    const collection = db.collection("Application");
-
-    // queryAppStatus(
-    //    collection,
-    //    {
-    //       status: "To Do"
-    //    },
-    //    res
-    // );
-
+    const db = client.db("InterviewDatabase");
+    // createInterviewDatabase(db);
+    const collection = db.collection("Interview");
     // hardcodeAdd(collection);
-    queryAllApps(collection, res);
-    console.log("All Applications Received");
+    queryAllInterviews(collection, res);
+    console.log("All Interviews Received");
 
     client.close();
   });
@@ -49,23 +40,23 @@ router.post("/", function (req, res) {
       return;
     }
     console.log("connected");
-    const db = client.db("ApplicationDatabase");
-    const collection = db.collection("Application");
+    const db = client.db("InterviewDatabase");
+    const collection = db.collection("Interview");
 
-    addToAppLog(collection, req);
-    res.send("New Application Posted");
+    addToInterviewLog(collection, req);
+    res.send("New Interview Posted");
 
     client.close();
   });
 });
 
 router.post("/post/getEmail", function (req, res) {
-    console.log("getEmail post route");
-    
-    console.log(req.body.userEmail);
-    user = req.body.userEmail;
+  console.log("getEmail post route");
 
-    res.send("Email Received");
+  console.log(req.body.userEmail);
+  user = req.body.userEmail;
+
+  res.send("Email Received");
 });
 
 router.delete("/", function (req, res) {
@@ -80,29 +71,26 @@ router.delete("/", function (req, res) {
       return;
     }
     console.log("connected");
-    const db = client.db("ApplicationDatabase");
-    const collection = db.collection("Application");
+    const db = client.db("InterviewDatabase");
+    const collection = db.collection("Interview");
 
     deleteFromLog(collection, req);
-    res.send("Application Deleted");
+    res.send("Interview Deleted");
 
     client.close();
   });
 });
 
-function createAppDatabase(database) {
-  database.createCollection("Application", {
+function createInterviewDatabase(database) {
+  database.createCollection("Interview", {
     validator: {
       $jsonSchema: {
         jsonType: "object",
         required: [
           "userEmail",
-          "favorited",
           "companyName",
-          "position",
-          "applicationStatus",
-          "result",
-          "deadline"
+          "interviewDate",
+          "interviewTime"
         ],
         properties: {
           userEmail: {
@@ -110,24 +98,32 @@ function createAppDatabase(database) {
             jsonType: "string",
             description: "must be a string and is required"
           },
-          favorited: {
-            jsonType: "bool",
-            description:
-              "True if user adds application to favorites, False otherwise"
-          },
-          deadline: {
-            jsonType: "string",
-            description: "must be a string if the field exists"
-          },
           companyName: {
             jsonType: "string",
             description: "must be a string and is required"
           },
-          position: {
+          interviewerNames: {
+            jsonType: "string",
+            description: "must be a string if the field exists"
+          },
+          recruiterNames: {
+            jsonType: "string",
+            description: "must be a string if the field exists"
+          },
+          interviewDate: {
             jsonType: "string",
             description: "must be a string and is required"
           },
-          jobId: {
+          interviewTime: {
+            jsonType: "string",
+            description: "must be a string and is required"
+          },
+          interviewLink: {
+            // MAKE HYPERLINK
+            jsonType: "string",
+            description: "must be a string if the field exists"
+          },
+          position: {
             jsonType: "string",
             description: "must be a string if the field exists"
           },
@@ -135,26 +131,6 @@ function createAppDatabase(database) {
             // MAKE HYPERLINK
             jsonType: "string",
             description: "must be a string if the field exists"
-          },
-          applicationPortalLink: {
-            // MAKE HYPERLINK
-            jsonType: "string",
-            description: "must be a string if the field exists"
-          },
-          applicationStatus: {
-            enum: ["To Do", "In Progress", "Completed"],
-            description: "can only be one of enum values and is required"
-          },
-          result: {
-            enum: [
-              "N/A",
-              "Accepted",
-              "Declined",
-              "Interviewing",
-              "Waiting",
-              "Discontinued"
-            ],
-            description: "can only be one of enum values and is required"
           },
           notes: {
             jsonType: "string",
@@ -166,18 +142,17 @@ function createAppDatabase(database) {
   });
 }
 
-function addToAppLog(collection, req) {
+function addToInterviewLog(collection, req) {
   collection.insertOne({
     userEmail: req.body.userEmail,
-    favorited: req.body.favorited,
-    deadline: req.body.deadline,
     companyName: req.body.companyName,
+    interviewerNames: req.body.interviewerNames,
+    recruiterNames: req.body.recruiterNames,
+    interviewDate: req.body.interviewDate,
+    interviewTime: req.body.interviewTime,
+    interviewLink: req.body.interviewLink,
     position: req.body.position,
-    jobId: req.body.jobId,
     jobPostingLink: req.body.jobPostingLink,
-    applicationPortalLink: req.body.applicationPortalLink,
-    applicationStatus: req.body.applicationStatus,
-    result: req.body.result,
     notes: req.body.notes
   });
 }
@@ -186,80 +161,74 @@ function hardcodeAdd(collection) {
   collection.insertMany([
     {
       userEmail: "jeremydoe@gmail.com",
-      favorited: 0,
-      deadline: "05/04/2021",
-      companyName: "Apple",
-      position: "Software Development Intern",
-      jobId: 183489239238,
-      jobPostingLink: "careers.apple.com",
-      applicationPortalLink: "careers.apple.com/interns",
-      applicationStatus: "To Do",
-      result: "N/A",
-      notes: ""
-    },
-    {
-      userEmail: "jeremydoe@gmail.com",
-      favorited: 0,
-      deadline: "05/06/2021",
       companyName: "Amazon",
-      position: "Amazon Future Leaders Intern",
-      jobId: 322394832098,
+      interviewerNames: "",
+      recruiterNames: "Rachel",
+      interviewDate: "04/23/2021",
+      interviewTime: "4:00:00PM",
+      interviewLink: "",
+      position: "Engineer",
       jobPostingLink: "amazon.com",
-      applicationPortalLink: "smile.amazon.com",
-      applicationStatus: "Completed",
-      result: "Pending",
       notes: ""
     },
     {
       userEmail: "jeremydoe@gmail.com",
-      favorited: 0,
-      deadline: "04/02/2021",
       companyName: "Ridgeline",
-      position: "Product Management Intern",
-      jobId: 183489239238,
-      jobPostingLink: "careers.apple.com",
-      applicationPortalLink: "careers.apple.com/interns",
-      applicationStatus: "In Progress",
-      result: "N/A",
+      interviewerNames: "Amy Wong",
+      recruiterNames: "",
+      interviewDate: "03/31/2021",
+      interviewTime: "4:00:00PM",
+      interviewLink: "",
+      position: "",
+      jobPostingLink: "",
       notes: ""
     },
     {
       userEmail: "jeremydoe@gmail.com",
-      favorited: 0,
-      deadline: "05/04/2021",
       companyName: "Apple",
-      position: "Software Development Intern",
-      jobId: 183489239238,
-      jobPostingLink: "careers.apple.com",
-      applicationPortalLink: "careers.apple.com/interns",
-      applicationStatus: "To Do",
-      result: "N/A",
+      interviewerNames: "",
+      recruiterNames: "",
+      interviewDate: "04/23/2021",
+      interviewTime: "4:00:00PM",
+      interviewLink: "",
+      position: "",
+      jobPostingLink: "",
       notes: ""
     },
     {
       userEmail: "jeremydoe@gmail.com",
-      favorited: 0,
-      deadline: "05/04/2021",
-      companyName: "Apple",
-      position: "Software Development Intern",
-      jobId: 183489239238,
-      jobPostingLink: "careers.apple.com",
-      applicationPortalLink: "careers.apple.com/interns",
-      applicationStatus: "In Progress",
-      result: "N/A",
+      companyName: "Google",
+      interviewerNames: "",
+      recruiterNames: "",
+      interviewDate: "04/23/2021",
+      interviewTime: "4:00:00PM",
+      interviewLink: "",
+      position: "",
+      jobPostingLink: "",
       notes: ""
     },
     {
-      userEmail: "newemail@yahoo.com",
-      favorited: 0,
-      deadline: "05/04/2021",
-      companyName: "Apple",
-      position: "Software Development Intern",
-      jobId: 183489239238,
-      jobPostingLink: "careers.apple.com",
-      applicationPortalLink: "careers.apple.com/interns",
-      applicationStatus: "Completed",
-      result: "N/A",
+      userEmail: "jeremydoe@gmail.com",
+      companyName: "Raytheon",
+      interviewerNames: "",
+      recruiterNames: "",
+      interviewDate: "04/23/2021",
+      interviewTime: "4:00:00PM",
+      interviewLink: "",
+      position: "",
+      jobPostingLink: "",
+      notes: ""
+    },
+    {
+      userEmail: "jeremydoe@gmail.com",
+      companyName: "CIA Secret Service",
+      interviewerNames: "",
+      recruiterNames: "",
+      interviewDate: "04/23/2021",
+      interviewTime: "4:00:00PM",
+      interviewLink: "",
+      position: "",
+      jobPostingLink: "",
       notes: ""
     }
   ]);
@@ -272,9 +241,9 @@ function deleteFromLog(collection, req) {
   collection.deleteOne(query);
 }
 
-function queryAllApps(collection, res) {
+function queryAllInterviews(collection, res) {
   const query = { userEmail: user };
-  const apps = collection
+  const interviews = collection
     .find(query)
     .toArray()
     .then((docs) => {

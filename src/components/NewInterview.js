@@ -14,24 +14,23 @@ import { Link } from "react-router-dom";
 
 import axios from "axios";
 
-// defines the space that contains the page for adding new job applications
-class ApplicationNew extends React.Component {
+// defines the space that contains the page for adding new job interviews
+class InterviewNew extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       apiResponse: "",
-      page: "ApplicationNew",
+      page: "InterviewNew",
 
       userEmail: this.props.dataFromParent,
-      favorited: false,
       companyName: "",
+      interviewerNames: "",
+      recruiterNames: "",
+      interviewDate: "",
+      interviewTime: "",
+      interviewLink: "",
       position: "",
-      jobId: "",
-      deadline: "",
       jobPostingLink: "",
-      applicationPortalLink: "",
-      applicationStatus: "",
-      result: "",
       notes: ""
     };
 
@@ -40,8 +39,8 @@ class ApplicationNew extends React.Component {
   }
 
   callbackFunction = (childData) => {
-    console.log(childData.toString());
-    this.setState({ deadline: childData.toString() });
+    console.log(childData);
+    this.setState({ interviewDate: childData });
   };
 
   // Handle fields change
@@ -49,23 +48,11 @@ class ApplicationNew extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-  handleChangeStatus = (event, index, value) => {
-    this.setState({ applicationStatus: value });
-  };
-
-  handleChangeResult = (event, index, value) => {
-    this.setState({ result: value });
-  };
-
-  handleChangeFavorite = (event) => {
-    this.setState({ favorited: event.target.checked });
-  };
-
-  postNewApplication() {
+  postNewInterview() {
     console.log("STATE FOR POST");
     console.log(this.state);
     axios
-      .post("http://localhost:5000/applicationDatabase/add", this.state)
+      .post("http://localhost:5000/interviewDatabase/add", this.state)
       .then((res) => {
         console.log(res);
       })
@@ -78,11 +65,11 @@ class ApplicationNew extends React.Component {
   handleSubmit = (event) => {
     console.log("dear god it did work now didn't it");
     // event.preventDefault();
-    this.postNewApplication();
+    this.postNewInterview();
   };
 
   performValidation() {
-    return this.state.companyName.length > 0 && this.state.position.length > 0 && this.state.applicationStatus.length > 0 && this.state.result.length > 0 && this.state.deadline.length > 0;
+    return this.state.companyName.length > 0 && this.state.interviewTime.length > 0 && this.state.interviewDate > 0;
   }
 
   render() {
@@ -104,27 +91,36 @@ class ApplicationNew extends React.Component {
                 />
                 <br />
                 <TextField
-                  floatingLabelText="*Position"
-                  name="position"
+                  floatingLabelText="Interviewer Name(s) (Optional)"
                   fullWidth
+                  name="interviewerNames"
                   onChange={this.handleChange}
                 />
-                <br />
-              </div>
-              <br />
-              <div>
-                <Checkbox
-                  name="favorited"
-                  label="Favorite"
-                  onClick={this.handleChangeFavorite}
+                <TextField
+                  floatingLabelText="Recruiter Name(s) (Optional)"
+                  fullWidth
+                  name="recruiterNames"
+                  onChange={this.handleChange}
                 />
                 <Grid container>
                   <Calendar
                     parentCallback={this.callbackFunction}
-                    label={"*Application Deadline"}
+                    label={"*Interview Date"}
                   />
-                  <h3>{this.state.deadline}</h3>
+                  <h3>{this.state.interviewDate.toString()}</h3>
                 </Grid>
+                <TextField
+                  floatingLabelText="*Interview Time"
+                  fullWidth
+                  name="interviewTime"
+                  onChange={this.handleChange}
+                />
+                <TextField
+                  floatingLabelText="Interview Link (Optional)"
+                  fullWidth
+                  name="interviewLink"
+                  onChange={this.handleChange}
+                />
                 <TextField
                   floatingLabelText="Job Posting Link (Optional)"
                   fullWidth
@@ -132,58 +128,26 @@ class ApplicationNew extends React.Component {
                   onChange={this.handleChange}
                 />
                 <TextField
-                  floatingLabelText="Job ID (Optional)"
+                  floatingLabelText="Interview Portal Link (Optional)"
                   fullWidth
-                  name="jobId"
+                  name="interviewPortalLink"
                   onChange={this.handleChange}
                 />
-                <TextField
-                  floatingLabelText="Application Portal Link (Optional)"
-                  fullWidth
-                  name="applicationPortalLink"
-                  onChange={this.handleChange}
-                />
-                <DropDownMenu
-                  value={this.state.applicationStatus}
-                  onChange={this.handleChangeStatus}
-                >
-                  <MenuItem
-                    value={""}
-                    disabled
-                    primaryText="*Select Application Status"
-                  />
-                  <MenuItem value={"To Do"} primaryText="To Do" />
-                  <MenuItem value={"In Progress"} primaryText="In Progress" />
-                  <MenuItem value={"Completed"} primaryText="Completed" />
-                </DropDownMenu>
-                <br />
-                <DropDownMenu
-                  value={this.state.result}
-                  onChange={this.handleChangeResult}
-                >
-                  <MenuItem value={""} disabled primaryText="*Select Result" />
-                  <MenuItem value={"N/A"} primaryText="N/A" />
-                  <MenuItem value={"Interviewing"} primaryText="Interviewing" />
-                  <MenuItem value={"Waiting"} primaryText="Waiting" />
-                  <MenuItem value={"Discontinued"} primaryText="Discontinued" />
-                  <MenuItem value={"Accepted"} primaryText="Accepted" />
-                  <MenuItem value={"Declined"} primaryText="Declined" />
-                </DropDownMenu>
                 <br />
                 <TextField
-                  floatingLabelText="Note (Optional)"
+                  floatingLabelText="Notes (Optional)"
                   fullWidth
                   name="notes"
                   onChange={this.handleChange}
                 />
                 <br />
                 <br />
-                <Link to={"/applications"}>
+                <Link to={"/interviews"}>
                   <Fab variant="extended" aria-label="Delete">
                     Cancel
                   </Fab>
                 </Link>
-                <Link to={"/applications"} onClick={this.handleSubmit}>
+                <Link to={"/interviews"} onClick={this.handleSubmit}>
                   <Fab variant="extended" aria-label="Delete" disabled={!this.performValidation()}>
                     Submit
                   </Fab>
@@ -206,4 +170,4 @@ const styles = (theme) => ({
   }
 });
 
-export default withStyles(styles)(ApplicationNew);
+export default withStyles(styles)(InterviewNew);
