@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/JobMe/static/css/main.6c5e3faa.chunk.css",
+    "main.js": "/JobMe/static/js/main.3258fb69.chunk.js",
+    "main.js.map": "/JobMe/static/js/main.3258fb69.chunk.js.map",
+    "runtime-main.js": "/JobMe/static/js/runtime-main.4e47ed2a.js",
+    "runtime-main.js.map": "/JobMe/static/js/runtime-main.4e47ed2a.js.map",
+    "static/js/2.83370ab4.chunk.js": "/JobMe/static/js/2.83370ab4.chunk.js",
+    "static/js/2.83370ab4.chunk.js.map": "/JobMe/static/js/2.83370ab4.chunk.js.map",
+    "index.html": "/JobMe/index.html",
+    "static/css/main.6c5e3faa.chunk.css.map": "/JobMe/static/css/main.6c5e3faa.chunk.css.map",
+    "static/js/2.83370ab4.chunk.js.LICENSE.txt": "/JobMe/static/js/2.83370ab4.chunk.js.LICENSE.txt",
+    "static/media/caret.17f0a4fb.svg": "/JobMe/static/media/caret.17f0a4fb.svg",
+    "static/media/chevron.52254b8e.svg": "/JobMe/static/media/chevron.52254b8e.svg",
+    "static/media/cog.8c5b9138.svg": "/JobMe/static/media/cog.8c5b9138.svg",
+    "static/media/plus.d5a88a59.svg": "/JobMe/static/media/plus.d5a88a59.svg",
+    "static/media/profile.028b2c52.svg": "/JobMe/static/media/profile.028b2c52.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.4e47ed2a.js",
+    "static/js/2.83370ab4.chunk.js",
+    "static/css/main.6c5e3faa.chunk.css",
+    "static/js/main.3258fb69.chunk.js"
+  ]
+}

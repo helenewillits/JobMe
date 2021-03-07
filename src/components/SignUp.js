@@ -102,11 +102,11 @@ class SignUp extends React.Component {
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    submitNewUser(event) {
+    submitNewUser(event, selfState) {
         console.log("STATE FOR POST");
-        console.log(this.state);
+        console.log(selfState);
         axios
-            .post("http://localhost:5000/userDatabase/add", this.state)
+            .post("http://localhost:5000/userDatabase/add", selfState)
             .then((res) => {
                 console.log(res);
             })
@@ -120,13 +120,13 @@ class SignUp extends React.Component {
         console.log("Made it");
         var apiBaseUrl = "http://localhost:5000/";
         var selfState = this.state;
-        var selfProps = this.props;
+        var self = this;
         console.log("PAYLOAD: ", this.state);
-        axios.post(apiBaseUrl + "userDatabase/post/validateSignup", this.state)
+        axios.post(apiBaseUrl + "userDatabase/post/validateSignup", selfState)
             .then(function (response) {
                 if (response.data.code === 200) {
                     console.log("Signup successful");
-                    this.submitNewUser(event);
+                    self.submitNewUser(event, selfState);
                     // console.log("Login user ", this.loginUser(this.state.email));
                     // this.sendData(loginUser(this.state.email));
                 }
