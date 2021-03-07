@@ -65,7 +65,7 @@ class ApplicationNew extends React.Component {
     console.log("STATE FOR POST");
     console.log(this.state);
     axios
-      .post("http://localhost:5000/applicationDatabase/add", this.state)
+      .post("https://jobme-app.herokuapp.com/applicationDatabase/add", this.state)
       .then((res) => {
         console.log(res);
       })

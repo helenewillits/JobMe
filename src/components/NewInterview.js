@@ -52,7 +52,7 @@ class InterviewNew extends React.Component {
     console.log("STATE FOR POST");
     console.log(this.state);
     axios
-      .post("http://localhost:5000/interviewDatabase/add", this.state)
+      .post("https://jobme-app.herokuapp.com/interviewDatabase/add", this.state)
       .then((res) => {
         console.log(res);
       })

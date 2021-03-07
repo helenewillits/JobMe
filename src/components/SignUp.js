@@ -106,7 +106,7 @@ class SignUp extends React.Component {
         console.log("STATE FOR POST");
         console.log(selfState);
         axios
-            .post("http://localhost:5000/userDatabase/add", selfState)
+            .post("https://jobme-app.herokuapp.com/userDatabase/add", selfState)
             .then((res) => {
                 console.log(res);
             })
@@ -118,7 +118,7 @@ class SignUp extends React.Component {
 
     handleSubmit(event) {
         console.log("Made it");
-        var apiBaseUrl = "http://localhost:5000/";
+        var apiBaseUrl = "https://jobme-app.herokuapp.com/";
         var selfState = this.state;
         var self = this;
         console.log("PAYLOAD: ", this.state);

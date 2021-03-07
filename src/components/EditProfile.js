@@ -44,7 +44,7 @@ class EditProfile extends React.Component {
     console.log("STATE FOR PUT");
     console.log(this.state);
     axios
-      .put("http://localhost:5000/userDatabase/put", this.state)
+      .put("https://jobme-app.herokuapp.com/userDatabase/put", this.state)
       .then((res) => {
         console.log(res);
       })

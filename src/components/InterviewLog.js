@@ -21,7 +21,7 @@ class InterviewLog extends React.Component {
   componentWillMount() {
     this.getEmail();
     axios
-      .get("http://localhost:5000/interviewDatabase")
+      .get("https://jobme-app.herokuapp.com/interviewDatabase")
       .then((res) => {
         // need to update comparisons
         const currDate = moment().format("YYYY-MM-DD");
@@ -50,7 +50,7 @@ class InterviewLog extends React.Component {
   getEmail() {
     console.log("getEmail post route");
     axios
-      .post("http://localhost:5000/interviewDatabase/post/getEmail", this.state)
+      .post("https://jobme-app.herokuapp.com/interviewDatabase/post/getEmail", this.state)
       .then((res) => {
         console.log(res);
       })
@@ -143,7 +143,7 @@ class InterviewLogItem extends React.Component {
     console.log(interview);
     console.log(interview._id);
     axios
-      .delete("http://localhost:5000/interviewDatabase/delete", {
+      .delete("https://jobme-app.herokuapp.com/interviewDatabase/delete", {
         data: {
           userId: interview.userId,
           _id: interview._id

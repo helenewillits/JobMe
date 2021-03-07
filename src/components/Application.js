@@ -24,7 +24,7 @@ class ApplicationLog extends React.Component {
   componentWillMount() {
     this.getEmail();
     axios
-      .get("http://localhost:5000/applicationDatabase")
+      .get("https://jobme-app.herokuapp.com/applicationDatabase")
       .then((res) => {
         const toDo = res.data.filter(
           (item) => item.applicationStatus == "To Do"
@@ -56,7 +56,7 @@ class ApplicationLog extends React.Component {
     console.log("getEmail post route");
     axios
       .post(
-        "http://localhost:5000/applicationDatabase/post/getEmail",
+        "https://jobme-app.herokuapp.com/applicationDatabase/post/getEmail",
         this.state
       )
       .then((res) => {
@@ -152,7 +152,7 @@ class ApplicationLogItem extends React.Component {
     console.log(application);
     console.log(application._id);
     axios
-      .delete("http://localhost:5000/applicationDatabase/delete", {
+      .delete("https://jobme-app.herokuapp.com/applicationDatabase/delete", {
         data: {
           userId: application.userId,
           _id: application._id

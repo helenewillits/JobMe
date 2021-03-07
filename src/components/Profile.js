@@ -25,7 +25,7 @@ class Profile extends React.Component {
         console.log("In ComponentWillMount");
         this.getEmail();
         axios
-            .get("http://localhost:5000/userDatabase")
+            .get("https://jobme-app.herokuapp.com/userDatabase")
             .then((res) => {
                 console.log(res.data[0]);
                 this.setState({ user: res.data[0] });
@@ -43,7 +43,7 @@ class Profile extends React.Component {
 
     getEmail() {
         console.log("getEmail post route");
-        axios.post("http://localhost:5000/userDatabase/post/getEmail", this.state)
+        axios.post("https://jobme-app.herokuapp.com/userDatabase/post/getEmail", this.state)
             .then((res) => {
                 console.log(res);
             })

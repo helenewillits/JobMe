@@ -98,7 +98,7 @@ class LogIn extends React.Component {
 
     handleClick(event) {
         console.log("Made it");
-        var apiBaseUrl = "http://localhost:5000/";
+        var apiBaseUrl = "https://jobme-app.herokuapp.com/";
         var selfState = this.state;
         var selfProps = this.props;
         console.log("PAYLOAD: ", this.state);
