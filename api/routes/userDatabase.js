@@ -1,15 +1,13 @@
 const { urlencoded } = require("express");
 var Express = require("express");
 var router = Express.Router({ caseSensitive: true });
-var ObjectId = require("mongodb").ObjectID;
 const res = require("express/lib/response");
 var userEmail = "";
+const { MongoClient } = require("mongodb");
+const uri = "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 router.get("/", function (req, res) {
     console.log("get route");
-    const { MongoClient } = require("mongodb");
-    const uri =
-        "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     console.log("initialize the database");
     MongoClient.connect(uri, (err, client) => {
         if (err) {
@@ -19,7 +17,7 @@ router.get("/", function (req, res) {
         console.log("connected");
         const db = client.db("UserDatabase");
         const collection = db.collection("User");
-        console.log("REQ: ", req.query);
+
         queryEmail(collection, res);
 
         console.log("All Users Received");
@@ -30,9 +28,6 @@ router.get("/", function (req, res) {
 
 router.post("/", function (req, res) {
     console.log("post route");
-    const { MongoClient } = require("mongodb");
-    const uri =
-        "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     console.log("initialize the database");
     MongoClient.connect(uri, (err, client) => {
         if (err) {
@@ -62,9 +57,6 @@ router.post("/post/getEmail", function (req, res) {
 
 router.post("/post/validateLogin", function (req, res) {
     console.log("validateLogin post route");
-    const { MongoClient } = require("mongodb");
-    const uri =
-        "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     console.log("initialize the database");
     MongoClient.connect(uri, (err, client) => {
         if (err) {
@@ -83,9 +75,6 @@ router.post("/post/validateLogin", function (req, res) {
 
 router.post("/post/validateSignup", function (req, res) {
     console.log("validateSignup post route");
-    const { MongoClient } = require("mongodb");
-    const uri =
-        "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     console.log("initialize the database");
     MongoClient.connect(uri, (err, client) => {
         if (err) {
@@ -104,9 +93,6 @@ router.post("/post/validateSignup", function (req, res) {
 
 router.put("/", function (req, res) {
     console.log("put route");
-    const { MongoClient } = require("mongodb");
-    const uri =
-        "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
     console.log("initialize the database");
     MongoClient.connect(uri, (err, client) => {
         if (err) {
@@ -123,28 +109,6 @@ router.put("/", function (req, res) {
         client.close();
     });
 });
-
-// router.delete("/", function (req, res) {
-//     console.log("delete route");
-//     const { MongoClient } = require("mongodb");
-//     const uri =
-//         "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
-//     console.log("initialize the database");
-//     MongoClient.connect(uri, (err, client) => {
-//         if (err) {
-//             throw err;
-//             return;
-//         }
-//         console.log("connected");
-//         const db = client.db("UserDatabase");
-//         const collection = db.collection("User");
-
-//         deleteFromLog(collection, req);
-//         res.send("User Deleted");
-
-//         client.close();
-//     });
-// });
 
 function createUserDatabase(database) {
     database.createCollection("User", {
@@ -268,7 +232,7 @@ function hardcodeAdd(collection) {
 function validateUserLogin(collection, req, res) {
     const query = { email: req.body.email };
     console.log("in validateUser");
-    const user = collection
+    collection
         .find(query)
         .toArray()
         .then((docs) => {
@@ -291,7 +255,7 @@ function validateUserLogin(collection, req, res) {
 function validateUserSignup(collection, req, res) {
     const query = { email: req.body.email };
     console.log("in validateUser");
-    const user = collection
+    collection
         .find(query)
         .toArray()
         .then((docs) => {
@@ -309,7 +273,7 @@ function validateUserSignup(collection, req, res) {
 
 function queryEmail(collection, res) {
     const query = { email: userEmail };
-    const user = collection
+    collection
         .find(query)
         .toArray()
         .then((docs) => {
@@ -332,11 +296,5 @@ function updateUser(collection, req) {
     if (req.body.notes != "") collection.updateOne(query, { $set: { "notes": req.body.notes } });
 
 }
-
-// function deleteFromDatabase(collection, req) {
-//     const query = { _id: ObjectId(req.body._id).valueOf() };
-//     console.log(query);
-//     collection.deleteOne(query);
-// }
 
 module.exports = router;
