@@ -5,6 +5,14 @@ import styles from "../assets/Styles.module.css";
 class SingleApplication extends React.Component {
   state = { application: {} };
 
+  viewCompany = () => {
+    if (this.state.application.companyName != "")
+      return <h4>{this.state.application.companyName}</h4>;
+  };
+  viewPosition = () => {
+    if (this.state.application.position != "")
+      return <h4>{this.state.application.position}</h4>;
+  };
   viewJobId = () => {
     if (this.state.application.jobId != "")
       return <h3>{this.state.application.jobId}</h3>;
@@ -26,6 +34,14 @@ class SingleApplication extends React.Component {
           </a>
         </div>
       );
+  };
+  viewResult = () => {
+    if (this.state.application.result != "")
+      return <h5>{this.state.application.result}</h5>;
+  };
+  viewDeadline = () => {
+    if (this.state.application.deadline != "")
+      return <h5>{this.state.application.deadline}</h5>;
   };
   viewNotes = () => {
     if (this.state.application.notes != "")
@@ -57,13 +73,13 @@ class SingleApplication extends React.Component {
             x
           </button>
         </div>
-        <h1>{application.companyName}</h1>
-        <h2>{application.position}</h2>
+        {this.viewCompany()}
+        {this.viewPosition()}
         {this.viewJobId()}
-        <h3>{application.deadline}</h3>
+        {this.viewDeadline()}
         {this.viewJobPostingLink()}
         {this.viewApplicationPortalLink()}
-        <h3>{application.result}</h3>
+        {this.viewResult()}
         {this.viewNotes()}
       </div>
     );
