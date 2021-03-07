@@ -43,7 +43,6 @@ class ApplicationLog extends React.Component {
         });
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
   }
@@ -59,7 +58,6 @@ class ApplicationLog extends React.Component {
         console.log(res);
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
   }
@@ -157,7 +155,6 @@ class ApplicationLogItem extends React.Component {
         alert("Deleting item. Please refresh the page.");
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
   };

@@ -72,7 +72,6 @@ class ApplicationNew extends React.Component {
         console.log(res);
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
   }
