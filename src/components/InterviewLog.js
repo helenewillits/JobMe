@@ -165,6 +165,31 @@ class InterviewLogItem extends React.Component {
     this.props.handlePopup(this.state.interview);
   };
 
+  viewCompany = () => {
+    if (this.state.interview.companyName != "")
+      return <h4>{this.state.interview.companyName}</h4>;
+  };
+  viewPosition = () => {
+    if (this.state.interview.position != "")
+      return <h4>{this.state.interview.position}</h4>;
+  };
+  viewJobPostingLink = () => {
+    if (this.state.interview.jobPostingLink != "")
+      return (
+        <div style={{ textDecoration: "underline" }}>
+          <a href={this.state.interview.jobPostingLink}>View Job Posting</a>
+        </div>
+      );
+  };
+  viewInterviewDate = () => {
+    if (this.state.interview.interviewDate != "")
+      return <h5>{this.state.interview.interviewDate}</h5>;
+  };
+  viewInterviewTime = () => {
+    if (this.state.interview.interviewTime != "")
+      return <h5>{this.state.interview.interviewTime}</h5>;
+  };
+
   render() {
     const { interview } = this.props;
     this.state.interview = interview;
@@ -185,13 +210,11 @@ class InterviewLogItem extends React.Component {
             </button>
           </div>
           <div className={styles.item} onClick={this.handlePopup}>
-            <h4> {interview.companyName} </h4>
-            <h4> {interview.position} </h4>
-            <div style={{ textDecoration: "underline" }}>
-              <a href={interview.jobPostingLink}>View Job Posting</a>
-            </div>
-            <h5>{interview.interviewDate}</h5>
-            <h5> {interview.interviewTime} </h5>
+            {this.viewCompany()}
+            {this.viewPosition()}
+            {this.viewJobPostingLink()}
+            {this.viewInterviewDate()}
+            {this.viewInterviewTime()}
           </div>
         </div>
       );
@@ -202,24 +225,6 @@ class InterviewLogItem extends React.Component {
         </div>
       );
     }
-  }
-}
-
-class AddButton extends React.Component {
-  handleAdd = () => {
-    window.location.href = "localhost:3000/interviews/add";
-  };
-
-  render() {
-    return (
-      <div>
-        <Link to={"interviews/add"}>
-          <button type="submit" onclick={this.handleAdd}>
-            +
-          </button>
-        </Link>
-      </div>
-    );
   }
 }
 
