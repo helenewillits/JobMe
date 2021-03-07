@@ -7,9 +7,6 @@ import TextField from "material-ui/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
-import DropDownMenu from "material-ui/DropDownMenu";
-import MenuItem from "material-ui/MenuItem";
-import Checkbox from "material-ui/Checkbox";
 import { Link } from "react-router-dom";
 
 import axios from "axios";
@@ -57,14 +54,12 @@ class InterviewNew extends React.Component {
         console.log(res);
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
   }
 
   handleSubmit = (event) => {
     console.log("dear god it did work now didn't it");
-    // event.preventDefault();
     this.postNewInterview();
   };
 

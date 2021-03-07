@@ -122,7 +122,6 @@ class App extends React.Component {
               <SingleApplication
                 display={this.state.appModalOpen}
                 handlePopup={this.handleApplicationPopup}
-                // modalOpen={this.state.appModalOpen}
                 application={this.state.application}
               />
               <ApplicationLog
@@ -143,7 +142,6 @@ class App extends React.Component {
               <SingleInterview
                 display={this.state.intModalOpen}
                 handlePopup={this.handleInterviewPopup}
-                // modalOpen={this.state.appModalOpen}
                 interview={this.state.interview}
               />
               <InterviewLog
