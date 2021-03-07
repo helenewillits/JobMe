@@ -42,10 +42,15 @@ class Header extends React.Component {
     </div>
   );
 
+  no_header = (
+      <div>
+          <h1>Page has not been defined...</h1>
+      </div>
+  )
+
   render() {
     const { page } = this.props;
 
-    if (page === "Dashboard") return this.dashboard_header;
     if (page === "ApplicationLog") return this.application_log_header;
     if (page === "ApplicationNew") return this.application_new_header;
     if (page === "InterviewLog") return this.interview_log_header;
@@ -53,7 +58,7 @@ class Header extends React.Component {
     if (page === "Profile") return this.profile_header;
     if (page === "EditProfile") return this.profile_edit_header;
     else {
-      return this.dashboard_header;
+      return this.no_header;
     }
   }
 }

@@ -9,9 +9,6 @@ const uri = "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirst
 
 router.get("/", function (req, res) {
   console.log("get route");
-  // const { MongoClient } = require("mongodb");
-  // const uri =
-  //   "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
@@ -23,14 +20,6 @@ router.get("/", function (req, res) {
     // createAppDatabase(db);
     const collection = db.collection("Application");
 
-    // queryAppStatus(
-    //    collection,
-    //    {
-    //       status: "To Do"
-    //    },
-    //    res
-    // );
-
     // hardcodeAdd(collection);
     queryAllApps(collection, res);
     console.log("All Applications Received");
@@ -41,9 +30,6 @@ router.get("/", function (req, res) {
 
 router.post("/", function (req, res) {
   console.log("post route");
-  // const { MongoClient } = require("mongodb");
-  // const uri =
-  //   "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
@@ -72,9 +58,6 @@ router.post("/post/getEmail", function (req, res) {
 
 router.delete("/", function (req, res) {
   console.log("delete route");
-  // const { MongoClient } = require("mongodb");
-  // const uri =
-  //   "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
@@ -276,7 +259,7 @@ function deleteFromLog(collection, req) {
 
 function queryAllApps(collection, res) {
   const query = { userEmail: user };
-  const apps = collection
+  collection
     .find(query)
     .toArray()
     .then((docs) => {

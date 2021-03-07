@@ -56,14 +56,12 @@ class InterviewNew extends React.Component {
         console.log(res);
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
   }
 
   handleSubmit = (event) => {
     console.log("dear god it did work now didn't it");
-    // event.preventDefault();
     this.postNewInterview();
   };
 
