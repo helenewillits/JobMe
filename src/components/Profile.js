@@ -61,9 +61,9 @@ class Profile extends React.Component {
                 <Header page={this.state.page} />
                 <br />
                 <Link to={"/profile/edit"}>
-                    <Fab variant="extended" aria-label="Delete">
+                    <button className={styles.edit_button} variant="extended" aria-label="Delete">
                         Edit
-              </Fab>
+              </button>
                 </Link>
                 <br />
                 <div className={styles.area}>

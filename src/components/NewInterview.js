@@ -3,14 +3,13 @@ import Header from "./Header.js";
 import NavigationBar from "./Navbar.js";
 import Calendar from "./Calendar.js";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import TextField from "material-ui/TextField";
+import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
-import DropDownMenu from "material-ui/DropDownMenu";
-import MenuItem from "material-ui/MenuItem";
-import Checkbox from "material-ui/Checkbox";
 import { Link } from "react-router-dom";
+import Box from '@material-ui/core/Box';
+import cssstyles from "../assets/Styles.module.css";
+import Container from '@material-ui/core/Container';
 
 import axios from "axios";
 
@@ -74,89 +73,130 @@ class InterviewNew extends React.Component {
 
   render() {
     return (
-      <div>
-        <MuiThemeProvider>
-          <NavigationBar />
-          <p className="App-new">{this.state.apiResponse}</p>
-          <Header page={this.state.page} />
+      <Container component="main" maxWidth="sm" align='center'>
+        <Box mt={1} className={cssstyles.addPage}>
           <div>
-            <form>
-              <div>
-                <TextField
-                  type="text"
-                  floatingLabelText="*Company"
-                  name="companyName"
-                  onChange={this.handleChange}
-                  fullWidth
-                />
-                <br />
-                <TextField
-                  floatingLabelText="Interviewer Name(s) (Optional)"
-                  fullWidth
-                  name="interviewerNames"
-                  onChange={this.handleChange}
-                />
-                <TextField
-                  floatingLabelText="Recruiter Name(s) (Optional)"
-                  fullWidth
-                  name="recruiterNames"
-                  onChange={this.handleChange}
-                />
-                <Grid container>
-                  <Calendar
-                    parentCallback={this.callbackFunction}
-                    label={"*Interview Date"}
-                  />
-                  <h3>{this.state.interviewDate.toString()}</h3>
-                </Grid>
-                <TextField
-                  floatingLabelText="*Interview Time"
-                  fullWidth
-                  name="interviewTime"
-                  onChange={this.handleChange}
-                />
-                <TextField
-                  floatingLabelText="Interview Link (Optional)"
-                  fullWidth
-                  name="interviewLink"
-                  onChange={this.handleChange}
-                />
-                <TextField
-                  floatingLabelText="Job Posting Link (Optional)"
-                  fullWidth
-                  name="jobPostingLink"
-                  onChange={this.handleChange}
-                />
-                <TextField
-                  floatingLabelText="Interview Portal Link (Optional)"
-                  fullWidth
-                  name="interviewPortalLink"
-                  onChange={this.handleChange}
-                />
-                <br />
-                <TextField
-                  floatingLabelText="Notes (Optional)"
-                  fullWidth
-                  name="notes"
-                  onChange={this.handleChange}
-                />
-                <br />
-                <br />
-                <Link to={"/interviews"}>
-                  <Fab variant="extended" aria-label="Delete">
-                    Cancel
-                  </Fab>
-                </Link>
-                <Link to={"/interviews"} onClick={this.handleSubmit}>
-                  <Fab variant="extended" aria-label="Delete" disabled={!this.performValidation()}>
-                    Submit
-                  </Fab>
-                </Link>
+            <MuiThemeProvider>
+              <NavigationBar />
+              <p className="App-new">{this.state.apiResponse}</p>
+              <div align="left">
+                <Header page={this.state.page} />
               </div>
-            </form>
+              <div>
+                <form>
+                  <div>
+                    <TextField
+                      margin="normal"
+                      type="text"
+                      label="Company"
+                      id="company"
+                      name="companyName"
+                      required
+                      onChange={this.handleChange}
+                      autoComplete="company"
+                      fullWidth
+                      autofocus
+                    />
+                    <TextField
+                      label="Interviewer Name(s)"
+                      fullWidth
+                      margin="normal"
+                      id="interviewerNames"
+                      name="interviewerNames"
+                      onChange={this.handleChange}
+                      autoComplete="interviewerNames"
+                      autofocus
+                    />
+                    <TextField
+                      margin="normal"
+                      label="Recruiter Name(s)"
+                      fullWidth
+                      id="recruiterNames"
+                      name="recruiterNames"
+                      autoComplete="recruiterNames"
+                      onChange={this.handleChange}
+                      autofocus
+                    />
+                    <Grid container>
+                      <Calendar
+                        parentCallback={this.callbackFunction}
+                        label={"Interview Date *"}
+                      />
+                      <h3>{this.state.interviewDate.toString()}</h3>
+                    </Grid>
+                    <TextField
+                      margin="normal"
+                      id="interviewTime"
+                      name="interviewTime"
+                      required
+                      label="Interview Time"
+                      fullWidth
+                      name="interviewTime"
+                      onChange={this.handleChange}
+                      autoComplete="interviewTime"
+                      autofocus
+                    />
+                    <TextField
+                      label="Interview Link"
+                      margin="normal"
+                      fullWidth
+                      id="interviewLink"
+                      name="interviewLink"
+                      onChange={this.handleChange}
+                      autoComplete="interviewLink"
+                      autofocus
+                    />
+                    <TextField
+                      label="Job Posting Link"
+                      margin="normal"
+                      fullWidth
+                      name="jobPostingLink"
+                      onChange={this.handleChange}
+                      autoComplete="jobPostingLink"
+                      autofocus
+                    />
+                    <TextField
+                      label="Interview Portal Link"
+                      margin="normal"
+                      fullWidth
+                      id="interviewPortalLink"
+                      name="interviewPortalLink"
+                      onChange={this.handleChange}
+                      autoComplete="interviewPortalLink"
+                      autofocus
+                    />
+                    <br />
+                    <TextField
+                      label="Notes"
+                      margin="normal"
+                      fullWidth
+                      id="notes"
+                      name="notes"
+                      onChange={this.handleChange}
+                      autoComplete="notes"
+                      autofocus
+                    />
+                    <br />
+                    <br />
+                    <div align="right">
+                      <Link to={"/interviews"}>
+                        <button className={cssstyles.delete_button} variant="extended" aria-label="Delete">
+                          Cancel
+                    </button>
+                      </Link>
+                      <Link to={"/interviews"} onClick={this.handleSubmit}>
+                        <button className={cssstyles.add_submit_button} variant="extended" aria-label="Delete" disabled={!this.performValidation()}>
+                          Submit
+                  </button>
+                      </Link>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </MuiThemeProvider>
           </div>
-        </MuiThemeProvider>
-      </div>
+        </Box>
+      </Container>
     );
   }
 }

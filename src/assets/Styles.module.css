@@ -51,18 +51,51 @@ button {
 
 .close_button{
     color: #5e5e5e;
+    border: 0;
     background-color: #bae8e8;
     padding: 4px 8px 4px 8px;
     margin: 10px 10px 0px 10px;
-    border-radius: 2px;
-    border-color: white;
-    /*border-radius: 50%;*/
+    border-radius: 50%;
+}
+.close_button:hover{
+    background-color: rgb(0, 100, 128);
+    color: white;
+}
+
+.edit_button{
+    color: #5e5e5e;
+    border: 0;
+    background-color: #bae8e8;
+    padding: 4px 3px 4px 3px;
+    margin: -5px 0px 0px -2px;
+    height: 5vh;
+    width: 8vw;
+    border-radius: 5px;
+}
+.edit_button:hover{
+    background-color: rgb(0, 100, 128);
+    color: white;
+}
+
+.profile_submit_button{
+    color: #5e5e5e;
+    border: 0;
+    background-color: #e3f6f5;
+    padding: 10px 8px 10px 8px;
+    margin: -5px 0px 0px -2px;
+    height: 5vh;
+    width: 8vw;
+    border-radius: 5px;
+}
+.profile_submit_button:hover{
+    background-color: rgb(0, 100, 128);
+    color: white;
 }
 
 .delete_button{
-    width: 20%;
-    padding: 2%;
-    float: left;
+    width: 6vw;
+    padding-left: 2%;
+    padding-right: 2%;
     background-color: #BAE8E8;
     color: #5e5e5e;
     border: 0;
@@ -74,6 +107,47 @@ button {
     border: 0;
     color: white;
     background-color: rgb(0, 100, 128);
+}
+
+.add_submit_button{
+    width: 6vw;
+    padding-left: 2%;
+    padding-right: 2%;
+    /*float: left;*/
+    background-color: #e3f6f5;
+    color: #5e5e5e;
+    border: 0;
+    font-family: sans-serif;
+    font-style: normal;
+}
+
+.add_submit_button:hover{
+    border: 0;
+    color: white;
+    background-color: rgb(0, 100, 128);
+}
+
+.submit_button{
+    width: 7%;
+    margin-left: 2%;
+    padding-left: 2%;
+    padding-right: 2%;
+    float: left;
+    background-color: #e3f6f5;
+    color: #5e5e5e;
+    border: 0;
+    font-family: sans-serif;
+    font-style: normal;
+}
+
+.submit_button:hover{
+    border: 0;
+    color: white;
+    background-color: rgb(0, 100, 128);
+}
+
+.dropMargin{
+    margin-left: -4%;
 }
 
 .button_secondary {
@@ -99,9 +173,26 @@ input {
     background-color:white;
     border: 2;
     border-color: #e3f6f5;
+    padding-top: 5px;
     padding-left: 15px;
     padding-right: 15px;
     margin-top: 10px;
+    margin-bottom: 50px;
+    border-radius: 5px;
+    border-style: solid;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.05), 0 4px 10px 0 rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.areaLogout {
+    background-color:white;
+    border: 2;
+    border-color: #e3f6f5;
+    padding-top: 5%;
+    padding-bottom: 2%;
+    padding-left: 5%;
+    padding-right: 5%;
+    margin-top: 20%;
     margin-bottom: 50px;
     border-radius: 5px;
     border-style: solid;
@@ -118,7 +209,26 @@ input {
     padding-top: 10%;
     padding-left: 15%;
     padding-right: 15%;
-    margin-top: 5px;
+    /*margin-left: -13%;*/
+    margin-top: 5%;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    border-style: solid;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.05), 0 4px 10px 0 rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.addPage {
+    width: 135%;
+    background-color:white;
+    border: 2;
+    border-color: #e3f6f5;
+    padding-bottom: 8%;
+    padding-top: 2%;
+    padding-left: 15%;
+    padding-right: 15%;
+    margin-left: -13%;
+    margin-top: 5%;
     margin-bottom: 5px;
     border-radius: 5px;
     border-style: solid;
@@ -142,7 +252,7 @@ input {
 
     border-style: solid;
     border-width: 2px;
-    border-color: #e3f6f5;
+    border-color: rgb(0, 100, 128);
     border-radius: 5px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
     background: white;
@@ -288,7 +398,7 @@ a {
 .dropdown {
     margin: 22px;
     position: absolute;
-    top: 16%;
+    top: 9vh;
     width: 300px;
     transform: translateX(-45%);
     background-color: #bae8e8;

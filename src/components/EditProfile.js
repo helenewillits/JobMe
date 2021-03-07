@@ -181,22 +181,29 @@ class EditProfile extends React.Component {
                         onChange={this.handleChange}
                         fullWidth
                       />
+                      <br />
+                      <br />
+                      <br />
+                      <div align="right">
+                        <Link to={"/profile"}>
+                          <button className={styles.delete_button} variant="extended" aria-label="Delete">
+                            Cancel
+              </button>
+                        </Link>
+                        <Link to={"/profile"} onClick={this.handleSubmit}>
+                          <button className={styles.add_submit_button} variant="extended" aria-label="Delete">
+                            Submit
+              </button>
+                        </Link>
+                      </div>
                     </TableCell>
                   </TableRow>
+
                 </TableBody>
               </Table>
             </div>
-            <Link to={"/profile"}>
-              <Fab variant="extended" aria-label="Delete">
-                Cancel
-              </Fab>
-            </Link>
-            <Link to={"/profile"} onClick={this.handleSubmit}>
-              <Fab variant="extended" aria-label="Delete">
-                Submit
-              </Fab>
-            </Link>
           </div>
+
         </MuiThemeProvider>
       </div>
     );

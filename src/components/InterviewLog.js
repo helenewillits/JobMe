@@ -176,12 +176,12 @@ class InterviewLogItem extends React.Component {
         <div>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <button
-              className={styles.close_button}
-              style={{ marginLeft: "auto" }}
+              className={styles.delete_button}
+              style={{ width: "15%", marginLeft: "auto" }}
               type="submit"
               onClick={this.handleDelete.bind(this, interview)}
             >
-              x
+              Delete
             </button>
           </div>
           <div className={styles.item} onClick={this.handlePopup}>
