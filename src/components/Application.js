@@ -3,10 +3,6 @@ import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
 import AddButtonNavigationBar from "./AddButtonNavbar.js";
 import axios from "axios";
-import SingleApplication from "./SingleApplication";
-import { Link } from "react-router-dom";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 import Box from '@material-ui/core/Box';
 
 // defines the space that contains the three columns of applications
@@ -21,19 +17,24 @@ class ApplicationLog extends React.Component {
     status: ["To Do", "In Progress", "Completed"]
   };
 
+  constructor(props) {
+    super(props);
+    this.state.userEmail = this.props.dataFromParent;
+  }
+
   componentWillMount() {
     this.getEmail();
     axios
       .get("http://localhost:5000/applicationDatabase")
       .then((res) => {
         const toDo = res.data.filter(
-          (item) => item.applicationStatus == "To Do"
+          (item) => item.applicationStatus === "To Do"
         );
         const inProgress = res.data.filter(
-          (item) => item.applicationStatus == "In Progress"
+          (item) => item.applicationStatus === "In Progress"
         );
         const completed = res.data.filter(
-          (item) => item.applicationStatus == "Completed"
+          (item) => item.applicationStatus === "Completed"
         );
         this.setState({
           applicationsToDo: toDo,
@@ -45,11 +46,6 @@ class ApplicationLog extends React.Component {
         //Not handling the error. Just logging into the console.
         console.log(error);
       });
-  }
-
-  constructor(props) {
-    super(props);
-    this.state.userEmail = this.props.dataFromParent;
   }
 
   getEmail() {
@@ -71,9 +67,9 @@ class ApplicationLog extends React.Component {
   // DISTINGUISH COLUMNS BASED ON STATUS
 
   get_Applications = (i) => {
-    if (i == 0) return this.state.applicationsToDo;
-    if (i == 1) return this.state.applicationsInProgress;
-    if (i == 2) return this.state.applicationsCompleted;
+    if (i === 0) return this.state.applicationsToDo;
+    if (i === 1) return this.state.applicationsInProgress;
+    if (i === 2) return this.state.applicationsCompleted;
   };
 
   column = (i) => {
@@ -121,8 +117,6 @@ class ApplicationStatusColumn extends React.Component {
   }
 }
 
-// class ApplicationStatusColumnInProgress extends React.Component {
-
 class ApplicationList extends React.Component {
   render() {
     const { applications } = this.props;
@@ -166,8 +160,6 @@ class ApplicationLogItem extends React.Component {
         //Not handling the error. Just logging into the console.
         console.log(error);
       });
-
-    // this.refresh();
   };
 
   handlePopup = () => {
@@ -180,14 +172,12 @@ class ApplicationLogItem extends React.Component {
 
     // check for undefined applications : this is the default when first rendering Application
     // in development mode, but is re-rendered when it gets to the componentWillMount() function
-    if (application != undefined) {
+    if (application !== undefined) {
       return (
         <div>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <button
               className={styles.delete_button}
-              //style={{ marginLeft: "auto", textColor: "white" }}
-              //type="submit"
               onClick={this.handleDelete.bind(this, application)}
             >
               Delete
@@ -211,24 +201,6 @@ class ApplicationLogItem extends React.Component {
         </div>
       );
     }
-  }
-}
-
-class AddButton extends React.Component {
-  handleAdd = () => {
-    window.location.href = "localhost:3000/applications/add";
-  };
-
-  render() {
-    return (
-      <div>
-        <Link to={"/applications/add"}>
-          <button type="submit" onclick={this.handleAdd}>
-            +
-          </button>
-        </Link>
-      </div>
-    );
   }
 }
 

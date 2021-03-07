@@ -76,9 +76,6 @@ class App extends React.Component {
     const token = this.getToken();
     console.log("Token ", token);
 
-    // if (!token) {
-    //   return <Login parentCallback={this.callbackFunction} />
-    // }
     if (!token) {
       return (
         <Switch>

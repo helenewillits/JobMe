@@ -79,12 +79,12 @@ class ApplicationNew extends React.Component {
 
   handleSubmit = (event) => {
     console.log("dear god it did work now didn't it");
-    // event.preventDefault();
     this.postNewApplication();
   };
 
   performValidation() {
-    return this.state.companyName.length > 0 && this.state.position.length > 0 && this.state.applicationStatus.length > 0 && this.state.result.length > 0 && this.state.deadline.length > 0;
+    return (this.state.companyName.length > 0 && this.state.position.length > 0 && this.state.applicationStatus.length > 0 
+        && this.state.result.length > 0 && this.state.deadline.length > 0);
   }
 
   render() {
