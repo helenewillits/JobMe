@@ -49,7 +49,7 @@ const styles = (theme) => ({
         fontFamily: 'sans-serif',
         fontStyle: 'normal',
         margin: theme.spacing(3, 0, 2),
-        "&:hover": {
+        '&:hover': {
             backgroundColor: 'rgb(0, 100, 128)',
             color: 'white',
         }
@@ -62,7 +62,7 @@ const styles = (theme) => ({
         fontFamily: 'sans-serif',
         fontStyle: 'normal',
         margin: theme.spacing(3, 0, 2),
-        "&:hover": {
+        '&:hover': {
             backgroundColor: 'rgb(0, 100, 128)',
             color: 'white',
         }
@@ -71,8 +71,9 @@ const styles = (theme) => ({
         width: '90%',
     },
     smallWords: {
+        color: 'rgb(0, 100, 128)',
         margin: '5%',
-        marginTop: '7%',
+        marginTop: '10%',
         display: 'inline-block',
     },
 });

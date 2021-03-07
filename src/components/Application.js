@@ -185,12 +185,12 @@ class ApplicationLogItem extends React.Component {
         <div>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <button
-              className={styles.close_button}
-              style={{ marginLeft: "auto" }}
-              type="submit"
+              className={styles.delete_button}
+              //style={{ marginLeft: "auto", textColor: "white" }}
+              //type="submit"
               onClick={this.handleDelete.bind(this, application)}
             >
-              x
+              Delete
             </button>
           </div>
           <div className={styles.item} onClick={this.handlePopup}>

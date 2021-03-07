@@ -1,7 +1,7 @@
 /*light1: #f4fcfc
 light2: #E3F6F5
 dark1: #BAE8E8
-JobMe Color:  
+JobMe Color: rgb(0, 100, 128)  
 */
 
 body {
@@ -54,9 +54,26 @@ button {
     background-color: #bae8e8;
     padding: 4px 8px 4px 8px;
     margin: 10px 10px 0px 10px;
-    border-radius: 3px;
+    border-radius: 2px;
     border-color: white;
-    border-radius: 50%;
+    /*border-radius: 50%;*/
+}
+
+.delete_button{
+    width: 20%;
+    padding: 2%;
+    float: left;
+    background-color: #BAE8E8;
+    color: #5e5e5e;
+    border: 0;
+    font-family: sans-serif;
+    font-style: normal;
+}
+
+.delete_button:hover{
+    border: 0;
+    color: white;
+    background-color: rgb(0, 100, 128);
 }
 
 .button_secondary {
@@ -126,7 +143,7 @@ input {
     border-style: solid;
     border-width: 2px;
     border-color: #e3f6f5;
-    border-radius: 20px;
+    border-radius: 5px;
     box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19);
     background: white;
     overflow: hidden;
@@ -192,13 +209,13 @@ input {
     flex-wrap: wrap;
 
     padding: 10px 20px 10px 20px;
-    margin: 5px 5px 15px 5px;
+    margin: 0px 5px 15px 5px;
 
     border-style:solid;
     border-width: 0.2px;
     border-color: #e3f6f5;
-    border-radius: 20px;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 2px 4px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 5px;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.05), 0 2px 4px 0 rgba(0, 0, 0, 0.05);
     overflow-wrap: anywhere;
 }
 
@@ -220,7 +237,7 @@ a {
 /* <nav> */
 .navbar {
     height: var(--nav-size);
-    background-color: var(#E3F6F5);
+    background-color: var(rgb(0, 100, 128));
     padding: 0 1rem;
     border-bottom: var(--border);
 }
@@ -246,7 +263,7 @@ a {
     --button-size: calc(var(--nav-size) * 0.5);
     width: var(--button-size * 2);
     height: var(--button-size * 2);
-    background-color: #a2ddfb;
+    background-color: #bae8e8;
     border-radius: 50%;
     padding: 5px;
     margin: 2px;
@@ -257,7 +274,7 @@ a {
 }
 
 .icon_button:hover {
-    background-color: #70cff8;
+    background-color: rgb(0, 100, 128);
 }
 
 .icon_button svg {
@@ -271,12 +288,12 @@ a {
 .dropdown {
     margin: 22px;
     position: absolute;
-    top: 58px;
+    top: 16%;
     width: 300px;
     transform: translateX(-45%);
-    background-color: #70cff8;
+    background-color: #bae8e8;
     border: var(--border);
-    border-radius: var(--border-radius);
+    border-radius: 5px;
     padding: 1rem;
     overflow: hidden;
     z-index: 1;
@@ -296,7 +313,7 @@ a {
 }
 
 .menu_item:hover {
-    background-color: #a2ddfb;
+    background-color: rgb(0, 100, 128);
 }
 
 .icon_right {

@@ -11,7 +11,9 @@ import DropDownMenu from "material-ui/DropDownMenu";
 import MenuItem from "material-ui/MenuItem";
 import Checkbox from "material-ui/Checkbox";
 import { Link } from "react-router-dom";
-
+import cssstyles from "../assets/Styles.module.css";
+import Box from '@material-ui/core/Box';
+import Container from '@material-ui/core/Container';
 import axios from "axios";
 
 // defines the space that contains the page for adding new job applications
@@ -87,112 +89,116 @@ class ApplicationNew extends React.Component {
 
   render() {
     return (
-      <div>
-        <MuiThemeProvider>
-          <NavigationBar />
-          <p className="App-new">{this.state.apiResponse}</p>
-          <Header page={this.state.page} />
-          <div>
-            <form>
-              <div>
-                <TextField
-                  type="text"
-                  floatingLabelText="*Company"
-                  name="companyName"
-                  onChange={this.handleChange}
-                  fullWidth
-                />
-                <br />
-                <TextField
-                  floatingLabelText="*Position"
-                  name="position"
-                  fullWidth
-                  onChange={this.handleChange}
-                />
-                <br />
-              </div>
-              <br />
-              <div>
-                <Checkbox
-                  name="favorited"
-                  label="Favorite"
-                  onClick={this.handleChangeFavorite}
-                />
-                <Grid container>
-                  <Calendar
-                    parentCallback={this.callbackFunction}
-                    label={"*Application Deadline"}
+      <Container component="main" maxWidth="sm" position="center">
+        <Box mt={1} className={cssstyles.signin}>
+          <MuiThemeProvider>
+            <NavigationBar />
+            <p className="App-new">{this.state.apiResponse}</p>
+            <Header page={this.state.page} />
+            <div>
+              <form>
+                <div>
+                  <TextField
+                    type="text"
+                    floatingLabelText="Company"
+                    name="companyName"
+                    required={true}
+                    onChange={this.handleChange}
+                    fullWidth
                   />
-                  <h3>{this.state.deadline}</h3>
-                </Grid>
-                <TextField
-                  floatingLabelText="Job Posting Link (Optional)"
-                  fullWidth
-                  name="jobPostingLink"
-                  onChange={this.handleChange}
-                />
-                <TextField
-                  floatingLabelText="Job ID (Optional)"
-                  fullWidth
-                  name="jobId"
-                  onChange={this.handleChange}
-                />
-                <TextField
-                  floatingLabelText="Application Portal Link (Optional)"
-                  fullWidth
-                  name="applicationPortalLink"
-                  onChange={this.handleChange}
-                />
-                <DropDownMenu
-                  value={this.state.applicationStatus}
-                  onChange={this.handleChangeStatus}
-                >
-                  <MenuItem
-                    value={""}
-                    disabled
-                    primaryText="*Select Application Status"
+                  <br />
+                  <TextField
+                    floatingLabelText="Position"
+                    name="position"
+                    required={true}
+                    fullWidth
+                    onChange={this.handleChange}
                   />
-                  <MenuItem value={"To Do"} primaryText="To Do" />
-                  <MenuItem value={"In Progress"} primaryText="In Progress" />
-                  <MenuItem value={"Completed"} primaryText="Completed" />
-                </DropDownMenu>
+                  <br />
+                </div>
                 <br />
-                <DropDownMenu
-                  value={this.state.result}
-                  onChange={this.handleChangeResult}
-                >
-                  <MenuItem value={""} disabled primaryText="*Select Result" />
-                  <MenuItem value={"N/A"} primaryText="N/A" />
-                  <MenuItem value={"Interviewing"} primaryText="Interviewing" />
-                  <MenuItem value={"Waiting"} primaryText="Waiting" />
-                  <MenuItem value={"Discontinued"} primaryText="Discontinued" />
-                  <MenuItem value={"Accepted"} primaryText="Accepted" />
-                  <MenuItem value={"Declined"} primaryText="Declined" />
-                </DropDownMenu>
-                <br />
-                <TextField
-                  floatingLabelText="Note (Optional)"
-                  fullWidth
-                  name="notes"
-                  onChange={this.handleChange}
-                />
-                <br />
-                <br />
-                <Link to={"/applications"}>
-                  <Fab variant="extended" aria-label="Delete">
-                    Cancel
+                <div>
+                  <Checkbox
+                    name="favorited"
+                    label="Favorite"
+                    onClick={this.handleChangeFavorite}
+                  />
+                  <Grid container>
+                    <Calendar
+                      parentCallback={this.callbackFunction}
+                      label={"*Application Deadline"}
+                    />
+                    <h3>{this.state.deadline}</h3>
+                  </Grid>
+                  <TextField
+                    floatingLabelText="Job Posting Link (Optional)"
+                    fullWidth
+                    name="jobPostingLink"
+                    onChange={this.handleChange}
+                  />
+                  <TextField
+                    floatingLabelText="Job ID (Optional)"
+                    fullWidth
+                    name="jobId"
+                    onChange={this.handleChange}
+                  />
+                  <TextField
+                    floatingLabelText="Application Portal Link (Optional)"
+                    fullWidth
+                    name="applicationPortalLink"
+                    onChange={this.handleChange}
+                  />
+                  <DropDownMenu
+                    value={this.state.applicationStatus}
+                    onChange={this.handleChangeStatus}
+                  >
+                    <MenuItem
+                      value={""}
+                      disabled
+                      primaryText="*Select Application Status"
+                    />
+                    <MenuItem value={"To Do"} primaryText="To Do" />
+                    <MenuItem value={"In Progress"} primaryText="In Progress" />
+                    <MenuItem value={"Completed"} primaryText="Completed" />
+                  </DropDownMenu>
+                  <br />
+                  <DropDownMenu
+                    value={this.state.result}
+                    onChange={this.handleChangeResult}
+                  >
+                    <MenuItem value={""} disabled primaryText="*Select Result" />
+                    <MenuItem value={"N/A"} primaryText="N/A" />
+                    <MenuItem value={"Interviewing"} primaryText="Interviewing" />
+                    <MenuItem value={"Waiting"} primaryText="Waiting" />
+                    <MenuItem value={"Discontinued"} primaryText="Discontinued" />
+                    <MenuItem value={"Accepted"} primaryText="Accepted" />
+                    <MenuItem value={"Declined"} primaryText="Declined" />
+                  </DropDownMenu>
+                  <br />
+                  <TextField
+                    floatingLabelText="Note (Optional)"
+                    fullWidth
+                    name="notes"
+                    onChange={this.handleChange}
+                  />
+                  <br />
+                  <br />
+                  <Link to={"/applications"}>
+                    <Fab variant="extended" aria-label="Delete">
+                      Cancel
                   </Fab>
-                </Link>
-                <Link to={"/applications"} onClick={this.handleSubmit}>
-                  <Fab variant="extended" aria-label="Delete" disabled={!this.performValidation()}>
-                    Submit
+                  </Link>
+                  <Link to={"/applications"} onClick={this.handleSubmit}>
+                    <Fab variant="extended" aria-label="Delete" disabled={!this.performValidation()}>
+                      Submit
                   </Fab>
-                </Link>
-              </div>
-            </form>
-          </div>
-        </MuiThemeProvider>
-      </div>
+                  </Link>
+                </div>
+              </form>
+            </div>
+          </MuiThemeProvider>
+        </Box>
+      </Container >
     );
   }
 }
