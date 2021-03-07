@@ -2,11 +2,8 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
 import { Link } from "react-router-dom";
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Logo from '../icons/JobMe_Logo.png'
@@ -77,10 +74,6 @@ const styles = (theme) => ({
 
 
 class SignUp extends React.Component {
-
-    state = {
-    }
-
     constructor(props) {
         super(props);
         this.state = {
@@ -111,7 +104,6 @@ class SignUp extends React.Component {
                 console.log(res);
             })
             .catch(function (error) {
-                //Not handling the error. Just logging into the console.
                 console.log(error);
             });
     }
@@ -119,16 +111,14 @@ class SignUp extends React.Component {
     handleSubmit(event) {
         console.log("Made it");
         var apiBaseUrl = "http://localhost:5000/";
-        var selfState = this.state;
         var self = this;
-        console.log("PAYLOAD: ", this.state);
+        var selfState = this.state;
+        console.log("PAYLOAD: ", selfState);
         axios.post(apiBaseUrl + "userDatabase/post/validateSignup", selfState)
             .then(function (response) {
                 if (response.data.code === 200) {
                     console.log("Signup successful");
                     self.submitNewUser(event, selfState);
-                    // console.log("Login user ", this.loginUser(this.state.email));
-                    // this.sendData(loginUser(this.state.email));
                 }
                 else if (response.data.code === 204) {
                     console.log("Invalid email");
@@ -148,12 +138,9 @@ class SignUp extends React.Component {
     render() {
         const { classes } = this.props;
         return (
-
             <Container component="main" maxWidth="xs" align='center'>
-
                 <CssBaseline />
                 <div className={classes.paper}>
-                    {/*<img src={Logo} className={"logo"}></img>*/}
                     <Typography component="header" variant="h3" align="center">Ready to sign up? It's free!</Typography>
                     <Typography component="h1" variant="h5" align="center">
                         An easy job search awaits.
@@ -209,10 +196,6 @@ class SignUp extends React.Component {
                                 autoComplete="current-password"
                                 onChange={this.handleChange}
                             />
-                            {/*<FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />*/}
                             <div>
                                 <Link to={"/login"} onClick={this.handleSubmit}>
                                     <Button
@@ -247,8 +230,6 @@ class SignUp extends React.Component {
                 <Box maxWidth="xs" padding={'8%'} align="center">
                     <img src={Logo} className={classes.logo}></img>
                 </Box>
-
-
             </Container >
 
         );
