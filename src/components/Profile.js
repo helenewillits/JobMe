@@ -1,4 +1,4 @@
-import React, { Profiler } from "react";
+import React from "react";
 import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
 import NavigationBar from "./Navbar.js";
@@ -11,7 +11,6 @@ import { Link } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
 
 import axios from "axios";
-import { makeStyles } from "@material-ui/core";
 
 class Profile extends React.Component {
     state = {
@@ -20,6 +19,11 @@ class Profile extends React.Component {
         page: "Profile",
         refresh: false
     };
+
+    constructor(props) {
+        super(props);
+        this.state.email = this.props.dataFromParent;
+    }
 
     componentWillMount() {
         console.log("In ComponentWillMount");
@@ -31,14 +35,8 @@ class Profile extends React.Component {
                 this.setState({ user: res.data[0] });
             })
             .catch(function (error) {
-                //Not handling the error. Just logging into the console.
                 console.log(error);
             });
-    }
-
-    constructor(props) {
-        super(props);
-        this.state.email = this.props.dataFromParent;
     }
 
     getEmail() {
@@ -48,7 +46,6 @@ class Profile extends React.Component {
                 console.log(res);
             })
             .catch(function (error) {
-                //Not handling the error. Just logging into the console.
                 console.log(error);
             })
     }

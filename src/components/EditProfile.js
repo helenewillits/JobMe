@@ -1,4 +1,4 @@
-import React, { Profiler } from "react";
+import React from "react";
 import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
 import NavigationBar from "./Navbar.js"
@@ -49,7 +49,6 @@ class EditProfile extends React.Component {
         console.log(res);
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
   }
