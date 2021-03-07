@@ -54,4 +54,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 }
 ```
 
-### [JobMe Development Diagrams](wiki)
+### [Read the JobMe Wiki](../../wiki)
