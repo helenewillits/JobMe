@@ -3,11 +3,7 @@ import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
 import AddButtonNavigationBar from "./AddButtonNavbar.js";
 import axios from "axios";
-import SingleApplication from "./SingleApplication";
-import { Link } from "react-router-dom";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
-import Box from '@material-ui/core/Box';
+import Box from "@material-ui/core/Box";
 
 // defines the space that contains the three columns of applications
 
@@ -21,19 +17,24 @@ class ApplicationLog extends React.Component {
     status: ["To Do", "In Progress", "Completed"]
   };
 
+  constructor(props) {
+    super(props);
+    this.state.userEmail = this.props.dataFromParent;
+  }
+
   componentWillMount() {
     this.getEmail();
     axios
       .get("https://jobme-app.herokuapp.com/applicationDatabase")
       .then((res) => {
         const toDo = res.data.filter(
-          (item) => item.applicationStatus == "To Do"
+          (item) => item.applicationStatus === "To Do"
         );
         const inProgress = res.data.filter(
-          (item) => item.applicationStatus == "In Progress"
+          (item) => item.applicationStatus === "In Progress"
         );
         const completed = res.data.filter(
-          (item) => item.applicationStatus == "Completed"
+          (item) => item.applicationStatus === "Completed"
         );
         this.setState({
           applicationsToDo: toDo,
@@ -42,14 +43,8 @@ class ApplicationLog extends React.Component {
         });
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
-  }
-
-  constructor(props) {
-    super(props);
-    this.state.userEmail = this.props.dataFromParent;
   }
 
   getEmail() {
@@ -63,7 +58,6 @@ class ApplicationLog extends React.Component {
         console.log(res);
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
   }
@@ -71,9 +65,9 @@ class ApplicationLog extends React.Component {
   // DISTINGUISH COLUMNS BASED ON STATUS
 
   get_Applications = (i) => {
-    if (i == 0) return this.state.applicationsToDo;
-    if (i == 1) return this.state.applicationsInProgress;
-    if (i == 2) return this.state.applicationsCompleted;
+    if (i === 0) return this.state.applicationsToDo;
+    if (i === 1) return this.state.applicationsInProgress;
+    if (i === 2) return this.state.applicationsCompleted;
   };
 
   column = (i) => {
@@ -121,8 +115,6 @@ class ApplicationStatusColumn extends React.Component {
   }
 }
 
-// class ApplicationStatusColumnInProgress extends React.Component {
-
 class ApplicationList extends React.Component {
   render() {
     const { applications } = this.props;
@@ -163,15 +155,37 @@ class ApplicationLogItem extends React.Component {
         alert("Deleting item. Please refresh the page.");
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
-
-    // this.refresh();
   };
 
   handlePopup = () => {
     this.props.handlePopup(this.state.application);
+  };
+
+  viewCompany = () => {
+    if (this.state.application.companyName != "")
+      return <h4>{this.state.application.companyName}</h4>;
+  };
+  viewPosition = () => {
+    if (this.state.application.position != "")
+      return <h4>{this.state.application.position}</h4>;
+  };
+  viewJobPostingLink = () => {
+    if (this.state.application.jobPostingLink != "")
+      return (
+        <div style={{ textDecoration: "underline" }}>
+          <a href={this.state.application.jobPostingLink}>View Job Posting</a>
+        </div>
+      );
+  };
+  viewResult = () => {
+    if (this.state.application.result != "")
+      return <h5>{this.state.application.result}</h5>;
+  };
+  viewDeadline = () => {
+    if (this.state.application.deadline != "")
+      return <h5>{this.state.application.deadline}</h5>;
   };
 
   render() {
@@ -180,27 +194,23 @@ class ApplicationLogItem extends React.Component {
 
     // check for undefined applications : this is the default when first rendering Application
     // in development mode, but is re-rendered when it gets to the componentWillMount() function
-    if (application != undefined) {
+    if (application !== undefined) {
       return (
         <div>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <button
-              className={styles.close_button}
-              style={{ marginLeft: "auto" }}
-              type="submit"
+              className={styles.delete_button}
               onClick={this.handleDelete.bind(this, application)}
             >
-              x
+              Delete
             </button>
           </div>
           <div className={styles.item} onClick={this.handlePopup}>
-            <h4> {application.companyName} </h4>
-            <h4> {application.position} </h4>
-            <div style={{ textDecoration: "underline" }}>
-              <a href={application.jobPostingLink}>View Job Posting</a>
-            </div>
-            <h5>{application.result}</h5>
-            <h5> {application.deadline} </h5>
+            {this.viewCompany()}
+            {this.viewPosition()}
+            {this.viewJobPostingLink()}
+            {this.viewResult()}
+            {this.viewDeadline()}
           </div>
         </div>
       );
@@ -211,24 +221,6 @@ class ApplicationLogItem extends React.Component {
         </div>
       );
     }
-  }
-}
-
-class AddButton extends React.Component {
-  handleAdd = () => {
-    window.location.href = "localhost:3000/applications/add";
-  };
-
-  render() {
-    return (
-      <div>
-        <Link to={"/applications/add"}>
-          <button type="submit" onclick={this.handleAdd}>
-            +
-          </button>
-        </Link>
-      </div>
-    );
   }
 }
 

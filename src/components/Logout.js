@@ -5,6 +5,8 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import cssstyles from "../assets/Styles.module.css"
+import { ArrowRight } from "@material-ui/icons";
 
 const styles = (theme) => ({
     paper: {
@@ -18,42 +20,29 @@ const styles = (theme) => ({
         marginTop: theme.spacing(1),
     },
     cancel: {
+        position: 'center',
         width: '25%',
-        float: 'left',
         backgroundColor: '#BAE8E8',
         color: '#5e5e5e',
         fontFamily: 'sans-serif',
         fontStyle: 'normal',
-        margin: theme.spacing(3, 0, 2),
+        margin: theme.spacing(3, 0, 1),
         "&:hover": {
-            backgroundColor: '#7FDBFF',
+            backgroundColor: 'rgb(0, 100, 128)',
             color: 'white',
         }
     },
     logout: {
-        float: 'right',
         width: '25%',
         backgroundColor: '#E3F6F5',
         color: '#5e5e5e',
         fontFamily: 'sans-serif',
         fontStyle: 'normal',
-        margin: theme.spacing(3, 0, 2),
+        margin: theme.spacing(3, 0, 1),
         "&:hover": {
-            backgroundColor: '#7FDBFF',
+            backgroundColor: 'rgb(0, 100, 128)',
             color: 'white',
         }
-    },
-    area: {
-        paddingLeft: '15px',
-        paddingRight: '15px',
-        marginTop: '10px',
-        marginBottom: '50px',
-        borderStyle: 'solid',
-        borderWidth: '2px',
-        borderColor: '#e3f6f5',
-        borderRadius: '20px',
-        boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.2), 0 4px 10px 0 rgba(0, 0, 0, 0.19)',
-        overflow: 'hidden',
     },
     logo: {
         width: '90%',
@@ -65,23 +54,25 @@ const styles = (theme) => ({
     },
 });
 
-class Logout extends React.Component{
+class Logout extends React.Component {
 
-    clearToken(){
+    clearToken() {
         alert("You are being logged out");
         localStorage.removeItem("token");
         window.location.reload();
     }
 
-    render(){
+    render() {
         const { classes } = this.props;
 
-        return(
-            <Container maxWidth="xs">
-                <Box className={classes.area}>
-                        <form>
-                            <Typography component="h3" variant="h3" align="center">Are you sure you want to logout?</Typography>
-                            <Typography component="h3" variant="h3" align="center">We'll miss you!</Typography>
+        return (
+            <Container maxWidth="sm">
+                <Box className={cssstyles.areaLogout}>
+                    <form>
+                        <Typography component="h3" variant="h4" align="center">Are you sure you want to logout?</Typography>
+                        <br />
+                        <Typography component="h3" variant="h5" align="center">We'll miss you!</Typography>
+                        <div align="center">
                             <Link to={"/profile"}>
                                 <Button
                                     type="cancel"
@@ -102,13 +93,14 @@ class Logout extends React.Component{
                                     Logout
                                 </Button>
                             </Link>
-                        </form>
+                        </div>
+                    </form>
                 </Box>
             </Container>
-        
+
         )
 
-    }   
+    }
 }
 
 export default withStyles(styles, { withTheme: true })(Logout)

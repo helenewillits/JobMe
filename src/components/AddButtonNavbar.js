@@ -8,6 +8,7 @@ import { ReactComponent as PlusIcon } from "./../icons/plus.svg";
 import { ReactComponent as ProfileIcon } from "./../icons/profile.svg";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 class AddButtonNavigationBar extends React.Component {
   render() {
@@ -92,15 +93,18 @@ function DropdownMenu() {
   return (
     <div className={styles.dropdown}>
       <div className={styles.menu}>
-        <DropdownItem link={"/profile"} leftIcon={<ProfileIcon />}>My Profile</DropdownItem>
-        <DropdownItem
-          link={"/applications"}
-          leftIcon={<LibraryBooksIcon />}
-        >
+        <DropdownItem link={"/profile"} leftIcon={<ProfileIcon />}>
+          My Profile
+        </DropdownItem>
+        <DropdownItem link={"/applications"} leftIcon={<LibraryBooksIcon />}>
           Applications
         </DropdownItem>
-        <DropdownItem link={"/interviews"} leftIcon={<PeopleAltIcon />}>Interviews</DropdownItem>
-        <DropdownItem link={"/logout"} leftIcon={<PeopleAltIcon />}>Logout</DropdownItem>
+        <DropdownItem link={"/interviews"} leftIcon={<PeopleAltIcon />}>
+          Interviews
+        </DropdownItem>
+        <DropdownItem link={"/logout"} leftIcon={<ExitToAppIcon />}>
+          Logout
+        </DropdownItem>
       </div>
     </div>
   );

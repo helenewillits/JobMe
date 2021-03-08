@@ -5,12 +5,20 @@ import styles from "../assets/Styles.module.css";
 class SingleApplication extends React.Component {
   state = { application: {} };
 
+  viewCompany = () => {
+    if (this.state.application.companyName != "")
+      return <h4>{this.state.application.companyName}</h4>;
+  };
+  viewPosition = () => {
+    if (this.state.application.position != "")
+      return <h4>{this.state.application.position}</h4>;
+  };
   viewJobId = () => {
-    if (this.state.application.jobId != "")
+    if (this.state.application.jobId !== "")
       return <h3>{this.state.application.jobId}</h3>;
   };
   viewJobPostingLink = () => {
-    if (this.state.application.jobPostingLink != "")
+    if (this.state.application.jobPostingLink !== "")
       return (
         <div style={{ textDecoration: "underline" }}>
           <a href={this.state.application.jobPostingLink}>View Job Posting</a>
@@ -18,7 +26,7 @@ class SingleApplication extends React.Component {
       );
   };
   viewApplicationPortalLink = () => {
-    if (this.state.application.applicationPortalLink != "")
+    if (this.state.application.applicationPortalLink !== "")
       return (
         <div style={{ textDecoration: "underline" }}>
           <a href={this.state.application.applicationPortalLink}>
@@ -27,8 +35,16 @@ class SingleApplication extends React.Component {
         </div>
       );
   };
+  viewResult = () => {
+    if (this.state.application.result != "")
+      return <h5>{this.state.application.result}</h5>;
+  };
+  viewDeadline = () => {
+    if (this.state.application.deadline != "")
+      return <h5>{this.state.application.deadline}</h5>;
+  };
   viewNotes = () => {
-    if (this.state.application.notes != "")
+    if (this.state.application.notes !== "")
       return <h3>{this.state.application.notes}</h3>;
   };
 
@@ -39,6 +55,7 @@ class SingleApplication extends React.Component {
   render() {
     const { application } = this.props;
     this.state.application = application;
+    
     console.log("here");
 
     if (!this.props.display) {
@@ -57,13 +74,13 @@ class SingleApplication extends React.Component {
             x
           </button>
         </div>
-        <h1>{application.companyName}</h1>
-        <h2>{application.position}</h2>
+        {this.viewCompany()}
+        {this.viewPosition()}
         {this.viewJobId()}
-        <h3>{application.deadline}</h3>
+        {this.viewDeadline()}
         {this.viewJobPostingLink()}
         {this.viewApplicationPortalLink()}
-        <h3>{application.result}</h3>
+        {this.viewResult()}
         {this.viewNotes()}
       </div>
     );

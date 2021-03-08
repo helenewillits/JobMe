@@ -2,18 +2,16 @@ import React from 'react';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import Checkbox from '@material-ui/core/Checkbox';
 import { Link } from "react-router-dom";
-import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Logo from '../icons/JobMe_Logo.png'
 import { withStyles } from "@material-ui/core/styles";
 import axios from "axios";
+import cssstyles from "../assets/Styles.module.css";
 
+document.body.style = 'background: #f4fcfc;';
 
 function Copyright() {
     return (
@@ -47,8 +45,8 @@ const styles = (theme) => ({
         fontFamily: 'sans-serif',
         fontStyle: 'normal',
         margin: theme.spacing(3, 0, 2),
-        "&:hover": {
-            backgroundColor: '#7FDBFF',
+        '&:hover': {
+            backgroundColor: 'rgb(0, 100, 128)',
             color: 'white',
         }
     },
@@ -60,8 +58,8 @@ const styles = (theme) => ({
         fontFamily: 'sans-serif',
         fontStyle: 'normal',
         margin: theme.spacing(3, 0, 2),
-        "&:hover": {
-            backgroundColor: '#7FDBFF',
+        '&:hover': {
+            backgroundColor: 'rgb(0, 100, 128)',
             color: 'white',
         }
     },
@@ -69,9 +67,11 @@ const styles = (theme) => ({
         width: '90%',
     },
     smallWords: {
+        color: 'rgb(0, 100, 128)',
         margin: '5%',
-        marginTop: '7%',
+        marginTop: '10%',
         display: 'inline-block',
+        textDecoration: "underline",
     },
 });
 
@@ -89,7 +89,6 @@ class LogIn extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleClick = this.handleClick.bind(this);
-        //this.performValidation = this.performValidation.bind(this);
     }
 
     performValidation() {
@@ -101,14 +100,12 @@ class LogIn extends React.Component {
         var apiBaseUrl = "https://jobme-app.herokuapp.com/";
         var selfState = this.state;
         var selfProps = this.props;
-        console.log("PAYLOAD: ", this.state);
-        axios.post(apiBaseUrl + "userDatabase/post/validateLogin", this.state)
+        console.log("PAYLOAD: ", selfState);
+        axios.post(apiBaseUrl + "userDatabase/post/validateLogin", selfState)
             .then(function (response) {
                 if (response.data.code === 200) {
                     console.log("Login successful");
                     selfProps.parentCallback(selfState.email);
-                    // console.log("Login user ", this.loginUser(this.state.email));
-                    // this.sendData(loginUser(this.state.email));
                 }
                 else if (response.data.code === 204) {
                     console.log("Invalid login");
@@ -139,7 +136,7 @@ class LogIn extends React.Component {
                 <div className={classes.paper}>
                     <Typography component="header1" variant="h4" align="center">Welcome back!</Typography>
                     <img src={Logo} alt={"JobMe-Logo"} className={classes.logo}></img>
-                    <Box border={1} width={'150%'} padding={'15%'}>
+                    <Box width={"125%"} padding={"15%"} className={cssstyles.signin}>
                         <form className={classes.form} noValidate>
                             <TextField
                                 variant="outlined"
@@ -165,10 +162,6 @@ class LogIn extends React.Component {
                                 autoComplete="current-password"
                                 onChange={this.handleChange}
                             />
-                            {/*<FormControlLabel
-                            control={<Checkbox value="remember" color="primary" />}
-                            label="Remember me"
-                        />*/}
                             <div>
                                 <Link onClick={this.handleClick}>
                                     <Button
