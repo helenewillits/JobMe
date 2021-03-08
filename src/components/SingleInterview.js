@@ -5,6 +5,10 @@ import styles from "../assets/Styles.module.css";
 class SingleInterview extends React.Component {
   state = { interview: {} };
 
+  viewCompany = () => {
+    if (this.state.interview.companyName != "")
+      return <h1>{this.state.interview.companyName}</h1>;
+  };
   viewInterviewerNames = () => {
     if (this.state.interview.interviewerNames != "")
       return <h3>{this.state.interview.interviewerNames}</h3>;
@@ -12,6 +16,14 @@ class SingleInterview extends React.Component {
   viewRecruiterNames = () => {
     if (this.state.interview.recruiterNames != "")
       return <h3>{this.state.interview.recruiterNames}</h3>;
+  };
+  viewInterviewDate = () => {
+    if (this.state.interview.interviewDate != "")
+      return <h5>{this.state.interview.interviewDate}</h5>;
+  };
+  viewInterviewTime = () => {
+    if (this.state.interview.interviewTime != "")
+      return <h5>{this.state.interview.interviewTime}</h5>;
   };
   viewInterviewLink = () => {
     if (this.state.interview.interviewLink != "")
@@ -65,11 +77,11 @@ class SingleInterview extends React.Component {
             x
           </button>
         </div>
-        <h1>{interview.companyName}</h1>
+        {this.viewCompany()}
         {this.viewInterviewerNames()}
         {this.viewRecruiterNames()}
-        <h3>{interview.interviewDate}</h3>
-        <h3>{interview.interviewTime}</h3>
+        {this.viewInterviewDate()}
+        {this.viewInterviewTime()}
         {this.viewInterviewLink()}
         {this.viewPosition()}
         {this.viewJobPostingLink()}

@@ -3,7 +3,7 @@ import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
 import AddButtonNavigationBar from "./AddButtonNavbar.js";
 import axios from "axios";
-import Box from '@material-ui/core/Box';
+import Box from "@material-ui/core/Box";
 
 // defines the space that contains the three columns of applications
 
@@ -163,6 +163,31 @@ class ApplicationLogItem extends React.Component {
     this.props.handlePopup(this.state.application);
   };
 
+  viewCompany = () => {
+    if (this.state.application.companyName != "")
+      return <h4>{this.state.application.companyName}</h4>;
+  };
+  viewPosition = () => {
+    if (this.state.application.position != "")
+      return <h4>{this.state.application.position}</h4>;
+  };
+  viewJobPostingLink = () => {
+    if (this.state.application.jobPostingLink != "")
+      return (
+        <div style={{ textDecoration: "underline" }}>
+          <a href={this.state.application.jobPostingLink}>View Job Posting</a>
+        </div>
+      );
+  };
+  viewResult = () => {
+    if (this.state.application.result != "")
+      return <h5>{this.state.application.result}</h5>;
+  };
+  viewDeadline = () => {
+    if (this.state.application.deadline != "")
+      return <h5>{this.state.application.deadline}</h5>;
+  };
+
   render() {
     const { application } = this.props;
     this.state.application = application;
@@ -181,13 +206,11 @@ class ApplicationLogItem extends React.Component {
             </button>
           </div>
           <div className={styles.item} onClick={this.handlePopup}>
-            <h4> {application.companyName} </h4>
-            <h4> {application.position} </h4>
-            <div style={{ textDecoration: "underline" }}>
-              <a href={application.jobPostingLink}>View Job Posting</a>
-            </div>
-            <h5>{application.result}</h5>
-            <h5> {application.deadline} </h5>
+            {this.viewCompany()}
+            {this.viewPosition()}
+            {this.viewJobPostingLink()}
+            {this.viewResult()}
+            {this.viewDeadline()}
           </div>
         </div>
       );
