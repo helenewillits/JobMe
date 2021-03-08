@@ -25,7 +25,7 @@ last updated: February 6th, 2021
 
 ### [Visit our Travis-CI](https://travis-ci.com/github/helenewillits/JobMe)
 
-### Hosted using Heroku, Netlify, GitHub, and MongoDB
+## Hosted using Heroku, Netlify, GitHub, and MongoDB Atlas
 
 
 # Contributors:
