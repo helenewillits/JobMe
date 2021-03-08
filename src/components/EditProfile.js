@@ -1,15 +1,15 @@
 import React from "react";
 import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
-import NavigationBar from "./Navbar.js"
+import NavigationBar from "./Navbar.js";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import TextField from "material-ui/TextField";
 import { Link } from "react-router-dom";
 import Fab from "@material-ui/core/Fab";
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableRow from '@material-ui/core/TableRow';
+import Table from "@material-ui/core/Table";
+import TableBody from "@material-ui/core/TableBody";
+import TableCell from "@material-ui/core/TableCell";
+import TableRow from "@material-ui/core/TableRow";
 import Grid from "@material-ui/core/Grid";
 
 import axios from "axios";
@@ -71,12 +71,17 @@ class EditProfile extends React.Component {
             <div className={styles.area}>
               <Table aria-label="simple table">
                 <colgroup>
-                  <col style={{ width: '35%' }} />
-                  <col style={{ width: '65%' }} />
+                  <col style={{ width: "35%" }} />
+                  <col style={{ width: "65%" }} />
                 </colgroup>
                 <TableBody>
                   <TableRow key={"LastName, FirstName"}>
-                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      variant="head"
+                      style={{ verticalAlign: "top" }}
+                    >
                       <h2>{"LastName, FirstName"}</h2>
                     </TableCell>
                     <TableCell align="left" className={styles.tablecell}>
@@ -103,7 +108,12 @@ class EditProfile extends React.Component {
                     </TableCell>
                   </TableRow>
                   <TableRow key={"Email"}>
-                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      variant="head"
+                      style={{ verticalAlign: "top" }}
+                    >
                       <h2>{"Email"}</h2>
                     </TableCell>
                     <TableCell align="left" className={styles.tablecell}>
@@ -111,7 +121,12 @@ class EditProfile extends React.Component {
                     </TableCell>
                   </TableRow>
                   <TableRow key={"Link #1"}>
-                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      variant="head"
+                      style={{ verticalAlign: "top" }}
+                    >
                       <h2>{"Link #1"}</h2>
                     </TableCell>
                     <TableCell align="left" className={styles.tablecell}>
@@ -125,7 +140,12 @@ class EditProfile extends React.Component {
                     </TableCell>
                   </TableRow>
                   <TableRow key={"Link #2"}>
-                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      variant="head"
+                      style={{ verticalAlign: "top" }}
+                    >
                       <h2>{"Link #2"}</h2>
                     </TableCell>
                     <TableCell align="left" className={styles.tablecell}>
@@ -139,7 +159,12 @@ class EditProfile extends React.Component {
                     </TableCell>
                   </TableRow>
                   <TableRow key={"Link #3"}>
-                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      variant="head"
+                      style={{ verticalAlign: "top" }}
+                    >
                       <h2>{"Link #3"}</h2>
                     </TableCell>
                     <TableCell align="left" className={styles.tablecell}>
@@ -153,7 +178,12 @@ class EditProfile extends React.Component {
                     </TableCell>
                   </TableRow>
                   <TableRow key={"Work Experience"}>
-                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      variant="head"
+                      style={{ verticalAlign: "top" }}
+                    >
                       <h2>{"Work Experience"}</h2>
                     </TableCell>
                     <TableCell align="left" className={styles.tablecell}>
@@ -168,7 +198,12 @@ class EditProfile extends React.Component {
                     </TableCell>
                   </TableRow>
                   <TableRow key={"Notes"}>
-                    <TableCell component="th" scope="row" variant="head" style={{ verticalAlign: 'top' }}>
+                    <TableCell
+                      component="th"
+                      scope="row"
+                      variant="head"
+                      style={{ verticalAlign: "top" }}
+                    >
                       <h2>{"Notes"}</h2>
                     </TableCell>
                     <TableCell align="left" className={styles.tablecell}>
@@ -185,24 +220,30 @@ class EditProfile extends React.Component {
                       <br />
                       <div align="right">
                         <Link to={"/profile"}>
-                          <button className={styles.delete_button} variant="extended" aria-label="Delete">
+                          <button
+                            className={styles.delete_button}
+                            variant="extended"
+                            aria-label="Delete"
+                          >
                             Cancel
-              </button>
+                          </button>
                         </Link>
                         <Link to={"/profile"} onClick={this.handleSubmit}>
-                          <button className={styles.add_submit_button} variant="extended" aria-label="Delete">
+                          <button
+                            className={styles.add_submit_button}
+                            variant="extended"
+                            aria-label="Delete"
+                          >
                             Submit
-              </button>
+                          </button>
                         </Link>
                       </div>
                     </TableCell>
                   </TableRow>
-
                 </TableBody>
               </Table>
             </div>
           </div>
-
         </MuiThemeProvider>
       </div>
     );

@@ -3,15 +3,15 @@ import { Switch, Route } from "react-router-dom";
 import ApplicationLog from "./components/Application.js";
 import SingleApplication from "./components/SingleApplication.js";
 import NewApplication from "./components/NewApplication.js";
-import SignUp from "./components/SignUp.js"
+import SignUp from "./components/SignUp.js";
 import Login from "./components/LogIn.js";
-import Logout from "./components/Logout.js"
+import Logout from "./components/Logout.js";
 import InterviewLog from "./components/InterviewLog.js";
 import SingleInterview from "./components/SingleInterview.js";
 import NewInterview from "./components/NewInterview.js";
 import Profile from "./components/Profile.js";
 import EditProfile from "./components/EditProfile.js";
-import { Redirect } from 'react-router';
+import { Redirect } from "react-router";
 
 class App extends React.Component {
   constructor(props) {
@@ -31,7 +31,7 @@ class App extends React.Component {
   }
 
   setToken(userToken) {
-    localStorage.setItem('token', userToken);
+    localStorage.setItem("token", userToken);
   }
 
   callbackFunction = (childData) => {
@@ -39,7 +39,7 @@ class App extends React.Component {
     console.log("APP.JS STATE ", this.state);
 
     this.setToken(childData);
-  }
+  };
 
   handleApplicationPopup(application) {
     const newState = {};

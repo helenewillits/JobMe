@@ -55,7 +55,7 @@ class SingleApplication extends React.Component {
   render() {
     const { application } = this.props;
     this.state.application = application;
-    
+
     console.log("here");
 
     if (!this.props.display) {

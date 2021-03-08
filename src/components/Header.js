@@ -43,10 +43,10 @@ class Header extends React.Component {
   );
 
   no_header = (
-      <div>
-          <h1>Page has not been defined...</h1>
-      </div>
-  )
+    <div>
+      <h1>Page has not been defined...</h1>
+    </div>
+  );
 
   render() {
     const { page } = this.props;

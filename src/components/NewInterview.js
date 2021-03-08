@@ -7,9 +7,9 @@ import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import { Link } from "react-router-dom";
-import Box from '@material-ui/core/Box';
+import Box from "@material-ui/core/Box";
 import cssstyles from "../assets/Styles.module.css";
-import Container from '@material-ui/core/Container';
+import Container from "@material-ui/core/Container";
 
 import axios from "axios";
 
@@ -66,12 +66,16 @@ class InterviewNew extends React.Component {
   };
 
   performValidation() {
-    return this.state.companyName.length > 0 && this.state.interviewTime.length > 0 && this.state.interviewDate > 0;
+    return (
+      this.state.companyName.length > 0 &&
+      this.state.interviewTime.length > 0 &&
+      this.state.interviewDate > 0
+    );
   }
 
   render() {
     return (
-      <Container component="main" maxWidth="sm" align='center'>
+      <Container component="main" maxWidth="sm" align="center">
         <Box mt={1} className={cssstyles.addPage}>
           <div>
             <MuiThemeProvider>
@@ -178,14 +182,23 @@ class InterviewNew extends React.Component {
                     <br />
                     <div align="right">
                       <Link to={"/interviews"}>
-                        <button className={cssstyles.delete_button} variant="extended" aria-label="Delete">
+                        <button
+                          className={cssstyles.delete_button}
+                          variant="extended"
+                          aria-label="Delete"
+                        >
                           Cancel
-                    </button>
+                        </button>
                       </Link>
                       <Link to={"/interviews"} onClick={this.handleSubmit}>
-                        <button className={cssstyles.add_submit_button} variant="extended" aria-label="Delete" disabled={!this.performValidation()}>
+                        <button
+                          className={cssstyles.add_submit_button}
+                          variant="extended"
+                          aria-label="Delete"
+                          disabled={!this.performValidation()}
+                        >
                           Submit
-                  </button>
+                        </button>
                       </Link>
                     </div>
                   </div>

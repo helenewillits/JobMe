@@ -5,7 +5,8 @@ var ObjectId = require("mongodb").ObjectID;
 const res = require("express/lib/response");
 var user = "";
 const { MongoClient } = require("mongodb");
-const uri = "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const uri =
+  "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 router.get("/", function (req, res) {
   console.log("get route");

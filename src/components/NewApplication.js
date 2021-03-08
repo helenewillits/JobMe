@@ -3,7 +3,7 @@ import Header from "./Header.js";
 import NavigationBar from "./Navbar.js";
 import Calendar from "./Calendar.js";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import TextField from '@material-ui/core/TextField';
+import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
 import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
@@ -13,11 +13,11 @@ import MenuItem from "material-ui/MenuItem";
 import Checkbox from "material-ui/Checkbox";
 import { Link } from "react-router-dom";
 import cssstyles from "../assets/Styles.module.css";
-import Box from '@material-ui/core/Box';
-import Button from '@material-ui/core/Button';
-import Container from '@material-ui/core/Container';
+import Box from "@material-ui/core/Box";
+import Button from "@material-ui/core/Button";
+import Container from "@material-ui/core/Container";
 import axios from "axios";
-import CssBaseline from '@material-ui/core/CssBaseline';
+import CssBaseline from "@material-ui/core/CssBaseline";
 
 // defines the space that contains the page for adding new job applications
 class ApplicationNew extends React.Component {
@@ -85,8 +85,13 @@ class ApplicationNew extends React.Component {
   };
 
   performValidation() {
-    return (this.state.companyName.length > 0 && this.state.position.length > 0 && this.state.applicationStatus.length > 0 
-        && this.state.result.length > 0 && this.state.deadline.length > 0);
+    return (
+      this.state.companyName.length > 0 &&
+      this.state.position.length > 0 &&
+      this.state.applicationStatus.length > 0 &&
+      this.state.result.length > 0 &&
+      this.state.deadline.length > 0
+    );
   }
 
   render() {
@@ -183,20 +188,36 @@ class ApplicationNew extends React.Component {
                         primaryText="Select Application Status*"
                       />
                       <MenuItem value={"To Do"} primaryText="To Do" />
-                      <MenuItem value={"In Progress"} primaryText="In Progress" />
+                      <MenuItem
+                        value={"In Progress"}
+                        primaryText="In Progress"
+                      />
                       <MenuItem value={"Completed"} primaryText="Completed" />
                     </DropDownMenu>
                     <br />
                     <DropDownMenu
-                      className={{ required: "true", color: '#E3F6F5 !important' }}
+                      className={{
+                        required: "true",
+                        color: "#E3F6F5 !important"
+                      }}
                       value={this.state.result}
                       onChange={this.handleChangeResult}
                     >
-                      <MenuItem value={""} disabled primaryText="Select Result" />
+                      <MenuItem
+                        value={""}
+                        disabled
+                        primaryText="Select Result"
+                      />
                       <MenuItem value={"N/A"} primaryText="N/A" />
-                      <MenuItem value={"Interviewing"} primaryText="Interviewing" />
+                      <MenuItem
+                        value={"Interviewing"}
+                        primaryText="Interviewing"
+                      />
                       <MenuItem value={"Waiting"} primaryText="Waiting" />
-                      <MenuItem value={"Discontinued"} primaryText="Discontinued" />
+                      <MenuItem
+                        value={"Discontinued"}
+                        primaryText="Discontinued"
+                      />
                       <MenuItem value={"Accepted"} primaryText="Accepted" />
                       <MenuItem value={"Declined"} primaryText="Declined" />
                     </DropDownMenu>
@@ -215,14 +236,23 @@ class ApplicationNew extends React.Component {
                   <br />
                   <div align="right">
                     <Link to={"/applications"}>
-                      <button className={cssstyles.delete_button} variant="extended" aria-label="Delete">
+                      <button
+                        className={cssstyles.delete_button}
+                        variant="extended"
+                        aria-label="Delete"
+                      >
                         Cancel
-                  </button>
+                      </button>
                     </Link>
                     <Link to={"/applications"} onClick={this.handleSubmit}>
-                      <button className={cssstyles.add_submit_button} variant="extended" aria-label="Delete" disabled={!this.performValidation()}>
+                      <button
+                        className={cssstyles.add_submit_button}
+                        variant="extended"
+                        aria-label="Delete"
+                        disabled={!this.performValidation()}
+                      >
                         Submit
-                  </button>
+                      </button>
                     </Link>
                   </div>
                 </div>
@@ -230,7 +260,7 @@ class ApplicationNew extends React.Component {
             </div>
           </MuiThemeProvider>
         </Box>
-      </Container >
+      </Container>
     );
   }
 }
