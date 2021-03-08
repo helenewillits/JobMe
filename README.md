@@ -20,14 +20,12 @@ If you are running JobMe for the very first time, you need to install:
 
 Hosted using Heroku, Netlify, GitHub, and MongoDB Atlas
 
-
-### [See our Figma Design](https://www.figma.com/file/R7vtwk5EloZtKxdCnrSsq4/JobMe) 
-last updated: February 6th, 2021
-
 ### [Read the JobMe Wiki](../../wiki/Diagrams)
 
 ### [Visit our Travis-CI](https://travis-ci.com/github/helenewillits/JobMe)
 
+### [See our Figma Design](https://www.figma.com/file/R7vtwk5EloZtKxdCnrSsq4/JobMe) 
+last updated: February 6th, 2021
 
 # Contributors:
 
