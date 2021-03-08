@@ -76,9 +76,6 @@ class App extends React.Component {
     const token = this.getToken();
     console.log("Token ", token);
 
-    // if (!token) {
-    //   return <Login parentCallback={this.callbackFunction} />
-    // }
     if (!token) {
       return (
         <Switch>
@@ -125,7 +122,6 @@ class App extends React.Component {
               <SingleApplication
                 display={this.state.appModalOpen}
                 handlePopup={this.handleApplicationPopup}
-                // modalOpen={this.state.appModalOpen}
                 application={this.state.application}
               />
               <ApplicationLog
@@ -146,7 +142,6 @@ class App extends React.Component {
               <SingleInterview
                 display={this.state.intModalOpen}
                 handlePopup={this.handleInterviewPopup}
-                // modalOpen={this.state.appModalOpen}
                 interview={this.state.interview}
               />
               <InterviewLog

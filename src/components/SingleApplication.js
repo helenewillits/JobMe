@@ -14,11 +14,11 @@ class SingleApplication extends React.Component {
       return <h4>{this.state.application.position}</h4>;
   };
   viewJobId = () => {
-    if (this.state.application.jobId != "")
+    if (this.state.application.jobId !== "")
       return <h3>{this.state.application.jobId}</h3>;
   };
   viewJobPostingLink = () => {
-    if (this.state.application.jobPostingLink != "")
+    if (this.state.application.jobPostingLink !== "")
       return (
         <div style={{ textDecoration: "underline" }}>
           <a href={this.state.application.jobPostingLink}>View Job Posting</a>
@@ -26,7 +26,7 @@ class SingleApplication extends React.Component {
       );
   };
   viewApplicationPortalLink = () => {
-    if (this.state.application.applicationPortalLink != "")
+    if (this.state.application.applicationPortalLink !== "")
       return (
         <div style={{ textDecoration: "underline" }}>
           <a href={this.state.application.applicationPortalLink}>
@@ -44,7 +44,7 @@ class SingleApplication extends React.Component {
       return <h5>{this.state.application.deadline}</h5>;
   };
   viewNotes = () => {
-    if (this.state.application.notes != "")
+    if (this.state.application.notes !== "")
       return <h3>{this.state.application.notes}</h3>;
   };
 
@@ -55,6 +55,7 @@ class SingleApplication extends React.Component {
   render() {
     const { application } = this.props;
     this.state.application = application;
+    
     console.log("here");
 
     if (!this.props.display) {

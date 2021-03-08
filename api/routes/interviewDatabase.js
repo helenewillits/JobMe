@@ -4,12 +4,11 @@ var router = Express.Router({ caseSensitive: true });
 var ObjectId = require("mongodb").ObjectID;
 const res = require("express/lib/response");
 var user = "";
+const { MongoClient } = require("mongodb");
+const uri = "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 
 router.get("/", function (req, res) {
   console.log("get route");
-  const { MongoClient } = require("mongodb");
-  const uri =
-    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
@@ -30,9 +29,6 @@ router.get("/", function (req, res) {
 
 router.post("/", function (req, res) {
   console.log("post route");
-  const { MongoClient } = require("mongodb");
-  const uri =
-    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
@@ -61,9 +57,6 @@ router.post("/post/getEmail", function (req, res) {
 
 router.delete("/", function (req, res) {
   console.log("delete route");
-  const { MongoClient } = require("mongodb");
-  const uri =
-    "mongodb+srv://sbagri:CSC307W2021@cluster0.v2w76.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
   console.log("initialize the database");
   MongoClient.connect(uri, (err, client) => {
     if (err) {
@@ -243,7 +236,7 @@ function deleteFromLog(collection, req) {
 
 function queryAllInterviews(collection, res) {
   const query = { userEmail: user };
-  const interviews = collection
+  collection
     .find(query)
     .toArray()
     .then((docs) => {

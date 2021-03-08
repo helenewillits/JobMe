@@ -3,9 +3,6 @@ import styles from "../assets/Styles.module.css";
 import Header from "./Header.js";
 import AddButtonNavigationBar from "./AddButtonNavbar.js";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
 import moment from "moment";
 
 // defines the space that contains the three columns ofInterview
@@ -17,6 +14,11 @@ class InterviewLog extends React.Component {
     page: "InterviewLog",
     status: ["Past", "Upcoming"]
   };
+
+  constructor(props) {
+    super(props);
+    this.state.userEmail = this.props.dataFromParent;
+  }
 
   componentWillMount() {
     this.getEmail();
@@ -37,14 +39,8 @@ class InterviewLog extends React.Component {
         });
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
-  }
-
-  constructor(props) {
-    super(props);
-    this.state.userEmail = this.props.dataFromParent;
   }
 
   getEmail() {
@@ -55,7 +51,6 @@ class InterviewLog extends React.Component {
         console.log(res);
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
   }
@@ -63,8 +58,8 @@ class InterviewLog extends React.Component {
   // DISTINGUISH COLUMNS BASED ON STATUS
 
   getInterview = (i) => {
-    if (i == 0) return this.state.InterviewPast;
-    if (i == 1) return this.state.InterviewUpcoming;
+    if (i === 0) return this.state.InterviewPast;
+    if (i === 1) return this.state.InterviewUpcoming;
   };
 
   column = (i) => {
@@ -111,8 +106,6 @@ class InterviewStatusColumn extends React.Component {
   }
 }
 
-// classInterviewtatusColumnInProgress extends React.Component {
-
 class InterviewList extends React.Component {
   render() {
     const { interviews } = this.props;
@@ -154,11 +147,8 @@ class InterviewLogItem extends React.Component {
         alert("Deleting item. Please refresh the page.");
       })
       .catch(function (error) {
-        //Not handling the error. Just logging into the console.
         console.log(error);
       });
-
-    // this.refresh();
   };
 
   handlePopup = () => {
@@ -196,17 +186,17 @@ class InterviewLogItem extends React.Component {
 
     // check for undefinedInterview : this is the default when first rendering Interview
     // in development mode, but is re-rendered when it gets to the componentWillMount() function
-    if (interview != undefined) {
+    if (interview !== undefined) {
       return (
         <div>
           <div style={{ display: "flex", justifyContent: "flex-end" }}>
             <button
-              className={styles.close_button}
-              style={{ marginLeft: "auto" }}
+              className={styles.delete_button}
+              style={{ width: "15%", marginLeft: "auto" }}
               type="submit"
               onClick={this.handleDelete.bind(this, interview)}
             >
-              x
+              Delete
             </button>
           </div>
           <div className={styles.item} onClick={this.handlePopup}>

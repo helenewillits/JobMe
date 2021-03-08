@@ -7,6 +7,7 @@ import { ReactComponent as CogIcon } from "./../icons/cog.svg";
 import { ReactComponent as ProfileIcon } from "./../icons/profile.svg";
 import LibraryBooksIcon from "@material-ui/icons/LibraryBooks";
 import PeopleAltIcon from "@material-ui/icons/PeopleAlt";
+import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 
 class NavigationBar extends React.Component {
   render() {
@@ -94,8 +95,10 @@ function DropdownMenu() {
         <DropdownItem link={"/applications"} leftIcon={<LibraryBooksIcon />}>
           Applications
         </DropdownItem>
-        <DropdownItem link={"/interviews"} leftIcon={<PeopleAltIcon />}>Interviews</DropdownItem>
-        <DropdownItem link={"/logout"} leftIcon={<LibraryBooksIcon />}>
+        <DropdownItem link={"/interviews"} leftIcon={<PeopleAltIcon />}>
+          Interviews
+        </DropdownItem>
+        <DropdownItem link={"/logout"} leftIcon={<ExitToAppIcon />}>
           Logout
         </DropdownItem>
       </div>
