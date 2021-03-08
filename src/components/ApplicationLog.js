@@ -164,15 +164,15 @@ class ApplicationLogItem extends React.Component {
   };
 
   viewCompany = () => {
-    if (this.state.application.companyName != "")
+    if (this.state.application.companyName !== "")
       return <h4>{this.state.application.companyName}</h4>;
   };
   viewPosition = () => {
-    if (this.state.application.position != "")
+    if (this.state.application.position !== "")
       return <h4>{this.state.application.position}</h4>;
   };
   viewJobPostingLink = () => {
-    if (this.state.application.jobPostingLink != "")
+    if (this.state.application.jobPostingLink !== "")
       return (
         <div style={{ textDecoration: "underline" }}>
           <a href={this.state.application.jobPostingLink}>View Job Posting</a>
@@ -180,11 +180,11 @@ class ApplicationLogItem extends React.Component {
       );
   };
   viewResult = () => {
-    if (this.state.application.result != "")
+    if (this.state.application.result !== "")
       return <h5>{this.state.application.result}</h5>;
   };
   viewDeadline = () => {
-    if (this.state.application.deadline != "")
+    if (this.state.application.deadline !== "")
       return <h5>{this.state.application.deadline}</h5>;
   };
 
