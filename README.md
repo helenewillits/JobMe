@@ -1,57 +1,42 @@
-# Getting Started with Create React App
+# About JobMe
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-=======
+JobMe is a website that simplifies the job application process. After creating an account, users can:
+
+- Keep track of information that is commonly requested on applications in their profile tab
+
+- Add applications and view them in an application log
+
+- Easily track upcoming job interviews
+
+Applications are organized by status (To Do / In Progress / Completed) to help users keep track of their progress on their job search. Each application can store the Company Name, Position, Job Posting Link, Deadline, and more. Additionally, user interviews are separated into past and upcoming interviews to keep users looking forward.
+
 # Installation
 
-If you are running JobMe for the very first time, you need to install these files:
+If you are running JobMe for the very first time, you need to install:
 
 npm install
 
-npm install mongodb
+### [See our Figma Design](https://www.figma.com/file/R7vtwk5EloZtKxdCnrSsq4/JobMe)
+last updated: February 6th, 2021
 
-npm install cookie-parser
+### [Read the JobMe Wiki](../../wiki)
 
-npm install morgan
+### [Visit our Travis-CI](https://travis-ci.com/github/helenewillits/JobMe)
 
-npm install cors
+### [Visit our Heroku](https://dashboard.heroku.com/apps/jobme-app)
 
-npm install jade
+### [Visit our Netlify](https://app.netlify.com/sites/job-me/overview)
 
-npm install @material-ui/core
-
-
-npm install @date-io/date-fns
-
-npm install @material-ui/pickers
-
-if that doesn't work, use:
-
-npm i --save date-fns@next @date-io/data-fns@1.x
 
 # Contributors:
 
-### Deployment
+Helene Willits: Deliverables Assurance
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+Shaina Bagri: Lead Developer
 
-### `npm run build` fails to minify
+Piper Feldman: Scrum Master
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Maxwell Mohammadi: Quality Assurance
 
-### Code Styling
 
-```
-{
-    "useTabs": false,
-    "printWidth": 80,
-    "tadWidth": 4,
-    "singleQuote": false,
-    "trailingComma": "none",
-    "jsxBracketSameLine": false,
-    "noSemi": true,
-    "rcVerbose": true,
-}
-```
-
-### [Read the JobMe Wiki](../../wiki)
+last updated: March 8th, 2021
