@@ -11,7 +11,7 @@ class Header extends React.Component {
   application_new_header = (
     <div>
       <h1>Add a New Application</h1>
-      <h2>You're on a roll.</h2>
+      <h2>You&apos;re on a roll.</h2>
     </div>
   );
 
@@ -25,7 +25,7 @@ class Header extends React.Component {
   interview_new_header = (
     <div>
       <h1>Add a new Interview</h1>
-      <h2>Look who's on their grind.</h2>
+      <h2>Look who&apos;s on their grind.</h2>
     </div>
   );
 
@@ -39,7 +39,7 @@ class Header extends React.Component {
     <div>
       <h1>Edit My Profile</h1>
       <h2>Straight Applicant Awesomeness.</h2>
-      <h3>Fields left blank won't be changed from the original.</h3>
+      <h3>Fields left blank won&apos;t be changed from the original.</h3>
     </div>
   );
 

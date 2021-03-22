@@ -80,7 +80,7 @@ class Logout extends React.Component {
             </Typography>
             <br />
             <Typography component="h3" variant="h5" align="center">
-              We'll miss you!
+              We&apos;ll miss you!
             </Typography>
             <div align="center">
               <Link to={"/profile"}>

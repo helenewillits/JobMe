@@ -150,7 +150,7 @@ class SignUp extends React.Component {
         <CssBaseline />
         <div className={classes.paper}>
           <Typography component="header" variant="h3" align="center">
-            Ready to sign up? It's free!
+            Ready to sign up? It&apos;s free!
           </Typography>
           <Typography component="h1" variant="h5" align="center">
             An easy job search awaits.
