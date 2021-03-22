@@ -4,6 +4,7 @@ import Header from "./Header.js";
 import AddButtonNavigationBar from "./AddButtonNavbar.js";
 import axios from "axios";
 import Box from "@material-ui/core/Box";
+import PropTypes from "prop-types";
 
 // defines the space that contains the three columns of applications
 
@@ -17,9 +18,16 @@ class ApplicationLog extends React.Component {
     status: ["To Do", "In Progress", "Completed"]
   };
 
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   constructor(props) {
     super(props);
-    this.state.userEmail = this.props.dataFromParent;
+    this.state.userEmail = this.propTypes.dataFromParent;
   }
 
   componentWillMount() {
@@ -76,8 +84,8 @@ class ApplicationLog extends React.Component {
         <ApplicationStatusColumn
           status={this.state.status[i]}
           applications={this.get_Applications(i)}
-          handlePopup={this.props.handlePopup}
-          modalOpen={this.props.modalOpen}
+          handlePopup={this.propTypes.handlePopup}
+          modalOpen={this.propTypes.modalOpen}
         />
       </div>
     );
@@ -99,16 +107,23 @@ class ApplicationLog extends React.Component {
 
 // defines one row of applications, organized by type
 class ApplicationStatusColumn extends React.Component {
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   render() {
-    const { applications, status } = this.props;
+    const { applications, status } = this.propTypes;
 
     return (
       <Box className={styles.area}>
         <h3 className={styles.column_title}>{status}</h3>
         <ApplicationList
           applications={applications}
-          handlePopup={this.props.handlePopup}
-          modalOpen={this.props.modalOpen}
+          handlePopup={this.propTypes.handlePopup}
+          modalOpen={this.propTypes.modalOpen}
         />
       </Box>
     );
@@ -116,8 +131,15 @@ class ApplicationStatusColumn extends React.Component {
 }
 
 class ApplicationList extends React.Component {
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   render() {
-    const { applications } = this.props;
+    const { applications } = this.PropTypes;
 
     return (
       <div>
@@ -125,8 +147,8 @@ class ApplicationList extends React.Component {
           {applications.map((item) => (
             <ApplicationLogItem
               application={item}
-              handlePopup={this.props.handlePopup}
-              modalOpen={this.props.modalOpen}
+              handlePopup={this.PropTypes.handlePopup}
+              modalOpen={this.PropTypes.modalOpen}
             />
           ))}
         </ul>
@@ -138,6 +160,13 @@ class ApplicationList extends React.Component {
 // defines one application item
 class ApplicationLogItem extends React.Component {
   state = { application: null };
+
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
 
   handleDelete = (application) => {
     console.log("Delete");
@@ -160,7 +189,7 @@ class ApplicationLogItem extends React.Component {
   };
 
   handlePopup = () => {
-    this.props.handlePopup(this.state.application);
+    this.PropTypes.handlePopup(this.state.application);
   };
 
   viewCompany = () => {
@@ -189,7 +218,7 @@ class ApplicationLogItem extends React.Component {
   };
 
   render() {
-    const { application } = this.props;
+    const { application } = this.PropTypes;
     this.state.application = application;
 
     // check for undefined applications : this is the default when first rendering Application

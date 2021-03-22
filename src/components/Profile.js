@@ -8,7 +8,7 @@ import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import { Link } from "react-router-dom";
-import Fab from "@material-ui/core/Fab";
+import PropTypes from "prop-types";
 
 import axios from "axios";
 
@@ -20,9 +20,16 @@ class Profile extends React.Component {
     refresh: false
   };
 
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   constructor(props) {
     super(props);
-    this.state.email = this.props.dataFromParent;
+    this.state.email = this.propTypes.dataFromParent;
   }
 
   componentWillMount() {

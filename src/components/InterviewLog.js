@@ -4,6 +4,7 @@ import Header from "./Header.js";
 import AddButtonNavigationBar from "./AddButtonNavbar.js";
 import axios from "axios";
 import moment from "moment";
+import PropTypes from "prop-types";
 
 // defines the space that contains the three columns ofInterview
 class InterviewLog extends React.Component {
@@ -15,9 +16,16 @@ class InterviewLog extends React.Component {
     status: ["Past", "Upcoming"]
   };
 
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   constructor(props) {
     super(props);
-    this.state.userEmail = this.props.dataFromParent;
+    this.state.userEmail = this.propTypes.dataFromParent;
   }
 
   componentWillMount() {
@@ -68,8 +76,8 @@ class InterviewLog extends React.Component {
         <InterviewStatusColumn
           status={this.state.status[i]}
           interviews={this.getInterview(i)}
-          handlePopup={this.props.handlePopup}
-          modalOpen={this.props.modalOpen}
+          handlePopup={this.propTypes.handlePopup}
+          modalOpen={this.propTypes.modalOpen}
         />
       </div>
     );
@@ -90,16 +98,23 @@ class InterviewLog extends React.Component {
 
 // defines one row ofInterview, organized by type
 class InterviewStatusColumn extends React.Component {
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   render() {
-    const { interviews, status } = this.props;
+    const { interviews, status } = this.propTypes;
 
     return (
       <div className={styles.area}>
         <h3 className={styles.column_title}>{status}</h3>
         <InterviewList
           interviews={interviews}
-          handlePopup={this.props.handlePopup}
-          modalOpen={this.props.modalOpen}
+          handlePopup={this.propTypes.handlePopup}
+          modalOpen={this.propTypes.modalOpen}
         />
       </div>
     );
@@ -107,8 +122,15 @@ class InterviewStatusColumn extends React.Component {
 }
 
 class InterviewList extends React.Component {
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   render() {
-    const { interviews } = this.props;
+    const { interviews } = this.propTypes;
 
     return (
       <div>
@@ -116,8 +138,8 @@ class InterviewList extends React.Component {
           {interviews.map((item) => (
             <InterviewLogItem
               interview={item}
-              handlePopup={this.props.handlePopup}
-              modalOpen={this.props.modalOpen}
+              handlePopup={this.propTypes.handlePopup}
+              modalOpen={this.propTypes.modalOpen}
               e
             />
           ))}
@@ -130,6 +152,13 @@ class InterviewList extends React.Component {
 // defines one Interview item
 class InterviewLogItem extends React.Component {
   state = { interview: null };
+
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
 
   handleDelete = (interview) => {
     console.log("Delete");
@@ -152,7 +181,7 @@ class InterviewLogItem extends React.Component {
   };
 
   handlePopup = () => {
-    this.props.handlePopup(this.state.interview);
+    this.propTypes.handlePopup(this.state.interview);
   };
 
   viewCompany = () => {
@@ -181,7 +210,7 @@ class InterviewLogItem extends React.Component {
   };
 
   render() {
-    const { interview } = this.props;
+    const { interview } = this.propTypes;
     this.state.interview = interview;
 
     // check for undefinedInterview : this is the default when first rendering Interview

@@ -5,23 +5,30 @@ import NavigationBar from "./Navbar.js";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import TextField from "material-ui/TextField";
 import { Link } from "react-router-dom";
-import Fab from "@material-ui/core/Fab";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
 import TableRow from "@material-ui/core/TableRow";
 import Grid from "@material-ui/core/Grid";
+import PropTypes from "prop-types";
 
 import axios from "axios";
 
 class EditProfile extends React.Component {
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       apiResponse: "",
       page: "EditProfile",
 
-      email: this.props.dataFromParent,
+      email: this.propTypes.dataFromParent,
       firstName: "",
       lastName: "",
       link1: "",
@@ -53,7 +60,7 @@ class EditProfile extends React.Component {
       });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = () => {
     console.log("dear god it did work now didn't it");
     console.log(this.state);
     this.updateProfile();

@@ -10,6 +10,7 @@ import Logo from "../icons/JobMe_Logo.png";
 import { withStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import cssstyles from "../assets/Styles.module.css";
+import PropTypes from "prop-types";
 
 function Copyright() {
   return (
@@ -84,6 +85,13 @@ class SignUp extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   performValidation() {
     return (
       this.state.firstName.length > 0 &&
@@ -136,7 +144,7 @@ class SignUp extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.propTypes;
     return (
       <Container component="main" maxWidth="xs" align="center">
         <CssBaseline />

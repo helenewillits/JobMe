@@ -1,9 +1,17 @@
 import React from "react";
 import styles from "../assets/Styles.module.css";
+import PropTypes from "prop-types";
 
 // defines the space that contains the three columns of applications
 class SingleApplication extends React.Component {
   state = { application: {} };
+
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
 
   viewCompany = () => {
     if (this.state.application.companyName != "")
@@ -49,16 +57,16 @@ class SingleApplication extends React.Component {
   };
 
   handleClose = () => {
-    this.props.handlePopup(this.state.application);
+    this.propTypes.handlePopup(this.state.application);
   };
 
   render() {
-    const { application } = this.props;
+    const { application } = this.propTypes;
     this.state.application = application;
 
     console.log("here");
 
-    if (!this.props.display) {
+    if (!this.propTypes.display) {
       return null;
     }
 

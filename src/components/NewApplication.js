@@ -5,29 +5,33 @@ import Calendar from "./Calendar.js";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import TextField from "@material-ui/core/TextField";
 import { withStyles } from "@material-ui/core/styles";
-import Fab from "@material-ui/core/Fab";
 import Grid from "@material-ui/core/Grid";
 import DropDownMenu from "material-ui/DropDownMenu";
-import Menu from "material-ui/Menu";
 import MenuItem from "material-ui/MenuItem";
 import Checkbox from "material-ui/Checkbox";
 import { Link } from "react-router-dom";
 import cssstyles from "../assets/Styles.module.css";
 import Box from "@material-ui/core/Box";
-import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
-import CssBaseline from "@material-ui/core/CssBaseline";
+import PropTypes from "prop-types";
 
 // defines the space that contains the page for adding new job applications
 class ApplicationNew extends React.Component {
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       apiResponse: "",
       page: "ApplicationNew",
 
-      userEmail: this.props.dataFromParent,
+      userEmail: this.propTypes.dataFromParent,
       favorited: false,
       companyName: "",
       position: "",
@@ -79,7 +83,7 @@ class ApplicationNew extends React.Component {
       });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = () => {
     console.log("dear god it did work now didn't it");
     this.postNewApplication();
   };
@@ -161,7 +165,6 @@ class ApplicationNew extends React.Component {
                     margin="normal"
                     id="jobID"
                     autoComplete="jobID"
-                    name="jobID"
                     autofocus
                     onChange={this.handleChange}
                   />

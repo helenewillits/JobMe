@@ -6,7 +6,7 @@ import Button from "@material-ui/core/Button";
 import { withStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import cssstyles from "../assets/Styles.module.css";
-import { ArrowRight } from "@material-ui/icons";
+import PropTypes from "prop-types";
 
 const styles = (theme) => ({
   paper: {
@@ -55,6 +55,13 @@ const styles = (theme) => ({
 });
 
 class Logout extends React.Component {
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   clearToken() {
     alert("You are being logged out");
     localStorage.removeItem("token");
@@ -62,7 +69,7 @@ class Logout extends React.Component {
   }
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.propTypes;
 
     return (
       <Container maxWidth="sm">

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 class Header extends React.Component {
   application_log_header = (
@@ -48,8 +49,15 @@ class Header extends React.Component {
     </div>
   );
 
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   render() {
-    const { page } = this.props;
+    const { page } = this.propTypes;
 
     if (page === "ApplicationLog") return this.application_log_header;
     if (page === "ApplicationNew") return this.application_new_header;

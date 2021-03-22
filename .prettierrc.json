@@ -1,7 +1,7 @@
 {
   "useTabs": false,
   "printWidth": 80,
-  "tadWidth": 2,
+  "tadWidth": 4,
   "singleQuote": false,
   "trailingComma": "none",
   "jsxBracketSameLine": false,

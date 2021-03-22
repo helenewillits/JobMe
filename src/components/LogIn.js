@@ -10,6 +10,7 @@ import Logo from "../icons/JobMe_Logo.png";
 import { withStyles } from "@material-ui/core/styles";
 import axios from "axios";
 import cssstyles from "../assets/Styles.module.css";
+import PropTypes from "prop-types";
 
 document.body.style = "background: #f4fcfc;";
 
@@ -89,15 +90,22 @@ class LogIn extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   performValidation() {
     return this.state.email.length > 0 && this.state.password.length > 0;
   }
 
-  handleClick(event) {
+  handleClick() {
     console.log("Made it");
     var apiBaseUrl = "http://localhost:5000/";
     var selfState = this.state;
-    var selfProps = this.props;
+    var selfProps = this.propTypes;
     console.log("PAYLOAD: ", selfState);
     axios
       .post(apiBaseUrl + "userDatabase/post/validateLogin", selfState)
@@ -123,7 +131,7 @@ class LogIn extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
+    const { classes } = this.propTypes;
 
     return (
       <Container component="main" maxWidth="xs" align="center">

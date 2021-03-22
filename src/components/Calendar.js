@@ -6,6 +6,7 @@ import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker
 } from "@material-ui/pickers";
+import PropTypes from "prop-types";
 
 export default class Calendar extends React.Component {
   constructor(props) {
@@ -15,12 +16,19 @@ export default class Calendar extends React.Component {
     };
   }
 
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   setSelectedDate = (date) => {
     this.setState({ selectedDate: date });
   };
 
   sendData = (date) => {
-    this.props.parentCallback(date);
+    this.propTypes.parentCallback(date);
   };
 
   handleDateChange = (date) => {
@@ -38,8 +46,8 @@ export default class Calendar extends React.Component {
               format="MM-dd-yyyy"
               margin="normal"
               id="date-picker"
-              label={this.props.label}
-              value={this.props.selectedDate}
+              label={this.propTypes.label}
+              value={this.propTypes.selectedDate}
               onChange={this.handleDateChange}
               KeyboardButtonProps={{ "aria-label": "change date" }}
             />

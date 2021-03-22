@@ -1,9 +1,17 @@
 import React from "react";
 import styles from "../assets/Styles.module.css";
+import PropTypes from "prop-types";
 
 // defines the space that contains the three columns of interviews
 class SingleInterview extends React.Component {
   state = { interview: {} };
+
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
 
   viewCompany = () => {
     if (this.state.interview.companyName != "")
@@ -53,15 +61,15 @@ class SingleInterview extends React.Component {
   };
 
   handleClose = () => {
-    this.props.handlePopup(this.state.interview);
+    this.propTypes.handlePopup(this.state.interview);
   };
 
   render() {
-    const { interview } = this.props;
+    const { interview } = this.propTypes;
     this.state.interview = interview;
     console.log("here");
 
-    if (!this.props.display) {
+    if (!this.propTypes.display) {
       return null;
     }
 

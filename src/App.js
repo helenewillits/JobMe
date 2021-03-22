@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
-import ApplicationLog from "./components/Application.js";
+import ApplicationLog from "./components/ApplicationLog.js";
 import SingleApplication from "./components/SingleApplication.js";
 import NewApplication from "./components/NewApplication.js";
 import SignUp from "./components/SignUp.js";
@@ -118,7 +118,7 @@ class App extends React.Component {
         <div>
           {/* applications */}
           <Route exact path="/applications">
-            <div classname="appPopup">
+            <div className="appPopup">
               <SingleApplication
                 display={this.state.appModalOpen}
                 handlePopup={this.handleApplicationPopup}
@@ -138,7 +138,7 @@ class App extends React.Component {
           </Route>
           {/* interviews */}
           <Route exact path="/interviews">
-            <div classname="appPopup">
+            <div className="appPopup">
               <SingleInterview
                 display={this.state.intModalOpen}
                 handlePopup={this.handleInterviewPopup}

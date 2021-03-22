@@ -10,18 +10,26 @@ import { Link } from "react-router-dom";
 import Box from "@material-ui/core/Box";
 import cssstyles from "../assets/Styles.module.css";
 import Container from "@material-ui/core/Container";
+import PropTypes from "prop-types";
 
 import axios from "axios";
 
 // defines the space that contains the page for adding new job interviews
 class InterviewNew extends React.Component {
+  static get propTypes() {
+    return {
+      children: PropTypes.any,
+      onClickOut: PropTypes.func
+    };
+  }
+
   constructor(props) {
     super(props);
     this.state = {
       apiResponse: "",
       page: "InterviewNew",
 
-      userEmail: this.props.dataFromParent,
+      userEmail: this.propTypes.dataFromParent,
       companyName: "",
       interviewerNames: "",
       recruiterNames: "",
@@ -60,7 +68,7 @@ class InterviewNew extends React.Component {
       });
   }
 
-  handleSubmit = (event) => {
+  handleSubmit = () => {
     console.log("dear god it did work now didn't it");
     this.postNewInterview();
   };
@@ -133,7 +141,6 @@ class InterviewNew extends React.Component {
                       required
                       label="Interview Time"
                       fullWidth
-                      name="interviewTime"
                       onChange={this.handleChange}
                       autoComplete="interviewTime"
                       autofocus
