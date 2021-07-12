@@ -1,7 +1,7 @@
 # About JobMe
 
 <div align="center">
-<img width="100%" height = "100%" src="https://github.com/helenewillits/JobMe/Resources/jobme_app.png" alt="cover" />
+<img width="100%" height = "100%" src="https://github.com/helenewillits/JobMe/tree/main/Resources/jobme_app.png" alt="cover" />
 </div>
 
 JobMe is a website that simplifies the job application process. After creating an account, users can:
